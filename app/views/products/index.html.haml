@@ -1,0 +1,9 @@
+%h1 Products
+
+-@products.each do |product|
+	%p
+	Title is:
+	=link_to product.title, product_path(product.id)
+	%br
+	Description is:
+	=product.description

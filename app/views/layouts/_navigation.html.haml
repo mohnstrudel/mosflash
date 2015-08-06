@@ -1,0 +1,245 @@
+/
+  *** NAVBAR ***
+  _________________________________________________________
+#navbar.navbar.navbar-default.navbar-fixed-top.yamm{:role => "navigation"}
+  .container
+    .navbar-header
+      %a.navbar-brand.home{:href => "index.html"}
+        =image_tag 'default/logo.png', class: 'hidden-xs hidden-sm', alt: "Minimal logo" do
+          %img.visible-xs.visible-sm{:alt => "Minimal logo", :src => "img/logo-small.png"}
+            %span.sr-only Minimal - go to homepage
+      .navbar-buttons
+        %button.navbar-toggle.btn-primary{"data-target" => "#navigation", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle navigation
+          %i.fa.fa-align-justify
+        %a.btn.btn-primary.navbar-toggle{:href => "basket.html"}
+          %i.fa.fa-shopping-cart
+          %span.hidden-xs 3 items in cart
+        %button.navbar-toggle.btn-default{"data-target" => "#search", "data-toggle" => "collapse", :type => "button"}
+          %span.sr-only Toggle search
+          %i.fa.fa-search
+        %button.navbar-toggle.btn-default{"data-target" => "#login-modal", "data-toggle" => "modal", :type => "button"}
+          %span.sr-only User login
+          %i.fa.fa-users
+    / /.navbar-header
+    #navigation.navbar-collapse.collapse
+      %ul.nav.navbar-nav.navbar-left
+        %li.active.dropdown.normal-dropdown
+          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "index.html"}
+            Home
+            %b.caret
+          %ul.dropdown-menu
+            %li
+              %a{:href => "index.html"} Home - default
+            %li
+              %a{:href => "index2.html"} Home - intro image
+        %li.dropdown.yamm-fw
+          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+            Men
+            %b.caret
+          %ul.dropdown-menu
+            %li
+              .yamm-content
+                .row
+                  .col-sm-3
+                    %img.img-responsive.hidden-xs{:alt => "", :src => "img/men.jpg"}
+                  .col-sm-3
+                    %h3 Clothing
+                    %ul
+                      %li
+                        %a{:href => "category.html"} T-shirts
+                      %li
+                        %a{:href => "category.html"} Shirts
+                      %li
+                        %a{:href => "category.html"} Pants
+                      %li
+                        %a{:href => "category.html"} Accessories
+                  .col-sm-3
+                    %h3 Clothing
+                    %ul
+                      %li
+                        %a{:href => "category.html"} T-shirts
+                      %li
+                        %a{:href => "category.html"} Shirts
+                      %li
+                        %a{:href => "category.html"} Pants
+                      %li
+                        %a{:href => "category.html"} Accessories
+                  .col-sm-3
+                    %h3 Shoes
+                    %ul
+                      %li
+                        %a{:href => "category.html"} Trainers
+                      %li
+                        %a{:href => "category.html"} Sandals
+                      %li
+                        %a{:href => "category.html"} Hiking shoes
+                      %li
+                        %a{:href => "category.html"} Casual
+              .footer.clearfix.hidden-xs
+                %h4.pull-right Men
+                .buttons.pull-left
+                  %a.btn.btn-default{:href => "#"}
+                    %i.fa.fa-tags
+                    Sales
+                  %a.btn.btn-default{:href => "#"}
+                    %i.fa.fa-star-o
+                    Favourites
+                  %a.btn.btn-default{:href => "#"}
+                    %i.fa.fa-globe
+                    Brands
+        %li.dropdown.yamm-fw
+          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+            Women
+            %b.caret
+          %ul.dropdown-menu
+            %li
+              .yamm-content
+                .row
+                  .col-sm-3
+                    %img.img-responsive.hidden-xs{:alt => "", :src => "img/women.jpg"}
+                  .col-sm-3
+                    %h3 Clothing
+                    %ul
+                      %li
+                        %a{:href => "category.html"} T-shirts
+                      %li
+                        %a{:href => "category.html"} Shirts
+                      %li
+                        %a{:href => "category.html"} Pants
+                      %li
+                        %a{:href => "category.html"} Accessories
+                  .col-sm-3
+                    %h3 Clothing
+                    %ul
+                      %li
+                        %a{:href => "category.html"} T-shirts
+                      %li
+                        %a{:href => "category.html"} Shirts
+                      %li
+                        %a{:href => "category.html"} Pants
+                      %li
+                        %a{:href => "category.html"} Accessories
+                  .col-sm-3
+                    %h3 Shoes
+                    %ul
+                      %li
+                        %a{:href => "category.html"} Trainers
+                      %li
+                        %a{:href => "category.html"} Sandals
+                      %li
+                        %a{:href => "category.html"} Hiking shoes
+                      %li
+                        %a{:href => "category.html"} Casual
+              .footer.clearfix.hidden-xs
+                %h4.pull-right Women
+                .buttons.pull-left
+                  %a.btn.btn-default{:href => "#"}
+                    %i.fa.fa-tags
+                    Sales
+                  %a.btn.btn-default{:href => "#"}
+                    %i.fa.fa-star-o
+                    Favourites
+                  %a.btn.btn-default{:href => "#"}
+                    %i.fa.fa-globe
+                    Brands
+        %li.dropdown.yamm-fw
+          %a.dropdown-toggle{"data-delay" => "200", "data-hover" => "dropdown", "data-toggle" => "dropdown", :href => "#"}
+            Template
+            %b.caret
+          %ul.dropdown-menu
+            %li
+              .yamm-content
+                .row
+                  .col-sm-3
+                    %h5 Homepage
+                    %ul
+                      %li
+                        %a{:href => "index.html"} Homepage - with slideshow
+                      %li
+                        %a{:href => "index2.html"} Homepage - with intro image
+                    %h5 Shop
+                    %ul
+                      %li
+                        %a{:href => "category.html"} Category - sidebar right
+                      %li
+                        %a{:href => "category-left.html"} Category - sidebar left
+                      %li
+                        %a{:href => "category-full.html"} Category - full width
+                      %li
+                        %a{:href => "detail.html"} Product detail
+                  .col-sm-3
+                    %h5 User
+                    %ul
+                      %li
+                        %a{:href => "register.html"} Register / login
+                      %li
+                        %a{:href => "customer-orders.html"} Orders history
+                      %li
+                        %a{:href => "customer-order.html"} Order history detail
+                      %li
+                        %a{:href => "customer-wishlist.html"} Wishlist
+                      %li
+                        %a{:href => "customer-account.html"} Customer account / change password
+                  .col-sm-3
+                    %h5 Order process
+                    %ul
+                      %li
+                        %a{:href => "basket.html"} Shopping cart
+                      %li
+                        %a{:href => "checkout1.html"} Checkout - step 1
+                      %li
+                        %a{:href => "checkout2.html"} Checkout - step 2
+                      %li
+                        %a{:href => "checkout3.html"} Checkout - step 3
+                      %li
+                        %a{:href => "checkout4.html"} Checkout - step 4
+                  .col-sm-3
+                    %h5 Pages and blog
+                    %ul
+                      %li
+                        %a{:href => "blog.html"} Blog listing
+                      %li
+                        %a{:href => "post.html"} Blog Post
+                      %li
+                        %a{:href => "faq.html"} FAQ
+                      %li
+                        %a{:href => "contact.html"} Contact
+                      %li
+                        %a{:href => "text.html"} Text page
+                      %li
+                        %a{:href => "text-left.html"} Text page - left sidebar
+                      %li
+                        %a{:href => "404.html"} 404 page
+              / /.yamm-content
+        %li
+          %a{:href => "contact.html"} Contact
+    / /.nav-collapse
+    #basket-overview.navbar-collapse.collapse.right
+      %a.btn.btn-primary.navbar-btn{:href => "basket.html"}
+        %i.fa.fa-shopping-cart
+        %span.hidden-sm
+          3 items
+          %span.hidden-md in cart
+    / /.nav-collapse
+    .navbar-collapse.collapse.right
+      %button.btn.navbar-btn.btn-default{"data-target" => "#search", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle search
+        %i.fa.fa-search
+    .navbar-collapse.collapse.right
+      %button.btn.navbar-btn.btn-default{"data-target" => "#login-modal", "data-toggle" => "modal", :type => "button"}
+        %span.sr-only User login
+        %i.fa.fa-users
+    #search.collapse.clearfix
+      %form.navbar-form{:role => "search"}
+        .input-group
+          %input.form-control{:placeholder => "Search", :type => "text"}
+            %span.input-group-btn
+              %button.btn.btn-primary{:type => "submit"}
+                %i.fa.fa-search
+    / /.nav-collapse
+/ /#navbar
+/ *** NAVBAR END ***
+/
+  *** LOGIN MODAL ***
+  _________________________________________________________
