@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150806154907) do
+ActiveRecord::Schema.define(version: 20150806201406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20150806154907) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "product_attributes", force: :cascade do |t|
+  create_table "options", force: :cascade do |t|
     t.integer  "product_id"
     t.string   "size"
     t.integer  "weight"
@@ -35,19 +35,12 @@ ActiveRecord::Schema.define(version: 20150806154907) do
 
   create_table "products", force: :cascade do |t|
     t.string   "title"
-    t.string   "color"
-    t.string   "size"
-    t.integer  "weight"
-    t.string   "material"
-    t.string   "battery_type"
-    t.string   "input"
-    t.string   "output"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.text     "description"
-    t.string   "usbchip"
-    t.string   "interface"
-    t.string   "supported_devices"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.integer  "sku"
+    t.text     "advertising_text"
+    t.text     "fancy_quote"
   end
 
   create_table "subcategories", force: :cascade do |t|

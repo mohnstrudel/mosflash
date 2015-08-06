@@ -11,6 +11,7 @@ class ProductsController < ApplicationController
 
   def new
   	@product = Product.new
+    @option = @product.options.new
   end
 
   def edit
@@ -18,7 +19,11 @@ class ProductsController < ApplicationController
 
   def create
   	@product = Product.create(product_params)
-  	flash[:success] = "Product successfully created!"
+    @option = @product.options.create(option_params)
+    @option.product_id = @product.id
+    @option.save
+  	
+    flash[:success] = "Product successfully created!"
   	redirect_to products_path
   end
 
@@ -27,6 +32,10 @@ class ProductsController < ApplicationController
   	def product_params
   		params.require(:product).permit(:title, :description)
   	end
+
+    def option_params
+      params.require(:option).permit(:size, :weight, :price, :material, :product_id)
+    end
 
   	def find_product
   		@product = Product.find(params[:id])

@@ -69,14 +69,14 @@
         %p
           %h4 Product details
           %p White lace top, woven, has a round neck, short sleeves, has knitted lining attached
-          %h4 Material & care
+          %h4 Материал
           %ul
-            %li Polyester
-            %li Machine wash
-          %h4 Size & Fit
+            -@product.options.each do |option|
+              %li=option.material
+          %h4 Размеры
           %ul
-            %li Regular fit
-            %li The model (height 5'8" and chest 33") is wearing a size S
+            -@product.options.each do |option|
+              %li=option.size
           %blockquote
             %p
               %em Define style this season with Armani's new range of trendy tops, crafted with intricate details. Create a chic statement look by teaming this lace number with skinny jeans and pumps.

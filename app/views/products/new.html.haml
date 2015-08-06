@@ -1,10 +1,23 @@
 %h1 Create new product
 
-=form_for(@product) do |f|
-	=f.label :title
-	=f.text_field :title
-
-	=f.label :description
-	=f.text_area :description
-
+=form_for @product, url: products_path do |f|
+	%p
+		=f.label :title
+		=f.text_field :title
+		%br
+		=f.label :description
+		=f.text_area :description
+	%p
+		= fields_for @option do |o|
+			=o.label :price
+			=o.text_field :price
+			%br
+			=o.label :size
+			=o.text_field :size
+			%br
+			=o.label :weight
+			=o.text_field :weight
+			%br
+			=o.label :material
+			=o.text_field :material
 	=f.submit
