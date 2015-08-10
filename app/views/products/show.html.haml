@@ -25,6 +25,10 @@
       #productMain.row
         .col-sm-6
           #mainImage
+            -image_tag @product.avatar
+            -@product.options.each do |option|
+              -option.option_pics.each do |op|
+                =image_tag op.product_image.to_s
             %img.img-responsive{:alt => "", :src => "img/detailbig1.jpg"}
           .ribbon.sale
             .theribbon SALE

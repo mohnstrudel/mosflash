@@ -13,6 +13,9 @@
 		%br
 		=f.label :fancy_quote
 		=f.text_area :fancy_quote
+		%br
+		=f.label :avatar
+		=f.file_field :avatar
 		
 	%p
 		= fields_for @option do |o|
@@ -27,4 +30,8 @@
 			%br
 			=o.label :material
 			=o.text_field :material
+	%p
+		= fields_for @option_pic, html: { multipart: true } do |op|
+			= op.label 'Upload image'
+			= op.file_field :product_image
 	=f.submit
