@@ -14,7 +14,6 @@ class ProductsController < ApplicationController
     @option = @product.options.new
     @option_pic = @option.option_pics.new
 
-    @product.avatar = params[:file]
   end
 
   def edit
@@ -30,6 +29,7 @@ class ProductsController < ApplicationController
     @option_pic = @option.option_pics.create(pic_params)
     @option_pic.option_id = @option.id
     @option_pic.save!
+
   	
     flash[:success] = "Product successfully created!"
   	redirect_to products_path
@@ -38,7 +38,7 @@ class ProductsController < ApplicationController
   private
 
   	def product_params
-  		params.require(:product).permit(:title, :description, :advertising_text, :fancy_quote, :avatar)
+  		params.require(:product).permit(:title, :description, :advertising_text, :fancy_quote, :avatar, :category_id)
   	end
 
     def option_params

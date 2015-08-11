@@ -1,5 +1,7 @@
 %h1 Create new product
 
+=select_tag(@subcategory, options_for_select([['Flash', 1], ['Selfie', 2]]))
+
 =form_for @product, url: products_path do |f|
 	%p
 		=f.label :title
@@ -14,8 +16,8 @@
 		=f.label :fancy_quote
 		=f.text_area :fancy_quote
 		%br
-		=f.label :avatar
-		=f.file_field :avatar
+		=f.label :category_id
+		=f.collection_select :category_id, Category.all, :id, :title, { prompt: 'Please select category' }
 		
 	%p
 		= fields_for @option do |o|
@@ -31,7 +33,7 @@
 			=o.label :material
 			=o.text_field :material
 	%p
-		= fields_for @option_pic, html: { multipart: true } do |op|
+		= fields_for @option_pic do |op|
 			= op.label 'Upload image'
 			= op.file_field :product_image
 	=f.submit
