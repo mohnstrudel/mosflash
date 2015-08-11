@@ -18,8 +18,11 @@
 		=f.label :category_id
 		=f.collection_select :category_id, Category.all, :id, :title, { prompt: 'Please select category' }
 		%br
+		=f.label :subcategory_id
+		=f.collection_select :subcategory_id, Subcategory.all, :id, :title, { prompt: 'Please select sub-category' }
+		%br
 		=f.label 'Product Size'
-		=f.collection_check_boxes(:product_size_ids, ProductSize.all, :id, :size)
+		=f.collection_check_boxes(:volume_ids, Volume.all, :id, :value)
 		
 	%p
 		= f.fields_for :options do |builder|

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150811045648) do
+ActiveRecord::Schema.define(version: 20150811180638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,9 +67,11 @@ ActiveRecord::Schema.define(version: 20150811045648) do
     t.string   "avatar"
     t.json     "avatars"
     t.integer  "category_id"
+    t.integer  "subcategory_id"
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
+  add_index "products", ["subcategory_id"], name: "index_products_on_subcategory_id", using: :btree
 
   create_table "subcategories", force: :cascade do |t|
     t.string   "title"
@@ -78,6 +80,23 @@ ActiveRecord::Schema.define(version: 20150811045648) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "volumes", force: :cascade do |t|
+    t.integer  "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "voluminazations", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "volume_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "voluminazations", ["product_id"], name: "index_voluminazations_on_product_id", using: :btree
+  add_index "voluminazations", ["volume_id"], name: "index_voluminazations_on_volume_id", using: :btree
+
   add_foreign_key "option_pics", "options"
   add_foreign_key "products", "categories"
+  add_foreign_key "products", "subcategories"
 end

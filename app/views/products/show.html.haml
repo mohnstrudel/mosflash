@@ -3,11 +3,11 @@
     .col-md-12
       %ul.breadcrumb
         %li
-          =link_to 'Home', root_path
+          =link_to 'Главная', root_path
         %li
           =link_to @product.category.title, root_path
         %li
-          %a{:href => "#"} Tops
+          =link_to @product.subcategory.title, root_path
         %li
           = @product.title
       .box.text-center
@@ -42,17 +42,17 @@
           .box
             %form
               .sizes
-                %h3 Available sizes
-                %label{:for => "size_s"}
-                  %a{:href => "#"} 256MB
-                  %input#size_s.size-input{:name => "size", :type => "radio", :value => "s"}
-                %label{:for => "size_m"}
-                  %a{:href => "#"} 512MB
-                  %input#size_m.size-input{:name => "size", :type => "radio", :value => "m"}
-                %label{:for => "size_l"}
-                  %a{:href => "#"} 1024
-                  %input#size_l.size-input{:name => "size", :type => "radio", :value => "l"}
-              %p.price $124.00
+                %h3 Доступные объемы памяти (Гигабайт)
+                -@product.volumes.each do |volume|
+                  %label{:for => "size_#{volume.id}"}
+                  %a{:href => "#"}
+                    =sprintf('%.0f', volume.value/1000.to_f)
+                    Гб
+                  %input#size_s.size-input{:name => "volume", :type => "radio", :value => volume.id}
+              %p.price
+                -@product.options.each do |option|
+                  =option.price
+                  Рублей
               %p.text-center
                 %button.btn.btn-primary{:type => "submit"}
                   %i.fa.fa-shopping-cart
