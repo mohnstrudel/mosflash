@@ -1,6 +1,5 @@
 %h1 Create new product
 
-=select_tag(@subcategory, options_for_select([['Flash', 1], ['Selfie', 2]]))
 
 =form_for @product, url: products_path do |f|
 	%p
@@ -18,22 +17,25 @@
 		%br
 		=f.label :category_id
 		=f.collection_select :category_id, Category.all, :id, :title, { prompt: 'Please select category' }
+		%br
+		=f.label 'Product Size'
+		=f.collection_check_boxes(:product_size_ids, ProductSize.all, :id, :size)
 		
 	%p
-		= fields_for @option do |o|
-			=o.label :price
-			=o.text_field :price
+		= f.fields_for :options do |builder|
+			=builder.label :price
+			=builder.text_field :price
 			%br
-			=o.label :size
-			=o.text_field :size
+			=builder.label :size
+			=builder.text_field :size
 			%br
-			=o.label :weight
-			=o.text_field :weight
+			=builder.label :weight
+			=builder.text_field :weight
 			%br
-			=o.label :material
-			=o.text_field :material
-	%p
-		= fields_for @option_pic do |op|
-			= op.label 'Upload image'
-			= op.file_field :product_image
+			=builder.label :material
+			=builder.text_field :material
+			%br
+			=builder.fields_for :option_pics do |op|
+				= op.label 'Upload image'
+				= op.file_field :product_image
 	=f.submit
