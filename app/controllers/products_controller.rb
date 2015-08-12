@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
   before_action :find_product, only: [:show]
 
   def show
+    @randomProduct = randomProduct
   end
 
   def index
@@ -28,6 +29,11 @@ class ProductsController < ApplicationController
   end
 
   private
+    def randomProduct
+      lastID = Product.last.id
+      randomID = rand(lastID)
+      Product.find(randomID)
+    end
 
   	def product_params
   		params.require(:product).permit(

@@ -18,7 +18,7 @@
             %p.text-muted
               =@product.advertising_text
             %p.goToDescription
-              %a.scroll-to{:href => "#details"} Scroll to product details, material & care and sizing
+              %a.scroll-to{:href => "#details"} Пролистните вниз, что бы узнать все детали товара
     /
       *** LEFT COLUMN ***
       _________________________________________________________
@@ -97,36 +97,7 @@
           %a.email{"data-animate-hover" => "pulse", :href => "#"}
             %i.fa.fa-envelope
       .row
-        .col-md-3.col-sm-6
-          .box
-            %h3 You may also like these products
-        .col-md-3.col-sm-6
-          .product
-            .image
-              %a{:href => "#"}
-                %img.img-responsive.image1{:alt => "", :src => "img/product2.jpg"}
-            .text
-              %h3 Fur coat
-              %p.price $143
-          / /.product
-        .col-md-3.col-sm-6
-          .product
-            .image
-              %a{:href => "#"}
-                %img.img-responsive.image1{:alt => "", :src => "img/product3.jpg"}
-            .text
-              %h3 Fur coat
-              %p.price $143
-          / /.product
-        .col-md-3.col-sm-6
-          .product
-            .image
-              %a{:href => "#"}
-                %img.img-responsive.image1{:alt => "", :src => "img/product1.jpg"}
-            .text
-              %h3 Fur coat
-              %p.price $143
-          / /.product
+        =render 'similar_products'
       .row
         .col-md-3.col-sm-6
           .box
