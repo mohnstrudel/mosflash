@@ -38,7 +38,7 @@
 			=builder.label :material
 			=builder.text_field :material
 			%br
-			=builder.fields_for :option_pics do |op|
+			=fields_for :option_pic, html: { multipart: true, id: "fileupload"  } do |op|
 				= op.label 'Upload image'
-				= op.file_field :product_image
-	=f.submit
+				= op.file_field :product_image, multiple: true, id: 'fileupload'
+	=f.submit id: 'submit-data'

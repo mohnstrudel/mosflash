@@ -10,8 +10,12 @@ Rails.application.routes.draw do
   get 'products/edit'
 
   resources :products do
-    resources :options
+    resources :options do
+      resources :option_pics
+    end
   end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

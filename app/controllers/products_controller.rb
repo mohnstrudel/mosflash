@@ -22,9 +22,15 @@ class ProductsController < ApplicationController
   def create
   	@product = Product.new(product_params)
 
-    if @product.save!
-      flash[:success] = "Product successfully created!"
-      redirect_to products_path
+    respond_to do |format|
+      if @product.save
+
+        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.json { render json: @product, status: :created, location: @product }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -35,12 +41,16 @@ class ProductsController < ApplicationController
       Product.find(randomID)
     end
 
-  	def product_params
-  		params.require(:product).permit(
-        :title, :description, :advertising_text, :fancy_quote,:product_size_ids, { volume_ids: [] }, :category_id, :subcategory_id, 
-        options_attributes: [:size, :weight, :price, :material, :product_id, 
-          option_pics_attributes: [:product_image, :option_id]])
-  	end
+  	# def product_params
+  	# 	params.require(:product).permit(
+   #      :title, :description, :advertising_text, :fancy_quote, :product_size_ids, { volume_ids: [] }, :category_id, :subcategory_id, 
+   #      options_attributes: [:size, :weight, :price, :material, :product_id, 
+   #        { option_pics_attributes: [ :product_image, :option_id ] } ])
+  	# end
+
+        def product_params
+      params.require(:product).permit!
+    end
 
   	def find_product
   		@product = Product.find(params[:id])

@@ -21,6 +21,7 @@ gem 'haml-rails', '~> 0.9.0'
 #Image uploading
 gem 'carrierwave'
 gem 'rmagick'
+gem "jquery-fileupload-rails"
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
