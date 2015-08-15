@@ -48,9 +48,13 @@
                     Гб
                   %input#size_s.size-input{:name => "volume", :type => "radio", :value => volume.id}
               %p.price
-                -@product.options.each do |option|
-                  =option.price
-                  Рублей
+                =@getCurrency[0]
+                Рублей
+                %br
+                (курс доллара на #{DateTime.now.to_date.strftime("%d/%m")} - #{@getCurrency[1]},
+                оригинальная цена
+                =@getCurrency[2]
+                USD)
               %p.text-center
                 %button.btn.btn-primary{:type => "submit"}
                   %i.fa.fa-shopping-cart
