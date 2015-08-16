@@ -1,0 +1,132 @@
+#content
+  .container
+    .col-md-12
+      %ul.breadcrumb
+        %li
+          %a{:href => "index.html"} Главная
+        %li Корзина
+      .box.text-center
+        .row
+          .col-sm-10.col-sm-offset-1
+            %h1 Корзина
+            %p.text-muted 
+              На данный момент у вас
+              =@cart.line_items.count 
+              товаров в корзине.
+    #basket.col-md-9.clearfix
+      .box
+        %form{:action => "checkout1.html", :method => "post"}
+          .table-responsive
+            %table.table
+              %thead
+                %tr
+                  %th{:colspan => "2"} Товар
+                  %th Количество
+                  %th Цена
+                  %th Скидка
+                  %th{:colspan => "2"} Общая сумма
+              %tbody
+                -@cart.line_items.each do |li|
+                  %tr
+                    %td
+                      =link_to '#' do
+                        =image_tag li.product.images.first.image.to_s, alt: '#{li.product.images.first.image.to_s}'
+                    %td
+                      =link_to li.product.title, '#'
+                    %td
+                      %input.form-control{:type => "number", :value => "2"}
+                    %td
+                      =li.product.options.first.price
+                      RUB
+                    %td $0.00
+                    %td $246.00
+                    %td
+                      %a{:href => "#"}
+                        %i.fa.fa-trash-o
+              %tfoot
+                %tr
+                  %th{:colspan => "5"} Сумма
+                  %th{:colspan => "2"} $446.00
+          / /.table-responsive
+          .box-footer
+            .pull-left
+              %a.btn.btn-default{:href => "category.html"}
+                %i.fa.fa-chevron-left
+                Continue shopping
+            .pull-right
+              %button.btn.btn-default
+                %i.fa.fa-refresh
+                Update cart
+              %button.btn.btn-primary{:type => "submit"}
+                Proceed to checkout
+                %i.fa.fa-chevron-right
+      / /.box
+      .row
+        .col-md-3
+          .box
+            %h3 You may also like these products
+        .col-md-3
+          .product
+            .image
+              %a{:href => "detail.html"}
+                %img.img-responsive.image1{:alt => "", :src => "img/product2.jpg"}
+            .text
+              %h3
+                %a{:href => "detail.html"} Fur coat
+              %p.price $143
+          / /.product
+        .col-md-3
+          .product
+            .image
+              %a{:href => "detail.html"}
+                %img.img-responsive.image1{:alt => "", :src => "img/product3.jpg"}
+            .text
+              %h3
+                %a{:href => "detail.html"} Fur coat
+              %p.price $143
+          / /.product
+        .col-md-3
+          .product
+            .image
+              %a{:href => "detail.html"}
+                %img.img-responsive.image1{:alt => "", :src => "img/product1.jpg"}
+            .text
+              %h3
+                %a{:href => "detail.html"} Fur coat
+              %p.price $143
+          / /.product
+    / /.col-md-9
+    .col-md-3
+      #order-summary.box
+        .box-header
+          %h3 Order summary
+        %p.text-muted Shipping and additional costs are calculated based on the values you have entered.
+        .table-responsive
+          %table.table
+            %tbody
+              %tr
+                %td Order subtotal
+                %th $446.00
+              %tr
+                %td Shipping and handling
+                %th $10.00
+              %tr
+                %td Tax
+                %th $0.00
+              %tr.total
+                %td Total
+                %th $456.00
+      .box
+        .box-header
+          %h4 Coupon code
+        %p.text-muted If you have a coupon code, please enter it in the box below.
+        %form
+          .input-group
+            %input.form-control{:type => "text"}
+              %span.input-group-btn
+                %button.btn.btn-primary{:type => "button"}
+                  %i.fa.fa-gift
+          / /input-group
+    / /.col-md-3
+  / /.container
+/ /#content

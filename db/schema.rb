@@ -11,10 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150813135408) do
+ActiveRecord::Schema.define(version: 20150815203048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
@@ -31,6 +36,16 @@ ActiveRecord::Schema.define(version: 20150813135408) do
   end
 
   add_index "images", ["product_id"], name: "index_images_on_product_id", using: :btree
+
+  create_table "line_items", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "cart_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "line_items", ["cart_id"], name: "index_line_items_on_cart_id", using: :btree
+  add_index "line_items", ["product_id"], name: "index_line_items_on_product_id", using: :btree
 
   create_table "option_pics", force: :cascade do |t|
     t.string   "product_image"
@@ -106,6 +121,8 @@ ActiveRecord::Schema.define(version: 20150813135408) do
   add_index "voluminazations", ["volume_id"], name: "index_voluminazations_on_volume_id", using: :btree
 
   add_foreign_key "images", "products"
+  add_foreign_key "line_items", "carts"
+  add_foreign_key "line_items", "products"
   add_foreign_key "option_pics", "options"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "subcategories"

@@ -56,9 +56,9 @@
                 =@getCurrency[2]
                 USD)
               %p.text-center
-                %button.btn.btn-primary{:type => "submit"}
+                =link_to line_items_path(product_id: @product.id), method: :post, class: 'btn btn-primary shopping-cart-btn' do
                   %i.fa.fa-shopping-cart
-                  Add to cart
+                  Купить
                 %button.btn.btn-default{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Add to wishlist", :type => "submit"}
                   %i.fa.fa-heart-o
           #thumbs.row
