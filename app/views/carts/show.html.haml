@@ -15,48 +15,51 @@
               товаров в корзине.
     #basket.col-md-9.clearfix
       .box
-        %form{:action => "checkout1.html", :method => "post"}
-          .table-responsive
-            %table.table
-              %thead
+        .table-responsive
+          %table.table
+            %thead
+              %tr
+                %th{:colspan => "2"} Товар
+                %th Количество
+                %th Цена
+                %th Скидка
+                %th{:colspan => "2"} Общая сумма
+            %tbody
+              -@cart.line_items.each do |li|
                 %tr
-                  %th{:colspan => "2"} Товар
-                  %th Количество
-                  %th Цена
-                  %th Скидка
-                  %th{:colspan => "2"} Общая сумма
-              %tbody
-                -@cart.line_items.each do |li|
-                  %tr
-                    %td
-                      =link_to '#' do
-                        =image_tag li.product.images.first.image.to_s, alt: '#{li.product.images.first.image.to_s}'
-                    %td
-                      =link_to li.product.title, '#'
-                    %td
-                      %input.form-control{:type => "number", value: li.quantity}
-                    %td
-                      =li.product.options.first.price
-                      руб
-                    %td 0.00 руб
-                    %td
-                      =li.product.options.first.price * li.quantity
-                      руб
-                    %td
-                      %a{:href => "#"}
-                        %i.fa.fa-trash-o
-              %tfoot
-                %tr
-                  %th{:colspan => "5"} Сумма
-                  %th{:colspan => "2"}
-                    =@cart.cartValue
+                  %td
+                    =link_to '#' do
+                      =image_tag li.product.images.first.image.to_s, alt: '#{li.product.images.first.image.to_s}'
+                  %td
+                    =link_to li.product.title, '#'
+                  %td
+                    %input.form-control{:type => "number", value: li.quantity}
+                  %td
+                    =li.product.options.first.price
                     руб
-          / /.table-responsive
+                  %td 0.00 руб
+                  %td
+                    =li.product.options.first.price * li.quantity
+                    руб
+                  %td
+                    %a{:href => "#"}
+                      %i.fa.fa-trash-o
+            %tfoot
+              %tr
+                %th{:colspan => "5"} Сумма
+                %th{:colspan => "2"}
+                  =@cart.cartValue
+                  руб
           .box-footer
             .pull-left
               %a.btn.btn-default{:href => "category.html"}
                 %i.fa.fa-chevron-left
                 Продолжить покупки
+              
+              =button_to @cart, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-warning' do  
+                %i.fa.fa-trash-o
+                Удалить
+              
             .pull-right
               %button.btn.btn-default
                 %i.fa.fa-refresh

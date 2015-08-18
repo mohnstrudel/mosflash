@@ -216,12 +216,13 @@
           %a{:href => "contact.html"} Contact
     / /.nav-collapse
     #basket-overview.navbar-collapse.collapse.right
-      =link_to cart_path(session[:cart_id]), class: 'btn btn-primary navbar-btn' do
-        %i.fa.fa-shopping-cart
-        %span.hidden-sm
-          / =@cart.line_items.count
-          товаров
-          %span.hidden-md в корзине
+      -if session[:cart_id]
+        =link_to cart_path(session[:cart_id]), class: 'btn btn-primary navbar-btn' do
+          %i.fa.fa-shopping-cart
+          %span.hidden-sm
+            / =@cart.line_items.count
+            товаров
+            %span.hidden-md в корзине
     / /.nav-collapse
     .navbar-collapse.collapse.right
       %button.btn.navbar-btn.btn-default{"data-target" => "#search", "data-toggle" => "collapse", :type => "button"}
