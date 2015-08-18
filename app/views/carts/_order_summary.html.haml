@@ -1,0 +1,26 @@
+#order-summary.box
+  .box-header
+    %h3 
+      Обзор заказа
+  %p.text-muted 
+    Доставка и дополнительные расходы расчитываются отдельно в зависимости от стоимости вашего заказа.
+    / Shipping and additional costs are calculated based on the values you have entered.
+  .table-responsive
+    %table.table
+      %tbody
+        %tr
+          %td Ваш заказ
+          %th
+            =@cart.cartValue
+            руб
+        %tr
+          %td Доставка и обработка заказа
+          %th 1000.00 руб
+        %tr
+          %td Налог
+          %th 0.00 руб
+        %tr.total
+          %td Итого
+          %th
+            =@cart.cartValue + 1000
+            руб

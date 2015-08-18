@@ -34,31 +34,35 @@
                     %td
                       =link_to li.product.title, '#'
                     %td
-                      %input.form-control{:type => "number", :value => "2"}
+                      %input.form-control{:type => "number", value: li.quantity}
                     %td
                       =li.product.options.first.price
-                      RUB
-                    %td $0.00
-                    %td $246.00
+                      руб
+                    %td 0.00 руб
+                    %td
+                      =li.product.options.first.price * li.quantity
+                      руб
                     %td
                       %a{:href => "#"}
                         %i.fa.fa-trash-o
               %tfoot
                 %tr
                   %th{:colspan => "5"} Сумма
-                  %th{:colspan => "2"} $446.00
+                  %th{:colspan => "2"}
+                    =@cart.cartValue
+                    руб
           / /.table-responsive
           .box-footer
             .pull-left
               %a.btn.btn-default{:href => "category.html"}
                 %i.fa.fa-chevron-left
-                Continue shopping
+                Продолжить покупки
             .pull-right
               %button.btn.btn-default
                 %i.fa.fa-refresh
-                Update cart
+                Обновить корзину
               %button.btn.btn-primary{:type => "submit"}
-                Proceed to checkout
+                Завершить заказ
                 %i.fa.fa-chevron-right
       / /.box
       .row
@@ -97,25 +101,7 @@
           / /.product
     / /.col-md-9
     .col-md-3
-      #order-summary.box
-        .box-header
-          %h3 Order summary
-        %p.text-muted Shipping and additional costs are calculated based on the values you have entered.
-        .table-responsive
-          %table.table
-            %tbody
-              %tr
-                %td Order subtotal
-                %th $446.00
-              %tr
-                %td Shipping and handling
-                %th $10.00
-              %tr
-                %td Tax
-                %th $0.00
-              %tr.total
-                %td Total
-                %th $456.00
+      =render 'order_summary'
       .box
         .box-header
           %h4 Coupon code
