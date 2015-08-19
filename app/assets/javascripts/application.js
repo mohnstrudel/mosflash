@@ -12,10 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
+
 //= require turbolinks
 //= require jquery-fileupload/basic
-
+//= require_tree .
 //= require_tree ../../../vendor/assets/javascripts/
 
-//= require_tree .
 //= require front
+

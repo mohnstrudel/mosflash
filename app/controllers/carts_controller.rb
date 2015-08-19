@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
 	before_action :find_cart, only: [:show, :edit, :update, :destroy]
-	# rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
+	rescue_from ActiveRecord::RecordNotFound, with: :invalid_cart
 	
 	def show
 	end

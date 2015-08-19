@@ -217,12 +217,12 @@
     / /.nav-collapse
     #basket-overview.navbar-collapse.collapse.right
       -if session[:cart_id]
-        =link_to cart_path(session[:cart_id]), class: 'btn btn-primary navbar-btn' do
+        =link_to cart_path(session[:cart_id]), class: 'btn btn-primary navbar-btn', id: 'cart_button' do
           %i.fa.fa-shopping-cart
           %span.hidden-sm
-            / =@cart.line_items.count
+            =Cart.find(session[:cart_id]).line_items.to_a.sum { |item| item.quantity }
             товаров
-            %span.hidden-md в корзине
+            %span.hidden-md в корзине 
     / /.nav-collapse
     .navbar-collapse.collapse.right
       %button.btn.navbar-btn.btn-default{"data-target" => "#search", "data-toggle" => "collapse", :type => "button"}

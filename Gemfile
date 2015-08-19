@@ -21,10 +21,11 @@ gem 'haml-rails', '~> 0.9.0'
 #Image uploading
 gem 'carrierwave'
 gem 'rmagick'
-gem "jquery-fileupload-rails"
+gem 'jquery-fileupload-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

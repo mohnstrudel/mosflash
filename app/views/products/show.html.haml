@@ -56,7 +56,7 @@
                 =@getCurrency[2]
                 USD)
               %p.text-center
-                =link_to line_items_path(product_id: @product.id), method: :post, class: 'btn btn-primary shopping-cart-btn' do
+                =link_to line_items_path(product_id: @product.id), method: :post, remote: true, id: 'add_item_to_cart', class: 'btn btn-primary shopping-cart-btn' do
                   %i.fa.fa-shopping-cart
                   Купить
                 %button.btn.btn-default{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Add to wishlist", :type => "submit"}
@@ -111,7 +111,7 @@
           .product
             .image
               %a{:href => "#"}
-                %img.img-responsive.image1{:alt => "", :src => "img/product3.jpg"}
+                / %img.img-responsive.image1{:alt => "", :src => "img/product3.jpg"}
             .text
               %h3 Fur coat
               %p.price $143
@@ -120,7 +120,7 @@
           .product
             .image
               %a{:href => "#"}
-                %img.img-responsive.image1{:alt => "", :src => "img/product1.jpg"}
+                / %img.img-responsive.image1{:alt => "", :src => "img/product1.jpg"}
             .text
               %h3 Fur coat
               %p.price $143
@@ -129,7 +129,7 @@
           .product
             .image
               %a{:href => "#"}
-                %img.img-responsive.image1{:alt => "", :src => "img/product2.jpg"}
+                / %img.img-responsive.image1{:alt => "", :src => "img/product2.jpg"}
             .text
               %h3 Fur coat
               %p.price $143
