@@ -33,7 +33,7 @@
                   %td
                     =link_to li.product.title, '#'
                   %td
-                    %input.form-control{:type => "number", value: li.quantity}
+                    %input.form-control{:type => "number", value: li.quantity, size: 20}
                   %td
                     =li.product.options.first.price
                     руб
@@ -64,7 +64,7 @@
               %button.btn.btn-default
                 %i.fa.fa-refresh
                 Обновить корзину
-              %button.btn.btn-primary{:type => "submit"}
+              =button_to new_order_path, class: 'btn btn-primary' ,method: :get do
                 Завершить заказ
                 %i.fa.fa-chevron-right
       / /.box
