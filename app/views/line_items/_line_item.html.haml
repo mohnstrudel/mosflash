@@ -1,0 +1,9 @@
+%tr
+	%td
+		=line_item.quantity
+		шт
+	%td
+		=line_item.product.title
+	%td.item_price
+		=line_item.product.options.first.price*line_item.quantity
+		руб.

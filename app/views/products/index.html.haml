@@ -1,9 +1,279 @@
-%h1 Products
+#content
+	.container
+		.col-md-12
+			%ul.breadcrumb
+				%li
+					%a{:href => "#"} Home
+				%li Ladies
+			.row
+				.box.text-center
+					.row
+						.col-sm-10.col-sm-offset-1
+							%h1 Ladies
+							%p.text-muted In our Ladies department we offer wide selection of the best products we have found and carefully selected worldwide. Pellentesque habitant morbi tristique senectus et netuss.
+		.row
+			/
+				*** LEFT COLUMN ***
+				_________________________________________________________
+			.col-sm-9
+				.box.info-bar.no-border
+					.row
+						.col-sm-12.col-md-4.products-showing
+							Showing
+							%strong 12
+							of
+							%strong 25
+							products
+						.col-sm-12.col-md-8.products-number-sort
+							.row
+								%form.form-inline
+									.col-md-6.col-sm-6
+										.products-number
+											%strong Show
+											%a.btn.btn-default.btn-sm.btn-primary{:href => "#"} 12
+											%a.btn.btn-default.btn-sm{:href => "#"} 24
+											%a.btn.btn-default.btn-sm{:href => "#"} All
+											%span.hidden-md products
+									.col-md-6.col-sm-6
+										.products-sort-by
+											%strong Sort by
+											%select.form-control{:name => "sort-by"}
+												%option Price
+												%option Name
+												%option Sales first
+				.row.products
+					-@products.each do |product|
+						.col-md-4.col-sm-6
+							.product
+								.image
+									=link_to product do
+										=image_tag(product.images.first.image.to_s, class: 'img img-responsive image1', alt: '')
+									/ .quick-view-button
+									/ 	%a.btn.btn-default.btn-sm{"data-target" => "#product-quick-view-modal", "data-toggle" => "modal", :href => "#"} Quick view
+								/ /.image
+								.text
+									%h3
+										=link_to '#', data: { target: '#product-quick-view-modal', toggle: 'modal'} do
+											= product.title
+									%p.price
+										от
+										= product.options.first.price
+										руб.
 
--@products.each do |product|
-	%p
-	Title is:
-	=link_to product.title, product_path(product.id)
-	%br
-	Description is:
-	=product.description
+					#product-quick-view-modal.modal.fade{"aria-hidden" => "false", :role => "dialog", :tabindex => "-1"}
+						.modal-dialog.modal-lg
+							.modal-content
+								.modal-body
+									%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
+									.row.quick-view.product-main
+										.col-sm-6
+											.quick-view-main-image
+												%img.img-responsive{:alt => "", :src => "img/detailbig1.jpg"}
+											.ribbon.ribbon-quick-view.sale
+												.theribbon SALE
+												.ribbon-background
+											/ /.ribbon
+											.ribbon.ribbon-quick-view.new
+												.theribbon NEW
+												.ribbon-background
+											/ /.ribbon
+											.row.thumbs
+												.col-xs-4
+													%a.thumb{:href => "img/detailbig1.jpg"}
+														%img.img-responsive{:alt => "", :src => "img/detailsquare.jpg"}
+												.col-xs-4
+													%a.thumb{:href => "img/detailbig2.jpg"}
+														%img.img-responsive{:alt => "", :src => "img/detailsquare2.jpg"}
+												.col-xs-4
+													%a.thumb{:href => "img/detailbig3.jpg"}
+														%img.img-responsive{:alt => "", :src => "img/detailsquare3.jpg"}
+										.col-sm-6
+											%h2 White Blouse Armani
+											%p.text-muted.text-small.text-center White lace top, woven, has a round neck, short sleeves, has knitted lining attached
+											.box
+												%form
+													.sizes
+														%h3 Available sizes
+														%label{:for => "size_s"}
+															%a{:href => "#"} S
+															%input#size_s.size-input{:name => "size", :type => "radio", :value => "s"}
+														%label{:for => "size_m"}
+															%a{:href => "#"} M
+															%input#size_m.size-input{:name => "size", :type => "radio", :value => "m"}
+														%label{:for => "size_l"}
+															%a{:href => "#"} L
+															%input#size_l.size-input{:name => "size", :type => "radio", :value => "l"}
+													%p.price $124.00
+													%p.text-center
+														%button.btn.btn-primary{:type => "submit"}
+															%i.fa.fa-shopping-cart
+															Add to cart
+														%button.btn.btn-default{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Add to wishlist", :type => "submit"}
+															%i.fa.fa-heart-o
+											/ /.box
+											.quick-view-social
+												%h4 Show it to your friends
+												%p
+													%a.external.facebook{"data-animate-hover" => "pulse", :href => "#"}
+														%i.fa.fa-facebook
+													%a.external.gplus{"data-animate-hover" => "pulse", :href => "#"}
+														%i.fa.fa-google-plus
+													%a.external.twitter{"data-animate-hover" => "pulse", :href => "#"}
+														%i.fa.fa-twitter
+													%a.email{"data-animate-hover" => "pulse", :href => "#"}
+														%i.fa.fa-envelope
+						/ /.modal-dialog
+					/ /.modal
+				/ /.products
+				.row
+					.col-md-12.banner
+						%a{:href => "#"}
+							%img.img-responsive{:alt => "", :src => "img/banner2.jpg"}
+				.pages
+					%p.loadMore
+						%a.btn.btn-primary{:href => "#"}
+							%i.fa.fa-chevron-down
+							Load more
+					%ul.pagination
+						%li
+							%a{:href => "#"} &laquo;
+						%li.active
+							%a{:href => "#"} 1
+						%li
+							%a{:href => "#"} 2
+						%li
+							%a{:href => "#"} 3
+						%li
+							%a{:href => "#"} 4
+						%li
+							%a{:href => "#"} 5
+						%li
+							%a{:href => "#"} &raquo;
+			/ /.col-md-9
+			/ *** LEFT COLUMN END ***
+			/
+				*** RIGHT COLUMN ***
+				_________________________________________________________
+			.col-sm-3
+				/
+					*** MENUS AND FILTERS ***
+					_________________________________________________________
+				.panel.panel-default.sidebar-menu
+					.panel-heading
+						%h3.panel-title Categories
+					.panel-body
+						%ul.nav.nav-pills.nav-stacked.category-menu
+							%li
+								%a{:href => "category.html"}
+									Men
+									%span.badge.pull-right 42
+								%ul
+									%li
+										%a{:href => "category.html"} T-shirts
+									%li
+										%a{:href => "category.html"} Shirts
+									%li
+										%a{:href => "category.html"} Pants
+									%li
+										%a{:href => "category.html"} Accessories
+							%li.active
+								%a{:href => "category.html"}
+									Ladies
+									%span.badge.pull-right 123
+								%ul
+									%li
+										%a{:href => "category.html"} T-shirts
+									%li
+										%a{:href => "category.html"} Skirts
+									%li
+										%a{:href => "category.html"} Pants
+									%li
+										%a{:href => "category.html"} Accessories
+							%li
+								%a{:href => "category.html"}
+									Kids
+									%span.badge.pull-right 11
+								%ul
+									%li
+										%a{:href => "category.html"} T-shirts
+									%li
+										%a{:href => "category.html"} Skirts
+									%li
+										%a{:href => "category.html"} Pants
+									%li
+										%a{:href => "category.html"} Accessories
+				.panel.panel-default.sidebar-menu
+					.panel-heading
+						%h3.panel-title
+							Brands
+							%a.btn.btn-xs.btn-danger.pull-right{:href => "#"}
+								%i.fa.fa-times-circle
+								%span.hidden-sm Clear
+					.panel-body
+						%form
+							.form-group
+								.checkbox
+									%label
+										%input{:type => "checkbox"}
+											Armani (10)
+								.checkbox
+									%label
+										%input{:type => "checkbox"}
+											Versace (12)
+								.checkbox
+									%label
+										%input{:type => "checkbox"}
+											Carlo Bruni (15)
+								.checkbox
+									%label
+										%input{:type => "checkbox"}
+											Jack Honey (14)
+							%button.btn.btn-default.btn-sm.btn-primary
+								%i.fa.fa-pencil
+								Apply
+				.panel.panel-default.sidebar-menu
+					.panel-heading
+						%h3.panel-title.clearfix
+							Colours
+							%a.btn.btn-xs.btn-danger.pull-right{:href => "#"}
+								%i.fa.fa-times-circle
+								%span.hidden-sm Clear
+					.panel-body
+						%form
+							.form-group
+								.checkbox
+									%label
+										%input{:type => "checkbox"}
+											%span.colour.white
+											White (14)
+								.checkbox
+									%label
+										%input{:type => "checkbox"}
+											%span.colour.blue
+											Blue (10)
+								.checkbox
+									%label
+										%input{:type => "checkbox"}
+											%span.colour.green
+											Green (20)
+								.checkbox
+									%label
+										%input{:type => "checkbox"}
+											%span.colour.yellow
+											Yellow (13)
+								.checkbox
+									%label
+										%input{:type => "checkbox"}
+											%span.colour.red
+											Red (10)
+							%button.btn.btn-default.btn-sm.btn-primary
+								%i.fa.fa-pencil
+								Apply
+				/ *** MENUS AND FILTERS END ***
+				.banner
+					%a{:href => "category.html"}
+						%img.img-responsive{:alt => "sales 2014", :src => "img/banner.jpg"}
+				/ /.banner
+			/ /.col-md-3
+			/ *** RIGHT COLUMN END ***
+	/ /.container

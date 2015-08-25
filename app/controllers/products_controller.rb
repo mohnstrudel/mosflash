@@ -42,7 +42,7 @@ class ProductsController < ApplicationController
   private
     def randomProduct
       lastID = Product.last.id
-      randomID = rand(lastID)
+      randomID = rand(lastID-2..lastID)
       Product.find(randomID)
     end
 

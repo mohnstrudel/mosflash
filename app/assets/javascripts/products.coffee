@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 jQuery ->
-	$('#fileupload').fileupload()
+	$('#fileuploads').fileupload()
 	add: (e, data) ->
     data.context = $("#submit-data")
     data.submit()
