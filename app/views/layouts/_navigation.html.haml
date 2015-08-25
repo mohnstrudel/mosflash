@@ -25,193 +25,42 @@
     #navigation.navbar-collapse.collapse
       %ul.nav.navbar-nav.navbar-left
         %li.active.dropdown.normal-dropdown
-          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "index.html"}
-            Home
-            %b.caret
-          %ul.dropdown-menu
-            %li
-              %a{:href => "index.html"} Home - default
-            %li
-              %a{:href => "index2.html"} Home - intro image
-        %li.dropdown.yamm-fw
-          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-            Men
-            %b.caret
-          %ul.dropdown-menu
-            %li
-              .yamm-content
-                .row
-                  .col-sm-3
-                    %img.img-responsive.hidden-xs{:alt => "", :src => "img/men.jpg"}
-                  .col-sm-3
-                    %h3 Clothing
-                    %ul
-                      %li
-                        %a{:href => "category.html"} T-shirts
-                      %li
-                        %a{:href => "category.html"} Shirts
-                      %li
-                        %a{:href => "category.html"} Pants
-                      %li
-                        %a{:href => "category.html"} Accessories
-                  .col-sm-3
-                    %h3 Clothing
-                    %ul
-                      %li
-                        %a{:href => "category.html"} T-shirts
-                      %li
-                        %a{:href => "category.html"} Shirts
-                      %li
-                        %a{:href => "category.html"} Pants
-                      %li
-                        %a{:href => "category.html"} Accessories
-                  .col-sm-3
-                    %h3 Shoes
-                    %ul
-                      %li
-                        %a{:href => "category.html"} Trainers
-                      %li
-                        %a{:href => "category.html"} Sandals
-                      %li
-                        %a{:href => "category.html"} Hiking shoes
-                      %li
-                        %a{:href => "category.html"} Casual
-              .footer.clearfix.hidden-xs
-                %h4.pull-right Men
-                .buttons.pull-left
-                  %a.btn.btn-default{:href => "#"}
-                    %i.fa.fa-tags
-                    Sales
-                  %a.btn.btn-default{:href => "#"}
-                    %i.fa.fa-star-o
-                    Favourites
-                  %a.btn.btn-default{:href => "#"}
-                    %i.fa.fa-globe
-                    Brands
-        %li.dropdown.yamm-fw
-          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-            Women
-            %b.caret
-          %ul.dropdown-menu
-            %li
-              .yamm-content
-                .row
-                  .col-sm-3
-                    %img.img-responsive.hidden-xs{:alt => "", :src => "img/women.jpg"}
-                  .col-sm-3
-                    %h3 Clothing
-                    %ul
-                      %li
-                        %a{:href => "category.html"} T-shirts
-                      %li
-                        %a{:href => "category.html"} Shirts
-                      %li
-                        %a{:href => "category.html"} Pants
-                      %li
-                        %a{:href => "category.html"} Accessories
-                  .col-sm-3
-                    %h3 Clothing
-                    %ul
-                      %li
-                        %a{:href => "category.html"} T-shirts
-                      %li
-                        %a{:href => "category.html"} Shirts
-                      %li
-                        %a{:href => "category.html"} Pants
-                      %li
-                        %a{:href => "category.html"} Accessories
-                  .col-sm-3
-                    %h3 Shoes
-                    %ul
-                      %li
-                        %a{:href => "category.html"} Trainers
-                      %li
-                        %a{:href => "category.html"} Sandals
-                      %li
-                        %a{:href => "category.html"} Hiking shoes
-                      %li
-                        %a{:href => "category.html"} Casual
-              .footer.clearfix.hidden-xs
-                %h4.pull-right Women
-                .buttons.pull-left
-                  %a.btn.btn-default{:href => "#"}
-                    %i.fa.fa-tags
-                    Sales
-                  %a.btn.btn-default{:href => "#"}
-                    %i.fa.fa-star-o
-                    Favourites
-                  %a.btn.btn-default{:href => "#"}
-                    %i.fa.fa-globe
-                    Brands
-        %li.dropdown.yamm-fw
-          %a.dropdown-toggle{"data-delay" => "200", "data-hover" => "dropdown", "data-toggle" => "dropdown", :href => "#"}
-            Template
-            %b.caret
-          %ul.dropdown-menu
-            %li
-              .yamm-content
-                .row
-                  .col-sm-3
-                    %h5 Homepage
-                    %ul
-                      %li
-                        %a{:href => "index.html"} Homepage - with slideshow
-                      %li
-                        %a{:href => "index2.html"} Homepage - with intro image
-                    %h5 Shop
-                    %ul
-                      %li
-                        %a{:href => "category.html"} Category - sidebar right
-                      %li
-                        %a{:href => "category-left.html"} Category - sidebar left
-                      %li
-                        %a{:href => "category-full.html"} Category - full width
-                      %li
-                        %a{:href => "detail.html"} Product detail
-                  .col-sm-3
-                    %h5 User
-                    %ul
-                      %li
-                        %a{:href => "register.html"} Register / login
-                      %li
-                        %a{:href => "customer-orders.html"} Orders history
-                      %li
-                        %a{:href => "customer-order.html"} Order history detail
-                      %li
-                        %a{:href => "customer-wishlist.html"} Wishlist
-                      %li
-                        %a{:href => "customer-account.html"} Customer account / change password
-                  .col-sm-3
-                    %h5 Order process
-                    %ul
-                      %li
-                        %a{:href => "basket.html"} Shopping cart
-                      %li
-                        %a{:href => "checkout1.html"} Checkout - step 1
-                      %li
-                        %a{:href => "checkout2.html"} Checkout - step 2
-                      %li
-                        %a{:href => "checkout3.html"} Checkout - step 3
-                      %li
-                        %a{:href => "checkout4.html"} Checkout - step 4
-                  .col-sm-3
-                    %h5 Pages and blog
-                    %ul
-                      %li
-                        %a{:href => "blog.html"} Blog listing
-                      %li
-                        %a{:href => "post.html"} Blog Post
-                      %li
-                        %a{:href => "faq.html"} FAQ
-                      %li
-                        %a{:href => "contact.html"} Contact
-                      %li
-                        %a{:href => "text.html"} Text page
-                      %li
-                        %a{:href => "text-left.html"} Text page - left sidebar
-                      %li
-                        %a{:href => "404.html"} 404 page
-              / /.yamm-content
+          =link_to 'Главная', root_path
+
+        
+        -Category.all.each do |category|
+          %li.dropdown.yamm-fw
+            =link_to products_path(category: category.title), class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
+              =category.title
+              %b.caret
+            %ul.dropdown-menu
+              %li
+                .yamm-content
+                  .row
+                    .col-sm-3
+                      %img.img-responsive.hidden-xs{:alt => "", :src => "img/men.jpg"}
+                    -category.subcategories.in_groups_of(4, false).each do |group_of_four|
+                      .col-sm-3
+                        %h3
+                          =category.title
+                        %ul
+                          -group_of_four.each do |subcategory|
+                            %li
+                              =link_to subcategory.title, products_path(category: category.title, subcategory: subcategory.title)
+
+                  .footer.clearfix.hidden-xs
+                    %h4.pull-right
+                      =category.title
+                    .buttons.pull-left
+                      %a.btn.btn-default{:href => "#"}
+                        %i.fa.fa-tags
+                        Sales
+                      %a.btn.btn-default{:href => "#"}
+                        %i.fa.fa-star-o
+                        Favourites
+                      %a.btn.btn-default{:href => "#"}
+                        %i.fa.fa-globe
+                        Brands
         %li
           %a{:href => "contact.html"} Contact
     / /.nav-collapse

@@ -10,7 +10,13 @@ class ProductsController < ApplicationController
   end
 
   def index
-  	@products = Product.all
+    if params[:category].blank?
+      @products = Product.all.order("created_at DESC")
+    else
+      @category = Category.find_by(title: params[:category])
+      @category_id = @category.id
+      @products = Product.where(category_id: @category_id).order("created_at DESC")
+    end 
   end
 
   def new

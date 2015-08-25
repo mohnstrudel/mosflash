@@ -9,8 +9,11 @@
 				.box.text-center
 					.row
 						.col-sm-10.col-sm-offset-1
-							%h1 Ladies
-							%p.text-muted In our Ladies department we offer wide selection of the best products we have found and carefully selected worldwide. Pellentesque habitant morbi tristique senectus et netuss.
+							-if @category_id
+								%h1 
+									=@category.title
+								%p.text-muted 
+									=@category.description
 		.row
 			/
 				*** LEFT COLUMN ***
