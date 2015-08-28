@@ -38,29 +38,26 @@
           / /.ribbon
         .col-sm-6
           .box
-            %form
-              .sizes
-                %h3 Доступные объемы памяти (Гигабайт)
-                -@product.volumes.each do |volume|
-                  %label{:for => "size_#{volume.id}"}
-                  %a{:href => "#"}
-                    =sprintf('%.0f', volume.value/1000.to_f)
+            .sizes
+              %h3 Доступные объемы памяти (Гигабайт)
+              -@volumes.each_with_index do |volume, index|
+                -volume.each do |item|
+                  / %label{:for => "size_#{item.id}"}
+                  =link_to "#", class: 'size_input' do
+                    =sprintf('%.0f', item.value/1000.to_f)
                     Гб
-                  %input#size_s.size-input{:name => "volume", :type => "radio", :value => volume.id}
-              %p.price
-                =@getCurrency[0]
-                Рублей
-                %br
-                (курс доллара на #{DateTime.now.to_date.strftime("%d/%m")} - #{@getCurrency[1]},
-                оригинальная цена
-                =@getCurrency[2]
-                USD)
-              %p.text-center
-                =link_to line_items_path(product_id: @product.id), method: :post, remote: true, id: 'add_item_to_cart', class: 'btn btn-primary shopping-cart-btn' do
-                  %i.fa.fa-shopping-cart
-                  Купить
-                %button.btn.btn-default{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Add to wishlist", :type => "submit"}
-                  %i.fa.fa-heart-o
+                  %input#size_s.size-input{:name => "volume", :type => "radio", :value => (@getCurrency[index][0].to_f).ceil}
+            %p.price#priceValue
+              =(@getCurrency[0][0].to_f).ceil
+              руб.
+            %p.text-center
+              =link_to line_items_path(product_id: @product.id), method: :post, remote: true, id: 'add_item_to_cart', class: 'btn btn-primary shopping-cart-btn' do
+                %i.fa.fa-shopping-cart
+                Купить
+              %button.btn.btn-default{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Add to wishlist", :type => "submit"}
+                %i.fa.fa-heart-o
+              =link_to edit_product_path(@product.id), class: 'btn btn-default' do
+                %i.fa.fa-pencil
           #thumbs.row
             -@product.images.each do |pic|
               .col-xs-4

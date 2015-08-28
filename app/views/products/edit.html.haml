@@ -1,2 +1,23 @@
-%h1 Products#edit
-%p Find me in app/views/products/edit.html.erb
+%h1
+	Редактируем
+	=@product.title
+
+.container
+	.col-md-12
+		.box
+			=form_for @product do |f|
+				=f.label 'Название'
+				=f.text_field :title
+				%p
+					=f.submit class: 'btn btn-default'
+		.box
+			Текущие связанные товары:
+			-@product.accompanies.each do |accompany|
+				%br
+				=accompany.title
+
+		.box
+			-Product.all.each do |product|
+				=product.title
+				%br
+				=link_to 'Добавить как сопутсвующий товар', accompanships_create_path(product_id: @product.id, accompany_id: product.id)

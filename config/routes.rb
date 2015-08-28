@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
 
+  get 'accompanships/create'
+
+  get 'accompanships/destroy'
+
   resources :orders
 
   get 'products/show'

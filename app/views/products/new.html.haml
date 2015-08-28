@@ -20,24 +20,19 @@
 		%br
 		=f.label :subcategory_id
 		=f.collection_select :subcategory_id, Subcategory.all, :id, :title, { prompt: 'Please select sub-category' }
-		%br
-		=f.label 'Product Size'
-		=f.collection_check_boxes(:volume_ids, Volume.all, :id, :value)
+		/ %br
+		/ =f.label 'Product Size'
+		/ =f.collection_check_boxes(:volume_ids, Volume.all, :id, :value)
 		
 	%p
-		= f.fields_for :options do |builder|
-			=builder.label :price
-			=builder.text_field :price
-			%br
-			=builder.label :size
-			=builder.text_field :size
-			%br
-			=builder.label :weight
-			=builder.text_field :weight
-			%br
-			=builder.label :material
-			=builder.text_field :material
-			%br
+		.box
+			%h3 Опции
+			=f.fields_for :options do |builder|
+				=render 'option_fields', f: builder
+				%br
+				=link_to_add_fields 'Добавить опцию', f, :options
+
+
 	%p
 		=f.fields_for :image, Image.new, html: { multipart: true, id: "fileupload"  } do |op|
 			= op.label 'Upload image'

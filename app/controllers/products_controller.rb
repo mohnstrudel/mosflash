@@ -1,12 +1,17 @@
 class ProductsController < ApplicationController
   
-  before_action :find_product, only: [:show]
+  before_action :find_product, only: [:show, :edit, :productSizes]
 
   def show
+    @getCurrency = Array.new
     @randomProduct = randomProduct
     @product.options.each do |option|
-      @getCurrency = getCurrency(option.price)
+      @getCurrency << getCurrency(option.price)
     end
+    @productSizes = productSizes
+    @options = @product.options
+
+    # render json: @product.to_json(include: :options)
   end
 
   def index
@@ -17,6 +22,8 @@ class ProductsController < ApplicationController
       @category_id = @category.id
       @products = Product.where(category_id: @category_id).order("created_at DESC")
     end 
+
+
   end
 
   def new
@@ -91,5 +98,14 @@ class ProductsController < ApplicationController
   	def find_product
   		@product = Product.find(params[:id])
   	end
+
+    def productSizes
+      volume = Array.new
+      @product.options.each do |option|
+        volume << Volume.where(id: option.size)
+      end
+      @volumes = volume
+    end
+
 end
 

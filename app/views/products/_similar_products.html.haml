@@ -1,33 +1,17 @@
 .col-md-3.col-sm-6
   .box
-    %h3 Вам также может понравиться
-.col-md-3.col-sm-6
-  .product
-    .image
-      =link_to '#' do
-        -@randomProduct.options.each do |option|
-          -option.option_pics.each do |op|
-            =image_tag op.product_image.to_s, class: 'img-responsive image1', alt: ''
-    .text
-      %h3
-        =@randomProduct.title
-      %p.price $143
-  / /.product
-.col-md-3.col-sm-6
-  .product
-    .image
-      %a{:href => "#"}
-        %img.img-responsive.image1{:alt => "", :src => "img/product3.jpg"}
-    .text
-      %h3 Fur coat
-      %p.price $143
-  / /.product
-.col-md-3.col-sm-6
-  .product
-    .image
-      %a{:href => "#"}
-        %img.img-responsive.image1{:alt => "", :src => "img/product1.jpg"}
-    .text
-      %h3 Fur coat
-      %p.price $143
-  / /.product
+    %h3 Дополняющие товары
+
+-@product.accompanies.each do |accompany|
+  .col-md-3.col-sm-6
+    .product
+      .image
+        =link_to '#' do
+          =image_tag accompany.images.first.image.to_s, class: 'img-responsive image1', alt: ''
+      .text
+        %h3
+          =accompany.title
+        %p.price
+          от
+          =accompany.options.first.price
+          руб.

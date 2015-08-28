@@ -1,0 +1,200 @@
+#content
+	.container
+		.col-md-12.clearfix
+			%ul.breadcrumb
+				%li
+					%a{:href => "index.html"} Home
+				%li Checkout - Address
+			.box.text-center
+				.row
+					.col-sm-10.col-sm-offset-1
+						%h1 Checkout - Address
+		#checkout.col-md-9.clearfix
+			.box
+				=form_for @order do |f|
+					%ul.nav.nav-pills.nav-justified{id: 'order_tabs', 'data-tabs' => 'tabs'}
+						%li.active.tab-link#address
+							%a{:href => "#address", 'data-toggle' => 'tab', role: 'tab', "aria-controls" => 'address'}
+								%i.fa.fa-map-marker
+								%br Адрес
+						%li.disabled.tab-link#delivery
+							%a{:href => "#delivery", 'data-toggle' => 'tab', role: 'tab', "aria-controls" => 'delivery'}
+								%i.fa.fa-truck
+								%br Доставка
+						%li.disabled.tab-link#payment
+							%a{:href => "#payment", 'data-toggle' => 'tab'}
+								%i.fa.fa-money
+								%br Способ платежа
+						%li.disabled.tab-link#overview
+							%a{:href => "#overview", 'data-toggle' => 'tab'}
+								%i.fa.fa-eye
+								%br Обзор заказа
+					.tab-content
+						.tab-pane.active#address_tab{role: 'tabpanel'}
+							.row
+								.col-sm-6
+									.form-group
+										=f.label 'Имя'
+										=f.text_field :fname, id: 'firstname', class: 'form-control'
+								.col-sm-6
+									.form-group
+										=f.label 'Фамилия'
+										=f.text_field :lname, id: 'lastname', class: 'form-control'
+							.row
+								.col-sm-6
+									.form-group
+										=f.label 'Компания'
+										=f.text_field :company, id: 'company', class: 'form-control'
+								.col-sm-6
+									.form-group
+										=f.label 'Улица'
+										=f.text_field :street, id: 'street', class: 'form-control'
+							.row
+								.col-sm-6.col-md-3
+									.form-group
+										=f.label 'Город'
+										=f.text_field :city, id: 'city', class: 'form-control'
+								.col-sm-6.col-md-3
+									.form-group
+										=f.label 'Индекс'
+										=f.text_field :zip, id: 'zip', class: 'form-control'
+								.col-sm-6.col-md-3
+									.form-group
+										=f.label 'Дом'
+										=f.text_field :building, id: 'building', class: 'form-control'
+								.col-sm-6.col-md-3
+									.form-group
+										=f.label 'Квартира/офис'
+										=f.text_field :room, id: 'room', class: 'form-control'
+								.col-sm-6
+									.form-group
+										=f.label 'Телефон'
+										=f.text_field :phone, id: 'phone', class: 'form-control'
+								.col-sm-6
+									.form-group
+										=f.label 'Электронная почта'
+										=f.text_field :mail, id: 'mail', class: 'form-control'
+							.box-footer
+								.pull-left
+									=link_to cart_path(session[:cart_id]), class: 'btn btn-default' do
+										%i.fa.fa-chevron-left
+										Корзина
+								.pull-right
+									%a.btn.btn-primary.next-tab{href: '#'}
+										Далее - способ доставки
+										%i.fa.fa-chevron-right
+					/ step 2
+					.tab-content
+						.tab-pane#delivery_tab{role: 'tabpanel'}
+							.row
+								.col-sm-6.col-md-6
+									.box.shipping-method
+										%h4 Самовывоз со склада
+										%p Наш склад открыт 24 часа в сутки!
+										%h3 бесплатно
+										.box-footer.text-center
+											=f.radio_button :delivery_type, 'self'
+								.col-sm-6
+									.box.shipping-method
+										%h4 Курьерская служба доставки</h4>
+										%p Курьер прилетит к вам вертолетом в тот же день!
+										%h3 500 рублей
+										.box-footer.text-center
+											=f.radio_button :delivery_type, 'carrier'
+							/ /.row
+							.box-footer
+								.pull-left
+									%a.btn.btn-default.prev-tab{:href => "#"}
+										%i.fa.fa-chevron-left>
+										Назад к адресу
+								.pull-right
+									%a.btn.btn-primary.next-tab{href: '#'}
+										Далее - способ оплаты
+										%i.fa.fa-chevron-right
+					/ step 3
+					.tab-content
+						.tab-pane#payment_tab{role: 'tabpanel'}
+							.row
+								.col-sm-6
+									.box.payment-method
+										%h4 Paypal
+										%p Все мы любим пейпал
+										.box-footer.text-center
+											=f.radio_button :pay_type, 'paypal'
+								.col-sm-6
+									.box.payment-method
+										%h4 Кредитной картой
+										%p VISA и Mastercard.
+										.box-footer.text-center
+											=f.radio_button :pay_type, 'creditcard'
+								.col-sm-6
+									.box.payment-method
+										%h4 Налик при получении
+										%p Вы платите только когда получаете товар
+										.box-footer.text-center
+											=f.radio_button :pay_type, 'cash'
+							/ /.row
+							.box-footer
+								.pull-left
+									%a.btn.btn-default.prev-tab{:href => "#"}
+										%i.fa.fa-chevron-left>
+										Назад к доставке
+								.pull-right
+									%a.btn.btn-primary.next-tab{href: '#'}
+										Далее - обзор заказа
+										%i.fa.fa-chevron-right
+					/ step 4 - Place order
+					.tab-content
+						.tab-pane#overview_tab{role: 'tabpanel'}
+							.row
+								.col-sm-6
+									.box.payment-method
+										%h4 Paypal
+										%p Все мы любим пейпал
+										.box-footer.text-center
+											=f.radio_button :pay_type, 'paypal'
+								.col-sm-6
+									.box.payment-method
+										%h4 Кредитной картой
+										%p VISA и Mastercard.
+										.box-footer.text-center
+											%input{:name => "payment", :type => "radio", :value => "payment2"}
+								.col-sm-6
+									.box.payment-method
+										%h4 Налик при получении
+										%p Вы платите только когда получаете товар
+										.box-footer.text-center
+											%input{:name => "payment", :type => "radio", :value => "payment3"}
+							/ /.row
+							.box-footer
+								.pull-left
+									%a.btn.btn-default.prev-tab{:href => "#"}
+										%i.fa.fa-chevron-left
+										Назад к доставке
+								.pull-right
+									=f.submit 'Оформить заказ', class: 'btn btn-primary'
+
+			/ /.box
+		/ /.col-md-9
+		.col-md-3
+			#order-summary.box
+				.box-header
+					%h3 Order summary
+				%p.text-muted Shipping and additional costs are calculated based on the values you have entered.
+				.table-responsive
+					%table.table
+						%tbody
+							%tr
+								%td Order subtotal
+								%th $446.00
+							%tr
+								%td Shipping and handling
+								%th $10.00
+							%tr
+								%td Tax
+								%th $0.00
+							%tr.total
+								%td Total
+								%th $456.00
+		/ /.col-md-3
+	/ /.container

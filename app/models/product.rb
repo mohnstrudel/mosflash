@@ -9,6 +9,9 @@ class Product < ActiveRecord::Base
 
 	has_many	:volumes, through: :voluminazations
 
+	has_many	:accompanships
+	has_many	:accompanies, through: :accompanships
+
 	accepts_nested_attributes_for :options
 	accepts_nested_attributes_for :images
 

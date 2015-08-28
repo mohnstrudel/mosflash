@@ -5,5 +5,17 @@
 jQuery ->
 	$('#fileuploads').fileupload()
 	add: (e, data) ->
-    data.context = $("#submit-data")
-    data.submit()
+	    data.context = $("#submit-data")
+	    data.submit()
+
+    $('form').on 'click', '.add_fields', (event) ->
+    	time = new Date().getTime()
+    	regexp = new RegExp($(this).data('id'), 'g')
+    	$(this).before($(this).data('fields').replace(regexp, time))
+    	event.preventDefault()
+
+    $('.size_input').click (event) ->
+        selected_value = $('input[name=volume]:checked').val()
+        $('#priceValue').text(selected_value + ' руб.')
+		
+    		
