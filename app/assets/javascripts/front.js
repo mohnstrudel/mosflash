@@ -53,6 +53,12 @@ function sliderHomepage() {
 	});
     }
 
+    $("#hot_slider").owlCarousel({
+	    autoPlay: 5000,
+	    items: 1
+	});
+    
+
 }
 
 /* menu sliding */

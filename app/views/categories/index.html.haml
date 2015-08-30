@@ -1,0 +1,5 @@
+%h1 Категории товаров
+
+-@categories.each do |category|
+	%p 
+		=link_to category.title, edit_category_path(category.id)

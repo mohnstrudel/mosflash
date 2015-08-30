@@ -1,0 +1,16 @@
+%h1 Редактируем
+%h2 
+	= @category.title
+
+%p
+	=form_for @category do |f|
+		=f.label :title
+		=f.text_field :title
+		%br
+		=f.label :description
+		=f.text_area :description
+		%br
+		=f.label :avatar
+		=f.file_field :avatar
+		%br
+		=f.submit

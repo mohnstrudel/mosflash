@@ -38,7 +38,7 @@
                 .yamm-content
                   .row
                     .col-sm-3
-                      %img.img-responsive.hidden-xs{:alt => "", :src => "img/men.jpg"}
+                      =image_tag category.avatar, class: 'img-responsive hidden-xs', alt: ''
                     -category.subcategories.in_groups_of(4, false).each do |group_of_four|
                       .col-sm-3
                         %h3
