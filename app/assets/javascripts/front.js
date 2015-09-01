@@ -55,7 +55,13 @@ function sliderHomepage() {
 
     $("#hot_slider").owlCarousel({
 	    autoPlay: 5000,
-	    items: 1
+	    center: true,
+	    singleItem: true,
+	    navigation: true,
+	    dots: false,
+	    loop: true
+
+
 	});
     
 

@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
 
   def show
     @getCurrency = Array.new
-    @randomProduct = randomProduct
+
     @product.options.each do |option|
       @getCurrency << getCurrency(option.price)
     end
@@ -22,8 +22,7 @@ class ProductsController < ApplicationController
       @category_id = @category.id
       @products = Product.where(category_id: @category_id).order("created_at DESC")
     end 
-
-
+    render json: @product.to_json(include: :options)
   end
 
   def new
@@ -53,15 +52,10 @@ class ProductsController < ApplicationController
   end
 
   private
-    def randomProduct
-      lastID = Product.last.id
-      randomID = rand(lastID-2..lastID)
-      Product.find(randomID)
-    end
 
   	def product_params
   		params.require(:product).permit(
-        :title, :description, :advertising_text, :fancy_quote, :product_size_ids, { volume_ids: [] }, :category_id, :subcategory_id, 
+        :title, :description, :advertising_text, :fancy_quote, :hot, :hotpic, :product_size_ids, { volume_ids: [] }, :category_id, :subcategory_id, 
         options_attributes: [:size, :weight, :price, :material, :product_id],
         images_attributes: [ :image, :product_id ] 
         )
@@ -80,9 +74,11 @@ class ProductsController < ApplicationController
       daterange = DateTime.now.to_date.strftime("%d/%m/%Y")
       # Central Bank api does not accept single date value, thus, we're using twice the same day as range...
       # don't ask me why this isn't implemented
-      doc = Nokogiri::HTML(open("http://www.cbr.ru/scripts/XML_dynamic.asp?date_req1=#{daterange}&date_req2=#{daterange}&VAL_NM_RQ=R01235"))
+      # doc = Nokogiri::HTML(open("http://www.cbr.ru/scripts/XML_dynamic.asp?date_req1=#{daterange}&date_req2=#{daterange}&VAL_NM_RQ=R01235"))
 
-      rateString = doc.xpath('//value').inner_text
+      doc = Nokogiri::HTML(open("http://www.cbr.ru/scripts/XML_daily_eng.asp?date_req=#{daterange}"))
+      
+      rateString = doc.xpath('//valcurs//valute[10]//value').inner_text   
       # Because there are commas in the float number divider we need to convert them into dots, because
       # a number with a comma is considered a string by Rails
       rate = rateString.gsub(/,/ , '.').to_f

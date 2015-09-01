@@ -40,7 +40,7 @@
           .box
             .sizes
               %h3 Доступные объемы памяти (Гигабайт)
-              -@volumes.each_with_index do |volume, index|
+              -@productSizes.each_with_index do |volume, index|
                 -volume.each do |item|
                   / %label{:for => "size_#{item.id}"}
                   =link_to "#", class: 'size_input' do

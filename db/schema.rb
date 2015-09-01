@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150828171201) do
+ActiveRecord::Schema.define(version: 20150830161442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(version: 20150828171201) do
     t.datetime "updated_at",  null: false
     t.string   "avatar"
   end
+
+  create_table "hot_pics", force: :cascade do |t|
+    t.string   "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "product_id"
+  end
+
+  add_index "hot_pics", ["product_id"], name: "index_hot_pics_on_product_id", using: :btree
 
   create_table "images", force: :cascade do |t|
     t.string   "image"
@@ -121,6 +130,8 @@ ActiveRecord::Schema.define(version: 20150828171201) do
     t.json     "avatars"
     t.integer  "category_id"
     t.integer  "subcategory_id"
+    t.boolean  "hot"
+    t.string   "hotpic"
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
@@ -152,6 +163,7 @@ ActiveRecord::Schema.define(version: 20150828171201) do
   add_index "voluminazations", ["product_id"], name: "index_voluminazations_on_product_id", using: :btree
   add_index "voluminazations", ["volume_id"], name: "index_voluminazations_on_volume_id", using: :btree
 
+  add_foreign_key "hot_pics", "products"
   add_foreign_key "images", "products"
   add_foreign_key "line_items", "carts"
   add_foreign_key "line_items", "orders"

@@ -1,2 +1,8 @@
-%h1 Categories#new
-%p Find me in app/views/categories/new.html.haml
+%h1 Создать новую категорию
+%p Я просто текст
+
+.box
+	Данные категории
+
+	=form_for @category do |f|
+		=render 'form', f: f

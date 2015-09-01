@@ -119,7 +119,7 @@
 }
 .navbar .footer .buttons .btn,
 .navbar .footer .buttons .btn.btn-default {
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+  font-family: "PT Sans Caption", Helvetica, Arial, sans-serif;
   text-transform: uppercase !important;
   color: #555555;
 }
@@ -237,7 +237,7 @@ button i.fa {
   margin: 30px 10px 10px -71px;
   color: #fff;
   background-color: #da4d4d;
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+  font-family: "PT Sans Caption", Helvetica, Arial, sans-serif;
 }
 .ribbon .theribbon:before,
 .ribbon .theribbon:after {
@@ -354,14 +354,14 @@ button i.fa {
   filter: alpha(opacity=30);
 }
 #intro {
-  background: url(<%= asset_path('home.jpg') %>) no-repeat center top;
+  background: no-repeat center top;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
 #intro .item {
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+  font-family: "PT Sans Caption", Helvetica, Arial, sans-serif;
   height: 100%;
 }
 #intro .item h1 {
@@ -473,7 +473,7 @@ button i.fa {
 }
 /* breadcrumbs */
 .breadcrumb {
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+  font-family: "PT Sans Caption", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
 }
 #content #categoryMenu h3 {
@@ -553,7 +553,7 @@ button i.fa {
 }
 #content .panel.sidebar-menu ul.nav.category-menu li a,
 #content #categoryMenu ul.nav.category-menu li a {
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+  font-family: "PT Sans Caption", Helvetica, Arial, sans-serif;
 }
 #content .panel.sidebar-menu ul.nav ul,
 #content #categoryMenu ul.nav ul {
@@ -779,7 +779,7 @@ button i.fa {
   color: #555555;
   text-align: center;
   text-decoration: none;
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+  font-family: "PT Sans Caption", Helvetica, Arial, sans-serif;
 }
 #content #productMain .sizes a.active,
 #content .quick-view .sizes a.active,
@@ -1007,7 +1007,7 @@ button i.fa {
   font-size: 12px;
 }
 #content #blog-post .comment .reply {
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+  font-family: "PT Sans Caption", Helvetica, Arial, sans-serif;
 }
 #content #blog-post .comment.last {
   margin-bottom: 0;
@@ -1232,7 +1232,7 @@ button i.fa {
 }
 /* navbar */
 .navbar {
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+  font-family: "PT Sans Caption", Helvetica, Arial, sans-serif;
   min-height: 80px;
   margin-bottom: 30px;
   border-bottom: 1px solid transparent;
@@ -1533,7 +1533,7 @@ hr {
 /* buttons  */
 .btn {
   font-weight: normal;
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+  font-family: "PT Sans Caption", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   padding: 6px 12px;
   font-size: 14px;
@@ -1613,7 +1613,7 @@ fieldset[disabled] .btn-primary.active {
 }
 /* labels */
 .label {
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+  font-family: "PT Sans Caption", Helvetica, Arial, sans-serif;
   font-weight: normal;
   text-transform: uppercase;
 }
@@ -1634,7 +1634,7 @@ label {
   border-top: solid 1px #eeeeee;
   padding-top: 20px;
   text-transform: uppercase;
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+  font-family: "PT Sans Caption", Helvetica, Arial, sans-serif;
 }
 .pager li {
   display: inline;
@@ -1662,7 +1662,7 @@ label {
 /* pagination */
 .pagination {
   margin: 20px 0;
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+  font-family: "PT Sans Caption", Helvetica, Arial, sans-serif;
   border-radius: 0;
 }
 .pagination > li > a,
@@ -1737,7 +1737,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "Montserrat", Helvetica, Arial, sans-serif;
+  font-family: "PT Sans Caption", Helvetica, Arial, sans-serif;
   font-weight: 700;
   line-height: 1.1;
   color: #333333;
