@@ -5,9 +5,9 @@
   .container
     .navbar-header
       =link_to root_path, class: 'navbar-brand home' do
-        =image_tag 'default/logo.png', class: 'hidden-xs hidden-sm', alt: "Minimal logo" do
-          %img.visible-xs.visible-sm{:alt => "Minimal logo", :src => "img/logo-small.png"}
-            %span.sr-only Minimal - go to homepage
+        =image_tag 'default/logo_full.png', class: 'hidden-xs hidden-sm', alt: "Логотип Мосфлеш", width: 180
+        =image_tag 'default/logo_small.png', class: 'visible-xs visible-sm', alt: 'Логотип Мосфлеш'
+        %span.sr-only Мосфлеш - обратно на главную
       .navbar-buttons
         %button.navbar-toggle.btn-primary{"data-target" => "#navigation", "data-toggle" => "collapse", :type => "button"}
           %span.sr-only Toggle navigation
