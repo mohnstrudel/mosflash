@@ -1,0 +1,7 @@
+%h1 Создать новый способ доставки
+
+=form_for @delivery do |f|
+	=f.label 'Значение'
+	=f.text_field :value
+	%p
+		=f.submit

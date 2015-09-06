@@ -70,7 +70,7 @@
                 .form-group
                   %label{for: 'delivery'}
                     Доставка
-                  %select.form-control#delivery
+                  =select_tag 'Delivery', options_from_collection_for_select(Delivery.all, 'id', 'value'), class: 'form-control', id: 'delivery'
             .row
               .col-sm-12
                 Цена:

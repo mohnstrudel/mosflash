@@ -1,27 +1,10 @@
 Rails.application.routes.draw do
 
-
-  get 'categories/index'
-
-  get 'categories/show'
-
-  get 'categories/edit'
-
-  get 'categories/new'
-
   get 'accompanships/create'
 
   get 'accompanships/destroy'
 
   resources :orders
-
-  get 'products/show'
-
-  get 'products/index'
-
-  get 'products/new'
-
-  get 'products/edit'
 
   resources :products do
     resources :options do
@@ -33,6 +16,7 @@ Rails.application.routes.draw do
   resources :carts
   resources :categories
   resources :colors
+  resources :deliveries
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

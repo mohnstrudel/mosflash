@@ -1,0 +1,9 @@
+%h1
+	Редактировать
+	=@delivery.value
+%p
+	=form_for @delivery do |f|
+		=f.label 'Способ доставки'
+		=f.text_field :value
+		%p
+			=f.submit

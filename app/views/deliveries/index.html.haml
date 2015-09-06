@@ -1,0 +1,9 @@
+%h1 Все способы доставки
+
+-@deliveries.each do |delivery|
+	%p
+		=delivery.value
+		=link_to 'Редактировать', edit_delivery_path(delivery.id), class: 'btn btn-default'
+
+%p
+	=link_to 'Создать новый спобос', new_delivery_path, class: 'btn btn-success'
