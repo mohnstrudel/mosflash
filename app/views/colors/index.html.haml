@@ -1,0 +1,9 @@
+%h1 Цвета
+
+-@colors.each do |color|
+	%p
+		=color.value
+		=link_to 'Edit', edit_color_path(color.id), class: 'btn btn-default'
+
+%p
+	=link_to 'New', new_color_path, class: 'btn btn-success'

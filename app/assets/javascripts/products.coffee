@@ -8,6 +8,11 @@ jQuery ->
 	    data.context = $("#submit-data")
 	    data.submit()
 
+    $('li a').click (event) ->
+        # event.preventDefault()
+        $('a').removeClass('active')
+        $(this).addClass('active')
+
     $('form').on 'click', '.add_fields', (event) ->
     	time = new Date().getTime()
     	regexp = new RegExp($(this).data('id'), 'g')

@@ -9,7 +9,12 @@
 				=f.label 'Название'
 				=f.text_field :title
 				%p
+				=f.label 'Цвета'
+				=collection_check_boxes(:product, :color_ids, Color.all, :id, :value )
+				%p
 					=f.submit class: 'btn btn-default'
+		
+
 		.box
 			Текущие связанные товары:
 			-@product.accompanies.each do |accompany|

@@ -1,0 +1,17 @@
+.col-md-3.col-sm-6
+  .box
+    %h3 Вам также может понравиться
+
+-@randomProduct.each do |product|
+  .col-md-3.col-sm-6
+    .product
+      .image
+        =link_to '#' do
+          =image_tag product.images.first.image.to_s, class: 'img-responsive image1', alt: ''
+      .text
+        %h3
+          =product.title
+        %p.price
+          от
+          =product.options.first.price
+          руб.

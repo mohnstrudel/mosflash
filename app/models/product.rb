@@ -5,12 +5,15 @@ class Product < ActiveRecord::Base
 	belongs_to	:category 
 	belongs_to	:subcategory
 	has_many	:options
-	has_many	:voluminazations
 	has_many	:images, dependent: :destroy
 	has_many	:hot_pics
 	has_many	:line_items
 
+	has_many	:voluminazations
 	has_many	:volumes, through: :voluminazations
+
+	has_many	:colorizations
+	has_many	:colors, through: :colorizations
 
 	has_many	:accompanships
 	has_many	:accompanies, through: :accompanships

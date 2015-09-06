@@ -1,0 +1,7 @@
+%h1 Создать новый цвет
+
+=form_for @color do |f|
+	=f.label 'Значение цвета'
+	=f.text_field :value
+	%p
+		=f.submit

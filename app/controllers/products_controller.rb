@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   
-  before_action :find_product, only: [:show, :edit, :productSizes]
+  before_action :find_product, only: [:show, :edit, :productSizes, :update]
 
   def show
     @getCurrency = Array.new
@@ -10,6 +10,8 @@ class ProductsController < ApplicationController
     end
     @productSizes = productSizes
     @options = @product.options
+
+    @randomProduct = youMayLike
 
     # render json: @product.to_json(include: :options)
   end
@@ -22,7 +24,7 @@ class ProductsController < ApplicationController
       @category_id = @category.id
       @products = Product.where(category_id: @category_id).order("created_at DESC")
     end 
-    render json: @product.to_json(include: :options)
+    # render json: @products.to_json(include: :options)
   end
 
   def new
@@ -51,11 +53,16 @@ class ProductsController < ApplicationController
     # end
   end
 
+  def update
+    @product.update!(product_params)
+    redirect_to @product
+  end
+
   private
 
   	def product_params
   		params.require(:product).permit(
-        :title, :description, :advertising_text, :fancy_quote, :hot, :hotpic, :product_size_ids, { volume_ids: [] }, :category_id, :subcategory_id, 
+        :title, :description, :advertising_text, :fancy_quote, :hot, :hotpic, :product_size_ids, { volume_ids: [] }, { color_ids: [] }, :category_id, :subcategory_id, 
         options_attributes: [:size, :weight, :price, :material, :product_id],
         images_attributes: [ :image, :product_id ] 
         )
@@ -103,5 +110,8 @@ class ProductsController < ApplicationController
       @volumes = volume
     end
 
+    def youMayLike
+      Product.limit(3).order("RANDOM()")
+    end
 end
 

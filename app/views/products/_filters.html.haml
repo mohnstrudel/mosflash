@@ -1,0 +1,87 @@
+.panel.panel-default.sidebar-menu
+  .panel-heading
+    %h3.panel-title Категории
+  .panel-body
+    %ul.nav.nav-pills.nav-stacked.category-menu
+      -Category.all.each do |category|
+        %li
+          =link_to products_path(category: category.title) do
+            =category.title
+            %span.badge.pull-right 
+              =Product.where(category_id: category.id).count
+          %ul
+            -category.subcategories.each do |subcat|
+              %li
+                =link_to subcat.title, products_path(category: category.title, subcategory: subcat.title)
+                
+.panel.panel-default.sidebar-menu
+  .panel-heading
+    %h3.panel-title
+      Brands
+      %a.btn.btn-xs.btn-danger.pull-right{:href => "#"}
+        %i.fa.fa-times-circle
+        %span.hidden-sm Clear
+  .panel-body
+    %form
+      .form-group
+        .checkbox
+          %label
+            %input{:type => "checkbox"}
+              Armani (10)
+        .checkbox
+          %label
+            %input{:type => "checkbox"}
+              Versace (12)
+        .checkbox
+          %label
+            %input{:type => "checkbox"}
+              Carlo Bruni (15)
+        .checkbox
+          %label
+            %input{:type => "checkbox"}
+              Jack Honey (14)
+      %button.btn.btn-default.btn-sm.btn-primary
+        %i.fa.fa-pencil
+        Apply
+.panel.panel-default.sidebar-menu
+  .panel-heading
+    %h3.panel-title.clearfix
+      Colours
+      %a.btn.btn-xs.btn-danger.pull-right{:href => "#"}
+        %i.fa.fa-times-circle
+        %span.hidden-sm Clear
+  .panel-body
+    %form
+      .form-group
+        .checkbox
+          %label
+            %input{:type => "checkbox"}
+              %span.colour.white
+              White (14)
+        .checkbox
+          %label
+            %input{:type => "checkbox"}
+              %span.colour.blue
+              Blue (10)
+        .checkbox
+          %label
+            %input{:type => "checkbox"}
+              %span.colour.green
+              Green (20)
+        .checkbox
+          %label
+            %input{:type => "checkbox"}
+              %span.colour.yellow
+              Yellow (13)
+        .checkbox
+          %label
+            %input{:type => "checkbox"}
+              %span.colour.red
+              Red (10)
+      %button.btn.btn-default.btn-sm.btn-primary
+        %i.fa.fa-pencil
+        Apply
+/ *** MENUS AND FILTERS END ***
+.banner
+  %a{:href => "category.html"}
+    %img.img-responsive{:alt => "sales 2014", :src => "img/banner.jpg"}
