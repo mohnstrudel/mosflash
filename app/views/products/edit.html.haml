@@ -9,8 +9,19 @@
 				=f.label 'Название'
 				=f.text_field :title
 				%p
-				=f.label 'Цвета'
-				=collection_check_boxes(:product, :color_ids, Color.all, :id, :value )
+					=f.label 'Цвета'
+					=collection_check_boxes(:product, :color_ids, Color.all, :id, :value )
+				%p
+					=f.label "Допуслуги"
+				%br
+				/ -Addservice.all.each do |addservice|
+				/ =check_box_tag "product[addservice_ids][]", addservice.id, @product.addservice_ids.include?(addservice.id)
+				/ =addservice.title
+				/ =text_field_tag "product[servizations][coefficient][]", addservice.servizations.where(product_id: @product.id)[0].coefficient
+				=collection_check_boxes(:product, :addservice_ids, Addservice.all, :id, :title)
+				=f.fields_for :servizations do |s|
+					=s.text_field :coefficient
+					%br
 				%p
 					=f.submit class: 'btn btn-default'
 		

@@ -18,11 +18,27 @@ class Product < ActiveRecord::Base
 	has_many	:accompanships
 	has_many	:accompanies, through: :accompanships
 
+	has_many	:servizations
+	has_many	:addservices, through: :servizations
+
 	accepts_nested_attributes_for :options
 	accepts_nested_attributes_for :images
 	accepts_nested_attributes_for :hot_pics
+	accepts_nested_attributes_for :servizations
 
 	before_destroy	:ensure_not_referenced_by_any_line_item
+
+	def initialized_servizations # this is the key method
+    [].tap do |o|
+      Addservice.all.each do |addservice|
+        if c = servizations.find { |c| c.addservice_id == addservice.id }
+          o << c.tap { |c| c.enable ||= true }
+        else
+          o << Servization.new(addservice_id: addservice.id)
+        end
+      end
+    end
+end
 
 	private
 

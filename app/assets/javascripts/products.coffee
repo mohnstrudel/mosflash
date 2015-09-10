@@ -33,15 +33,52 @@ jQuery ->
 
     $('.size_input').click (event) ->
         selected_value = $('input[name=volume]:checked').val()
+        current_value = parseInt( $('#priceValue').text(), 10)
         multiplier = get_multiplier()
-        $('#priceValue').text(selected_value * multiplier)
+        eventPrices = new Array()
+        $('input[name=addservices]:checked').each ->
+            amount = parseInt( $(this).val(), 10)
+            eventPrices.push(amount)
+        
+        if eventPrices.length > 0
+            sum = eventPrices.reduce((a,b) => a+b)
+        else
+            sum = 0
+        # console.log(sum)
+        
+        $('#priceValue').text(sum + selected_value * multiplier)
     
+    $('input[name=addservices]').change (event) ->
+        amount = parseInt( $(this).val(), 10)
+        current_value = parseInt( $('#priceValue').text(), 10)
+        # console.log(amount)
+        # console.log(current_value)
+        if (this.checked)
+            $('#priceValue').text(current_value + amount)
+        else
+            $('#priceValue').text(current_value - amount)
+        
+
     $('#amount').on('input', (event) ->
         amount = $(this).val()
         multiplier = get_multiplier()
 
         selected_value = $('input[name=volume]:checked').val()
-        $('#priceValue').text(selected_value * multiplier)
+
+        eventPrices = new Array()
+        $('input[name=addservices]:checked').each ->
+            amount = parseInt( $(this).val(), 10)
+            eventPrices.push(amount)
+        
+        if eventPrices.length > 0
+            sum = eventPrices.reduce((a,b) => a+b)
+        else
+            sum = 0
+        # console.log(sum)
+        
+        $('#priceValue').text(sum + selected_value * multiplier)
     )
+
+
 		
     		

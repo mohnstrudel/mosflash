@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150906084841) do
+ActiveRecord::Schema.define(version: 20150906100911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,13 @@ ActiveRecord::Schema.define(version: 20150906084841) do
     t.integer  "accompany_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+  end
+
+  create_table "addservices", force: :cascade do |t|
+    t.string   "title"
+    t.float    "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "carts", force: :cascade do |t|
@@ -159,6 +166,17 @@ ActiveRecord::Schema.define(version: 20150906084841) do
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
   add_index "products", ["subcategory_id"], name: "index_products_on_subcategory_id", using: :btree
+
+  create_table "servizations", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "addservice_id"
+    t.float    "coefficient"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "servizations", ["addservice_id"], name: "index_servizations_on_addservice_id", using: :btree
+  add_index "servizations", ["product_id"], name: "index_servizations_on_product_id", using: :btree
 
   create_table "subcategories", force: :cascade do |t|
     t.string   "title"

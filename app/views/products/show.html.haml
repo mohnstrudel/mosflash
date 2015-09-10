@@ -71,6 +71,20 @@
                   %label{for: 'delivery'}
                     Доставка
                   =select_tag 'Delivery', options_from_collection_for_select(Delivery.all, 'id', 'value'), class: 'form-control', id: 'delivery'
+            -if @product.addservices.any?
+              .row
+                .col-sm-9
+                  .form-group#addservices
+                    %label{for: 'addservices'}
+                      Дополнительные услуги
+                    -@servizations.each do |servization|
+                      %br
+                      =check_box_tag 'addservices', servization[1][0]
+                      =Addservice.find_by(id: servization[0].addservice_id).title
+                      -
+                      =servization[1][0]
+                      руб.
+                      
             .row
               .col-sm-12
                 Цена:

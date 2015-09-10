@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :orders
 
   resources :products do
+    resources :servizations
+    resources :colors
     resources :options do
       resources :option_pics
     end
@@ -15,7 +17,6 @@ Rails.application.routes.draw do
   resources :line_items
   resources :carts
   resources :categories
-  resources :colors
   resources :deliveries
 
   # The priority is based upon order of creation: first created -> highest priority.

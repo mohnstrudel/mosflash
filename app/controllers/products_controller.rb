@@ -13,6 +13,11 @@ class ProductsController < ApplicationController
 
     @randomProduct = youMayLike
 
+    # Logic for the servizations
+    @servizations = Array.new
+    @product.servizations.each do |servization|
+      @servizations << [servization, getCurrency(servization.coefficient * Addservice.find_by(id: servization.addservice_id).price)]
+    end
     # render json: @product.to_json(include: :options)
   end
 
@@ -58,13 +63,19 @@ class ProductsController < ApplicationController
     redirect_to @product
   end
 
+  def hello(param)
+    return param * 5
+  end
+
   private
 
   	def product_params
   		params.require(:product).permit(
-        :title, :description, :advertising_text, :fancy_quote, :hot, :hotpic, :product_size_ids, { volume_ids: [] }, { color_ids: [] }, :category_id, :subcategory_id, 
+        :title, :description, :advertising_text, :fancy_quote, :hot, :hotpic, :product_size_ids, 
+        { volume_ids: [] }, { color_ids: [] }, { addservice_ids: [] }, :category_id, :subcategory_id, 
         options_attributes: [:size, :weight, :price, :material, :product_id],
-        images_attributes: [ :image, :product_id ] 
+        images_attributes: [ :image, :product_id ],
+        servizations_attributes: [:id, :product_id, :addservice_id, :coefficient]
         )
   	end
 
