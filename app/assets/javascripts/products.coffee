@@ -33,11 +33,15 @@ jQuery ->
 
     $('.size_input').click (event) ->
         selected_value = $('input[name=volume]:checked').val()
+        array = selected_value.split(",")[1].replace(']','')
+        # console.log(array[1].replace(']',''))
+
         current_value = parseInt( $('#priceValue').text(), 10)
         multiplier = get_multiplier()
         eventPrices = new Array()
         $('input[name=addservices]:checked').each ->
-            amount = parseInt( $(this).val(), 10)
+            value = $(this).val()
+            amount = parseInt( value.split(" ")[1], 10) 
             eventPrices.push(amount)
         
         if eventPrices.length > 0
@@ -46,24 +50,28 @@ jQuery ->
             sum = 0
         # console.log(sum)
         
-        $('#priceValue').text(sum + selected_value * multiplier)
+        $('#priceValue').text(sum + array * multiplier)
     
-    $('input[name=addservices]').change (event) ->
-        amount = parseInt( $(this).val(), 10)
+    $(':checkbox:checked[name^=addservices]').change (event) ->
+        amount = $(this).val()
+        array = parseInt( amount.split(" ")[1], 10)
+
         current_value = parseInt( $('#priceValue').text(), 10)
-        # console.log(amount)
-        # console.log(current_value)
+        console.log(array)
+        console.log(current_value)
         if (this.checked)
-            $('#priceValue').text(current_value + amount)
+            $('#priceValue').text(current_value + array)
         else
-            $('#priceValue').text(current_value - amount)
+            $('#priceValue').text(current_value - array)
         
 
     $('#amount').on('input', (event) ->
         amount = $(this).val()
+        # console.log(amount)
         multiplier = get_multiplier()
 
         selected_value = $('input[name=volume]:checked').val()
+        array = selected_value.split(",")[1].replace(']','')
 
         eventPrices = new Array()
         $('input[name=addservices]:checked').each ->
@@ -76,7 +84,7 @@ jQuery ->
             sum = 0
         # console.log(sum)
         
-        $('#priceValue').text(sum + selected_value * multiplier)
+        $('#priceValue').text(sum + array * multiplier)
     )
 
 

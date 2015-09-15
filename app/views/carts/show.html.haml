@@ -28,10 +28,10 @@
               -@cart.line_items.each do |li|
                 %tr
                   %td
-                    =link_to '#' do
+                    =link_to li.product do
                       =image_tag li.product.images.first.image.to_s, alt: '#{li.product.images.first.image.to_s}'
                   %td
-                    =link_to li.product.title, '#'
+                    =link_to li.product.title, li.product
                   %td
                     %input.form-control{:type => "number", value: li.quantity, size: 20}
                   %td

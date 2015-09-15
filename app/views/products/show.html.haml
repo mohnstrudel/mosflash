@@ -45,63 +45,66 @@
         .col-sm-6
           .box
             %h3 Опции данного товара
-            .sizes
-              %label{for: 'size'}
-                Выберите объем
-              %br
-              -@productSizes.each_with_index do |volume, index|
-                -volume.each do |item|
-                  =link_to "#", class: 'size_input' do
-                    =sprintf('%.0f', item.value/1000.to_f)
-                    Гб
-                  %input#size_s.size-input{:name => "volume", :type => "radio", :value => (@getCurrency[index][0].to_f).ceil}
-            .row
-              .col-sm-6
-                %label{for: 'color'}
-                  Цвет
-                =select_tag 'Color', options_from_collection_for_select(@product.colors, 'id', 'value'), class: 'form-control', id: 'color'
-            .row
-              .col-sm-6        
-                %label{for: 'amount'}
-                  Количество
-                %input.form-control{:type => "number", value: 1, size: 5, id: 'amount'}
-            .row
-              .col-sm-9
-                .form-group
-                  %label{for: 'delivery'}
-                    Доставка
-                  =select_tag 'Delivery', options_from_collection_for_select(Delivery.all, 'id', 'value'), class: 'form-control', id: 'delivery'
-            -if @product.addservices.any?
+            =form_for :line_item, url: line_items_path(product_id: @product.id) do |f|
+              / remote: true
+              .sizes
+                %label{for: 'size'}
+                  Выберите объем
+                %br
+                -@productSizes.each_with_index do |volume, index|
+                  -volume.each do |item|
+                    =link_to "#", class: 'size_input' do
+                      =sprintf('%.0f', item.value/1000.to_f)
+                      Гб
+                    %input#size_s.size-input{:name => "volume", :type => "radio", :value => [item.value, (@getCurrency[index][0].to_f).ceil] }
+
+              .row
+                .col-sm-6
+                  %label{for: 'color'}
+                    Цвет
+                  =select_tag 'color', options_from_collection_for_select(@product.colors, 'id', 'value'), class: 'form-control', id: 'color'
+              .row
+                .col-sm-6        
+                  %label{for: 'amount'}
+                    Количество
+                  %input.form-control{:type => "number", value: 1, size: 5, id: 'amount', name: 'amount'}
               .row
                 .col-sm-9
-                  .form-group#addservices
-                    %label{for: 'addservices'}
-                      Дополнительные услуги
-                    -@servizations.each do |servization|
-                      %br
-                      =check_box_tag 'addservices', servization[1][0]
-                      =Addservice.find_by(id: servization[0].addservice_id).title
-                      -
-                      =servization[1][0]
-                      руб.
-                      
-            .row
-              .col-sm-12
-                Цена:
-                %p.price#priceValue
-                  
-                  =(@getCurrency[0][0].to_f).ceil
-                руб.
-            .row
-              .col-sm-12
-                %p.text-center
-                  =link_to line_items_path(product_id: @product.id), method: :post, remote: true, id: 'add_item_to_cart', class: 'btn btn-primary shopping-cart-btn' do
-                    %i.fa.fa-shopping-cart
-                    Купить
-                  %button.btn.btn-default{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Add to wishlist", :type => "submit"}
-                    %i.fa.fa-heart-o
-                  =link_to edit_product_path(@product.id), class: 'btn btn-default' do
-                    %i.fa.fa-pencil
+                  .form-group
+                    %label{for: 'delivery'}
+                      Доставка
+                    =select_tag 'delivery', options_from_collection_for_select(Delivery.all, 'id', 'value'), class: 'form-control', id: 'delivery'
+              -if @product.addservices.any?
+                .row
+                  .col-sm-9
+                    .form-group#addservices
+                      %label{for: 'addservices'}
+                        Дополнительные услуги
+                      -@servizations.each do |servization|
+                        %br
+                        =check_box_tag 'addservices[]', [servization[0].addservice_id, servization[1][0]]
+                        =Addservice.find_by(id: servization[0].addservice_id).title
+                        -
+                        =servization[1][0]
+                        руб.
+                        
+              .row
+                .col-sm-12
+                  Цена:
+                  %p.price#priceValue
+                    
+                    =(@getCurrency[0][0].to_f).ceil
+                  руб.
+              .row
+                .col-sm-12
+                  %p.text-center
+                    =button_tag(type: 'submit', id: 'add_item_to_cart', class: 'btn btn-primary shopping-cart-btn') do
+                      %i.fa.fa-shopping-cart
+                      Купить
+                    %button.btn.btn-default{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Add to wishlist", :type => "submit"}
+                      %i.fa.fa-heart-o
+                    =link_to edit_product_path(@product.id), class: 'btn btn-default' do
+                      %i.fa.fa-pencil
           
             /   %a.thumb{:href => "img/detailbig1.jpg"}
             /     %img.img-responsive{:alt => "", :src => "img/detailsquare.jpg"}
