@@ -82,7 +82,7 @@
                         Дополнительные услуги
                       -@servizations.each do |servization|
                         %br
-                        =check_box_tag 'addservices[]', [servization[0].addservice_id, servization[1][0]]
+                        =check_box_tag('addservices[]', [servization[0].addservice_id, servization[1][0]], false, class: 'addservice_checkbox')
                         =Addservice.find_by(id: servization[0].addservice_id).title
                         -
                         =servization[1][0]
@@ -144,7 +144,7 @@
       .row
         =render 'similar_products'
       .row
-        =render 'you_may_like'
+        =render 'shared/you_may_like'
 
     / /.col-md-9
     / *** LEFT COLUMN END ***

@@ -35,6 +35,7 @@
                   %td
                     %input.form-control{:type => "number", value: li.quantity, size: 20}
                   %td
+                    / Here we do output the price value
                     =li.product.options.first.price
                     руб
                   %td 0.00 руб
@@ -69,40 +70,7 @@
                 %i.fa.fa-chevron-right
       / /.box
       .row
-        .col-md-3
-          .box
-            %h3 You may also like these products
-        .col-md-3
-          .product
-            .image
-              %a{:href => "detail.html"}
-                %img.img-responsive.image1{:alt => "", :src => "img/product2.jpg"}
-            .text
-              %h3
-                %a{:href => "detail.html"} Fur coat
-              %p.price $143
-          / /.product
-        .col-md-3
-          .product
-            .image
-              %a{:href => "detail.html"}
-                %img.img-responsive.image1{:alt => "", :src => "img/product3.jpg"}
-            .text
-              %h3
-                %a{:href => "detail.html"} Fur coat
-              %p.price $143
-          / /.product
-        .col-md-3
-          .product
-            .image
-              %a{:href => "detail.html"}
-                %img.img-responsive.image1{:alt => "", :src => "img/product1.jpg"}
-            .text
-              %h3
-                %a{:href => "detail.html"} Fur coat
-              %p.price $143
-          / /.product
-    / /.col-md-9
+        = render 'shared/you_may_like'
     .col-md-3
       =render 'order_summary'
       .box

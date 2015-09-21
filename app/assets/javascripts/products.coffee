@@ -52,7 +52,7 @@ jQuery ->
         
         $('#priceValue').text(sum + array * multiplier)
     
-    $(':checkbox:checked[name^=addservices]').change (event) ->
+    $('.addservice_checkbox').change (event) ->
         amount = $(this).val()
         array = parseInt( amount.split(" ")[1], 10)
 

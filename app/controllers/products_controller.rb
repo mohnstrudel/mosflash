@@ -120,9 +120,5 @@ class ProductsController < ApplicationController
       end
       @volumes = volume
     end
-
-    def youMayLike
-      Product.limit(3).order("RANDOM()")
-    end
 end
 

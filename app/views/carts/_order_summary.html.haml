@@ -17,10 +17,12 @@
           %td Доставка и обработка заказа
           %th 1000.00 руб
         %tr
-          %td Налог
-          %th 0.00 руб
+          %td Дополнительные услуги
+          %th 
+            =sprintf('%.0f', @cart.cartAddServiceValue)
+            руб
         %tr.total
           %td Итого
           %th
-            =@cart.cartValue + 1000
+            =sprintf('%.0f', @cart.cartValue + @cart.cartAddServiceValue)
             руб

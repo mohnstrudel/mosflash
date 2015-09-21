@@ -39,7 +39,7 @@ class LineItemsController < ApplicationController
 	    		# Select additional services with given addservice id
 	    		id = param.split(" ")[0].to_i
 	    		addservice = Addservice.where(id: id)
-	    		addservicePrice = param.split(" ")[1]
+	    		addservicePrice = param.split(" ")[1].to_f
 	    		addserviceHash[:name] = addservice[0].title
 	    		addserviceHash[:price] = addservicePrice
 	    		paramHash[id] = addserviceHash
