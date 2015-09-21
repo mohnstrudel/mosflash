@@ -20,7 +20,7 @@ gem 'haml-rails', '~> 0.9.0'
 
 #Image uploading
 gem 'carrierwave'
-gem 'rmagick'
+gem 'rmagick', '~> 2.15.4'
 gem 'jquery-fileupload-rails'
 
 # Use jquery as the JavaScript library
@@ -45,7 +45,12 @@ gem 'unicorn'
 gem 'rails_12factor', group: :production
 
 # Use Capistrano for deployment
-gem 'capistrano'
+group :development do
+	gem 'capistrano-rails'
+	gem 'capistrano-rvm'
+	gem 'capistrano3-unicorn'
+  gem 'capistrano-rbenv'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
