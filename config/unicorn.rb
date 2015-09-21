@@ -11,13 +11,13 @@ timeout 30
  
 # This is where we specify the socket.
 # We will point the upstream Nginx module to this socket later on
-listen "/var/sockets/unicorn.depot.sock", :backlog => 64
+listen "/var/sockets/unicorn.mosflash.sock", :backlog => 64
  
 pid "/home/deployer/apps/mosflash/current/tmp/pids/unicorn.pid"
  
 # Set the path of the log files inside the log folder of the testapp
-stderr_path "/home/deployer/apps/depot/current/log/unicorn.stderr.log"
-stdout_path "/home/deployer/apps/depot/current/log/unicorn.stdout.log"
+stderr_path "/home/deployer/apps/mosflash/current/log/unicorn.stderr.log"
+stdout_path "/home/deployer/apps/mosflash/current/log/unicorn.stdout.log"
  
 before_fork do |server, worker|
 # This option works in together with preload_app true setting
