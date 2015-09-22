@@ -43,11 +43,5 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   # Specify what domain to use for mailer URLs 
-  config.action_mailer.default_url_options = {host: "localhost:3000"}
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> bce81a74023a87d59f0565ee02438252d7637bf0
+  # config.action_mailer.default_url_options = {host: "localhost:3000"}
 end
