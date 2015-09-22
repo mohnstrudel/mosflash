@@ -14,8 +14,10 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
-# Using haml
+# Lets store some environment variables
+gem 'dotenv-rails'
 
+# Using haml
 gem 'haml-rails', '~> 0.9.0'
 
 #Image uploading
