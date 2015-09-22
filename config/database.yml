@@ -79,9 +79,8 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  adapter: mysql2
+  adapter: postgresql
   database: mosflash_production
   username: mosflash
   password: <%= ENV['MOSFLASH_DATABASE_PASSWORD'] %>
   host: localhost
-  socket: /tmp/mysql.sock
