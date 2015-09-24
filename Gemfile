@@ -19,7 +19,7 @@ gem 'dotenv-rails'
 
 # Using haml
 gem 'haml-rails', '~> 0.9.0'
-
+gem "font-awesome-rails"
 #Image uploading
 gem 'carrierwave'
 gem 'rmagick'
