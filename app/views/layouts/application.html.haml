@@ -4,8 +4,9 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Mosflash
     
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'application'
     = stylesheet_link_tag    'application', 'https://fonts.googleapis.com/css?family=PT+Sans+Caption:400,700&subset=latin,cyrillic'
+    = javascript_include_tag 'application'
     = csrf_meta_tags
 
 
@@ -18,4 +19,4 @@
 
     =render 'layouts/footer'
 
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    
