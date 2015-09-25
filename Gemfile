@@ -12,7 +12,9 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+
+# Dunno why, but let's try to include it
+gem 'therubyracer', platforms: :ruby
 
 # Lets store some environment variables
 gem 'dotenv-rails'
