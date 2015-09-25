@@ -1,0 +1,18 @@
+/ Using "send" method here because a lot of different model use the same partial
+/ model values are passed in via collection: @products, as: :item
+/ here we can use item as @product or @category or whatever
+/ =item.title
+/ 		-item_path = "#{item.class.name.downcase}_path"
+/ 		-edit_admin_item_path = "edit_admin_#{item.class.name.downcase}_path"
+/ 		-admin_item_path = "admin_#{item.class.name.downcase}_path"
+/ 		=link_to 'Просмотреть в магазине', send(item_path, item)
+/ 		=link_to 'Редактировать', send(edit_admin_item_path, item)
+/ 		=link_to 'Удалить', send(admin_item_path, item), method: :delete, data: {confirm: 'Уверен?'}
+/ [DEPRICATED] as of 25-09-2015
+
+-@products.each do |product|
+	%p
+		=product.title
+		=link_to 'Просмотреть в магазине', product_path(product)
+		=link_to 'Редактировать', edit_admin_product_path(product)
+		=link_to 'Удалить', admin_product_path(product), method: :delete, data: {confirm: 'Уверен?'}

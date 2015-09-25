@@ -1,31 +1,32 @@
-%h1 Create new product
+%h1 Создать новый товар
 
 
 =form_for @product, url: products_path do |f|
 	%p
-		=f.label :title
+		=f.label "Наименование товара"
 		=f.text_field :title
 		%br
-		=f.label :description
-		=f.text_area :description
-		%br
-		=f.label :advertising_text
+		=f.label "Рекламный текст (идет сразу после наименования)"
 		=f.text_area :advertising_text
 		%br
-		=f.label :fancy_quote
+		=f.label "Описание продукта (идет под кнопкой купить)"
+		=f.text_area :description
+		%br
+		=f.label "Цитата (идет в самом низу)"
 		=f.text_area :fancy_quote
 		%br
-		=f.label :category_id
+		=f.label "Выбрать категорию товара"
 		=f.collection_select :category_id, Category.all, :id, :title, { prompt: 'Please select category' }
 		%br
-		=f.label :subcategory_id
+		=f.label "Выбрать подкатегорию товара"
 		=f.collection_select :subcategory_id, Subcategory.all, :id, :title, { prompt: 'Please select sub-category' }
 		%br
-		=f.label :hot
+		=f.label "Показывать товар на главной в самом верху?"
 		=f.check_box :hot
 		%p
-			If hot, upload Hot Pic:
-			=f.label 'Upload Hotpic'
+			Если показывать, то нужно загрузить "горячую" фотографию
+			%br
+			=f.label 'Загрузить фото'
 			=f.file_field :hotpic
 		/ =f.label 'Product Size'
 		/ =f.collection_check_boxes(:volume_ids, Volume.all, :id, :value)
@@ -41,6 +42,6 @@
 
 	%p
 		=f.fields_for :image, Image.new, html: { multipart: true, id: "fileupload"  } do |op|
-			= op.label 'Upload image'
+			= op.label 'Загрузить остальные фото товара'
 			= op.file_field :image, multiple: true, id: 'fileupload', name: "product[images_attributes][][image]"
-	=f.submit id: 'submit-data'
+	=f.submit 'Создать новый товар', id: 'submit-data'

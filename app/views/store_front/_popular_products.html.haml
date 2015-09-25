@@ -1,0 +1,13 @@
+-@products.each do |product|
+	.col-md-3.col-sm-4
+		.product
+			.image
+				=link_to product do
+					=image_tag product.images.first.image.to_s, class: 'img-responsive image1', alt: ''
+			.text
+				%h3
+					=link_to product.title, product
+				%p.price
+					от
+					=product.options.first.price
+					руб.

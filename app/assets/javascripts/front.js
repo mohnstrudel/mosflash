@@ -51,7 +51,7 @@ function sliderHomepage() {
 	    itemsTablet: [600, 3], //2 items between 600 and 0
 	    itemsMobile: [500, 2] // itemsMobile disabled - inherit from itemsTablet option
 	});
-    }
+    
 
     $("#hot_slider").owlCarousel({
 	    autoPlay: 5000,
@@ -63,7 +63,18 @@ function sliderHomepage() {
 
 
 	});
-    
+
+	$("#member_slider").owlCarousel({
+	    autoPlay: 5000,
+	    center: true,
+	    singleItem: true,
+	    navigation: true,
+	    dots: false,
+	    loop: true
+
+
+	});
+    }
 
 }
 

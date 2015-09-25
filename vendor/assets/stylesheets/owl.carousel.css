@@ -36,6 +36,13 @@
 	-o-transition: height 500ms ease-in-out;
 	transition: height 500ms ease-in-out;
 }
+
+.owl-carousel div h2, .owl-carousel div .textoverlay{
+    position:absolute;
+    color:#FFF;
+   font-size:12px;
+   display:block;
+}
 	
 .owl-carousel .owl-item{
 	float: left;

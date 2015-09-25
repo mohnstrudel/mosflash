@@ -14,6 +14,15 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :admin do
+    get '', to: 'dashboard#index', as: '/'
+    resources :products
+    resources :categories
+    resources :subcategories
+    resources :volumes
+    resources :members
+  end
+
   resources :line_items
   resources :carts
   resources :categories

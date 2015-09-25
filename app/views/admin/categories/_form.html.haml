@@ -1,0 +1,17 @@
+.row
+	.col-md-4.col-xs-12
+		=form_for([:admin, @category]) do |f|
+			=f.label 'Наименование категории'
+			=f.text_field :title, class: 'form-control'
+			%br
+			=f.label 'Описание категории'
+			%h6 Появляется в каталоге, если клиент нажал на данную категорию. Не рекомендуется оставлять пустым
+			=f.text_area :description, class: 'form-control'
+			%br
+			=f.label 'Изображение для категории'
+			%h6 Не рекомендуется оставлять пустым, появляется в верхнем меню при нажатии на название категории.
+			=f.file_field :avatar
+			%br
+			=f.submit 'Сохранить', class: 'btn btn-success'
+			=link_to 'Отменить', admin_path, class: 'btn btn-info'
+	.col-md-8

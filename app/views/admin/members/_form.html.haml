@@ -1,0 +1,27 @@
+.row
+	.col-md-4.col-xs-12
+		=form_for([:admin, @member]) do |f|
+			=f.label 'Имя сотрудника'
+			=f.text_field :name, class: 'form-control'
+			%br
+			=f.label 'Должность сотрудника'
+			=f.text_field :position, class: 'form-control'
+			%br
+			=f.label 'Электронная почта'
+			=f.text_field :mail, class: 'form-control'
+			%br
+			=f.label 'Описание сотрудника (какой он?)'
+			%h6 Появляется в слайдере "наша команда" под телефоном и мэйлом. Можно писать "целеустремленный, жизнерадостный и добрый"
+			=f.text_area :description, class: 'form-control'
+			%br
+			=f.label 'Призвание'
+			%h6 Появляется в слайдере "наша команда" под описанием сотрудника. Например "сделать мир лучше". Слово "Призвание" писать не надо
+			=f.text_area :calling, class: 'form-control'
+			%br
+			=f.label 'Цитата сотрудника'
+			%h6 Появляется в слайдере "наша команда" призванием. Можно писать "сделать мир лучше". Слово "Цитата" писать не нужно
+			=f.text_area :cite, class: 'form-control'
+			%br
+			=f.submit 'Сохранить', class: 'btn btn-success'
+			=link_to 'Отменить', admin_path, class: 'btn btn-info'
+	.col-md-8

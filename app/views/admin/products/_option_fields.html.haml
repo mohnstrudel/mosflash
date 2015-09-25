@@ -1,0 +1,8 @@
+=f.label "Цена покупки товара (в долларах - цена Китай)"
+=f.text_field :price
+%br
+=f.label "Размер"
+-Volume.all.each do |volume|
+	=f.label volume.value
+	=f.radio_button :size, volume.id
+%br

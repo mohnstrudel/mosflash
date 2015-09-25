@@ -1,0 +1,51 @@
+%h1 Админская панель
+
+.box
+	%h4 Общие настройки
+	%h5 
+		=link_to 'Просмотреть'
+
+.box 
+	%h4 Товары
+	%h5 Последние 5 созданных
+	=render 'shared/listing'
+
+	%h6 Действия
+	=link_to 'Создать новый товар', new_admin_product_path
+	=link_to 'Просмотреть все товары', admin_products_path
+
+.box
+	%h4 Категории
+	%h5 Последние 5 созданных
+	=render 'shared/listing_cats'
+
+	%h6 Действия
+	=link_to 'Создать новую категорию', new_admin_category_path
+	=link_to 'Просмотреть все категории', admin_categories_path
+
+.box
+	%h4 Подкатегории
+	%h5 Последние 5 созданных
+	=render 'shared/listing_subcats'
+
+	%h6 Действия
+	=link_to 'Создать новую подкатегорию', new_admin_subcategory_path
+	=link_to 'Просмотреть все товары', admin_subcategories_path
+
+.box
+	%h4 Размеры флешек
+	%h5 Последние размеры
+	=render 'shared/listing_volumes'
+
+	%h6 Действия
+	=link_to 'Создать новый размер флешки', new_admin_volume_path
+	=link_to 'Просмотреть все размеры флешек', admin_volumes_path
+
+.box 
+	%h4 Команда
+	%h5 Последние члены команды
+	=render 'shared/listing_members'
+
+	%h6 Действия
+	=link_to 'Создать нового сотрудника', new_admin_member_path
+	=link_to 'Просмотреть всех сотрудников', admin_members_path

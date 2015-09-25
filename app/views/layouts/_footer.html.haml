@@ -1,28 +1,47 @@
 #footer
 	.container
 		.col-md-3.col-sm-6
-			%h4 Pages
-
-			%ul
-				%li About us
-				%li Terms and conditions
-				%li FAQ
-				%li Contact us
-
-			%hr
-
-			%h4 User section
-
-			%ul
-				%li Login
-				%li Register
-
-			%hr.hidden-md.hidden-lg.hidden-sm
-
-		.col-md-3.col-sm-6
-			%h4 Top categories
-
-			%h5 Men
-
-			%ul
-				%li T-shirts
+			%h4 Оставайтесь на связи
+			%p.text-muted Подпишитесь на нашу рассылку и вы всегда будете в курсе последний событий и акций!
+			%form
+				.input-group
+					%input.form-control{:type => "text"}
+						%span.input-group-btn
+							%button.btn.btn-default{:type => "button"} Подписаться!
+				%hr.hidden-md.hidden-lg.hidden-sm
+		/ /.col-md-3
+		.col-md-1
+		.col-md-3.col-md-offset-1.col-sm-6
+			%h4 Мы в социальных сетях
+			%p.social
+				%a{:href => "#"}
+					%i.fa.fa-facebook-square
+				%a{:href => "#"}
+					%i.fa.fa-instagram
+				%a{:href => "#"}
+					%i.fa.fa-google-plus
+				%a{:href => "#"}
+					%i.fa.fa-envelope
+			%hr.hidden-md.hidden-lg
+		/ /.col-md-3
+		.col-md-4.col-sm-6
+			.pull-right.totheright
+				%h4 Контакты
+				%p
+					%strong info@mosflash.ru
+					%br
+						=link_to 'https://maps.yandex.ru/213/moscow/?text=107023%2C%20%D0%B3.%20%D0%9C%D0%BE%D1%81%D0%BA%D0%B2%D0%B0%2C%20%D0%9C%D0%B0%D0%B6%D0%BE%D1%80%D0%BE%D0%B2%20%D0%BF%D0%B5%D1%80.%2C%20%D0%B4.%2014&amp;sll=37.625224%2C55.735046&amp;sspn=0.869293%2C0.214244&amp;ll=37.712198%2C55.784062&amp;z=18&amp;ol=geo&amp;oll=37.712003%2C55.784101', target: '_blank' do
+							Мажоров пер., д.14
+				%hr.hidden-md.hidden-lg.hidden-sm
+/ /#footer
+/ *** FOOTER END ***
+/
+	*** COPYRIGHT ***
+	_________________________________________________________
+#copyright
+	.container
+		.col-md-12
+			%p.pull-left
+				\&copy; 2008-2015 ООО "МОСТРЕНД". Все права защищены.
+/ /#copyright
+/ *** COPYRIGHT END ***

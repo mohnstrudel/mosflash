@@ -73,52 +73,25 @@
         .row.products
           =render 'new_products'
 
+      .col-sm-12
+        .box.text-center
+          %h3.text-uppercase Популярное
+          %h4.text-muted
+            %span.accent Доставка в течении дня
+            на все
+        .row.products
+          =render 'popular_products'
+
     .bar.background-image-fixed-2.no-mb.color-white.text-center
       .dark-mask
       .container
         .row
           =render 'advertising'
+    .container
+      .col-sm-12
+        rendering the team
+        =render 'team'
     / *** PROMO BAR END ***
     .container
       .col-sm-12
-        /
-          *** BLOG HOMEPAGE ***
-          _________________________________________________________
-        .box.text-center
-          %h3.text-uppercase From our blog
-          %p.text-italic.text-large
-            What's new in the world of fashion?
-            %span.accent Check our blog!
-        #blog-homepage.row
-          .col-sm-6
-            .post
-              %h4
-                %a{:href => "post.html"} Fashion now
-              %p.author-category
-                By
-                %a{:href => "#"} John Slim
-                in
-                %a{:href => ""} Fashion and style
-              %hr
-                %p.intro
-                  Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-                  ultricies mi vitae est. Mauris placerat eleifend leo.
-                %p.read-more
-                  %a.btn.btn-primary{:href => "post.html"} Continue reading
-          .col-sm-6
-            .post
-              %h4
-                %a{:href => "post.html"} Who is who - example blog post
-              %p.author-category
-                By
-                %a{:href => "#"} John Slim
-                in
-                %a{:href => ""} About Minimal
-              %hr
-                %p.intro
-                  Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-                  ultricies mi vitae est. Mauris placerat eleifend leo.
-                %p.read-more
-                  %a.btn.btn-primary{:href => "post.html"} Continue reading
-        / /#blog-homepage
-        / *** BLOG HOMEPAGE END ***
+        =render 'blog'

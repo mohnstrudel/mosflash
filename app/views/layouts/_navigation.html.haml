@@ -30,39 +30,40 @@
         
         -Category.all.each do |category|
           %li.dropdown.yamm-fw
-            =link_to products_path(category: category.title), class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
-              =category.title
-              %b.caret
-            %ul.dropdown-menu
-              %li
-                .yamm-content
-                  .row
-                    .col-sm-3
-                      =image_tag category.avatar, class: 'img-responsive hidden-xs', alt: ''
-                    -category.subcategories.in_groups_of(4, false).each do |group_of_four|
+            -if category.subcategories.any?
+              =link_to products_path(category: category.title), class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
+                =category.title
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  .yamm-content
+                    .row
                       .col-sm-3
-                        %h3
-                          =category.title
-                        %ul
-                          -group_of_four.each do |subcategory|
-                            %li
-                              =link_to subcategory.title, products_path(category: category.title, subcategory: subcategory.title)
+                        =image_tag category.avatar, class: 'img-responsive hidden-xs', alt: ''
+                      -category.subcategories.in_groups_of(4, false).each do |group_of_four|
+                        .col-sm-3
+                          %h3
+                            =category.title
+                          %ul
+                            -group_of_four.each do |subcategory|
+                              %li
+                                =link_to subcategory.title, products_path(category: category.title, subcategory: subcategory.title)
 
-                  .footer.clearfix.hidden-xs
-                    %h4.pull-right
-                      =category.title
-                    .buttons.pull-left
-                      %a.btn.btn-default{:href => "#"}
-                        %i.fa.fa-tags
-                        Sales
-                      %a.btn.btn-default{:href => "#"}
-                        %i.fa.fa-star-o
-                        Favourites
-                      %a.btn.btn-default{:href => "#"}
-                        %i.fa.fa-globe
-                        Brands
-        %li
-          %a{:href => "contact.html"} Contact
+                    .footer.clearfix.hidden-xs
+                      %h4.pull-right
+                        =category.title
+                      / .buttons.pull-left
+                      /   %a.btn.btn-default{:href => "#"}
+                      /     %i.fa.fa-tags
+                      /     Sales
+                      /   %a.btn.btn-default{:href => "#"}
+                      /     %i.fa.fa-star-o
+                      /     Favourites
+                      /   %a.btn.btn-default{:href => "#"}
+                      /     %i.fa.fa-globe
+                      /     Brands
+            -else
+              =link_to category.title, products_path(category: category.title), class: 'dropdown-toggle'
     / /.nav-collapse
     #basket-overview.navbar-collapse.collapse.right
       -if session[:cart_id]

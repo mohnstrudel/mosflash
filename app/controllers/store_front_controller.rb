@@ -3,6 +3,7 @@ class StoreFrontController < ApplicationController
 	def index
 		@products = Product.last(10)
 		@hotProducts = hotProduct
+		@members = Member.all
 	end
 
 	private

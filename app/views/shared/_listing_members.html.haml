@@ -1,0 +1,5 @@
+-@members.each do |member|
+	%p
+		=member.name
+		=link_to 'Редактировать', edit_admin_member_path(member)
+		=link_to 'Удалить', admin_member_path(member), method: :delete, data: {confirm: 'Уверен?'}

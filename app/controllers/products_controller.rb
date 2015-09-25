@@ -69,16 +69,6 @@ class ProductsController < ApplicationController
 
   private
 
-  	def product_params
-  		params.require(:product).permit(
-        :title, :description, :advertising_text, :fancy_quote, :hot, :hotpic, :product_size_ids, 
-        { volume_ids: [] }, { color_ids: [] }, { addservice_ids: [] }, :category_id, :subcategory_id, 
-        options_attributes: [:size, :weight, :price, :material, :product_id],
-        images_attributes: [ :image, :product_id ],
-        servizations_attributes: [:id, :product_id, :addservice_id, :coefficient]
-        )
-  	end
-
     # def product_params
     #   params.require(:product).permit!
     # end

@@ -314,12 +314,13 @@ button i.fa {
   background: #fff;
 }
 #content .bar.background-image-fixed-1 {
-  background: url('../img/fixed-background-1.jpg') center top no-repeat;
+  background: url(<%= asset_path("default/fixed-background-1.jpg") %>) center top no-repeat;
   background-attachment: fixed;
   background-size: cover;
 }
 #content .bar.background-image-fixed-2 {
-  background: url('../img/fixed-background-2.jpg') center top no-repeat;
+  
+  background: url(<%= asset_path("default/fixed-background-2.jpg") %>) center top no-repeat;
   background-attachment: fixed;
   background-size: cover;
 }
@@ -1814,6 +1815,10 @@ blockquote .small:before {
 .blockquote-reverse,
 blockquote.pull-right {
   border-right: 5px solid #da4d4d;
+}
+
+.totheright{ /*this will align the text to the right*/
+  text-align:right;
 }
 address {
   margin-bottom: 20px;

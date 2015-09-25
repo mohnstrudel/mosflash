@@ -1,0 +1,17 @@
+.row
+	.col-md-4.col-xs-12
+		=form_for([:admin, @subcategory]) do |f|
+			=f.label 'Наименование подкатегории'
+			=f.text_field :title, class: 'form-control'
+			%br
+			=f.label 'Описание подкатегории'
+			%h6 Появляется в каталоге, если клиент нажал на данную подкатегорию. Не рекомендуется оставлять пустым
+			=f.text_area :description, class: 'form-control'
+			%br
+			=f.label 'Выбрать категорию'
+			%h6 Выбрать категорию, к которой относится данная подкатегория
+			=select_tag :category_id, options_from_collection_for_select(Category.all, :id, :title), class: 'form-control'
+			%br
+			=f.submit 'Сохранить', class: 'btn btn-success'
+			=link_to 'Отменить', admin_path, class: 'btn btn-info'
+	.col-md-8
