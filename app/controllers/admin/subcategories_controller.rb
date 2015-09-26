@@ -27,6 +27,7 @@ class Admin::SubcategoriesController < AdminController
   	if @subcategory.update!(subcategory_params)
       redirect_to admin_members_path
       flash[:success] = 'Успешно обновлено'
+    end
   end
 
   def destroy
