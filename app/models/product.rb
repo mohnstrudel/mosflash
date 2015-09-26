@@ -1,5 +1,8 @@
 class Product < ActiveRecord::Base
 
+	validates :title, :description, :advertising_text, presence: true
+	validates :category_id, :subcategory_id, presence: true
+
 	mount_uploader :hotpic, HotpicUploader
 	
 	belongs_to	:category 

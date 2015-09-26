@@ -22,12 +22,13 @@ class ProductsController < ApplicationController
   end
 
   def index
+    @per_page = params[:per_page] || Product.per_page || 20
     if params[:category].blank?
-      @products = Product.all.order("created_at DESC")
+      @products = Product.all.order(params[:sort], created_at: :desc).paginate(:per_page => @per_page, :page => params[:page])
     else
       @category = Category.find_by(title: params[:category])
       @category_id = @category.id
-      @products = Product.where(category_id: @category_id).order("created_at DESC")
+      @products = Product.where(category_id: @category_id).order("created_at DESC").paginate(:per_page => @per_page, :page => params[:page])
     end 
     # render json: @products.to_json(include: :options)
   end

@@ -22,7 +22,7 @@ class Admin::ProductsController < AdminController
 			redirect_to admin_products_path
 			flash[:success] = "Успешно создано"
 		else
-			render new
+			render action: :new
 		end
 	end
 
@@ -45,7 +45,8 @@ class Admin::ProductsController < AdminController
 	private
 
 		def product_params
-			params.require(:product).permit(:title, :description, :advertising_text, :fancy_quote, :hot, :hotpic, :product_size_ids, 
+			params.require(:product).permit(:title, :description, :advertising_text,
+				:fancy_quote, :hot, :hotpic, :product_size_ids, :material,
 				{ volume_ids: [] }, { color_ids: [] }, { addservice_ids: [] }, :category_id, :subcategory_id, 
 				options_attributes: [:size, :weight, :price, :material, :product_id, :id],
 				images_attributes: [ :image, :product_id ],

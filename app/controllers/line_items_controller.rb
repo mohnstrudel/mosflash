@@ -6,7 +6,9 @@ class LineItemsController < ApplicationController
 	def create
 		product = Product.find(params[:product_id])
 		@line_item = @cart.add_product(product.id, params[:amount].to_f)
-		@line_item.addservices = createHash(params[:addservices])
+		if @line_item.addservices
+			@line_item.addservices= createHash(params[:addservices])
+		end
 		respond_to do |format|
 			if @line_item.save
 				format.html { redirect_to @line_item.cart, notice: 'Продукт успешно добавлен.'}

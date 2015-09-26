@@ -19,9 +19,16 @@ gem 'therubyracer', platforms: :ruby
 # Lets store some environment variables
 gem 'dotenv-rails'
 
+
 # Using haml
 gem 'haml-rails', '~> 0.9.0'
+
+# Using fonts
 gem "font-awesome-rails"
+
+# Pagination gem for pagination
+gem 'will_paginate'
+
 #Image uploading
 gem 'carrierwave'
 gem 'rmagick'

@@ -3,8 +3,13 @@
 		.col-md-12
 			%ul.breadcrumb
 				%li
-					%a{:href => "#"} Home
-				%li Ladies
+					=link_to 'Главная', root_path
+				-if @category_id
+					%li
+						=@category.title
+				-if @subcategory_id
+					%li
+						=@subcategory.title
 			.row
 				.box.text-center
 					.row
@@ -22,28 +27,24 @@
 				.box.info-bar.no-border
 					.row
 						.col-sm-12.col-md-4.products-showing
-							Showing
-							%strong 12
-							of
-							%strong 25
-							products
+							Всего
+							%strong
+								=@products.count
+							="товар#{russianize(@products.count)}"
+
 						.col-sm-12.col-md-8.products-number-sort
 							.row
 								%form.form-inline
 									.col-md-6.col-sm-6
 										.products-number
-											%strong Show
-											%a.btn.btn-default.btn-sm.btn-primary{:href => "#"} 12
-											%a.btn.btn-default.btn-sm{:href => "#"} 24
-											%a.btn.btn-default.btn-sm{:href => "#"} All
-											%span.hidden-md products
+											%strong 
+												Показывать
+												= select_tag :per_page, options_for_select([12,24,48], params[:per_page].to_i), :onchange => "if(this.value){window.location=window.location+'?per_page='+this.value;}", class: 'form-control'
+											%span.hidden-md товаров
 									.col-md-6.col-sm-6
 										.products-sort-by
-											%strong Sort by
-											%select.form-control{:name => "sort-by"}
-												%option Price
-												%option Name
-												%option Sales first
+											%strong Сортировать по
+											=select_tag :sort, options_for_select({"Названию" => 'title',"Цене" => 'created_at'}, params[:sort]), onchange: "if(this.value){window.location=window.location+'?sort='+this.value;}", class: 'form-control'
 				.row.products
 					-@products.each do |product|
 						.col-md-4.col-sm-6
@@ -60,7 +61,8 @@
 											= product.title
 									%p.price
 										от
-										= product.options.first.price
+										=sprintf('%.2f', crb_kurs(product.options.first.price)) 
+
 										руб.
 
 					#product-quick-view-modal.modal.fade{"aria-hidden" => "false", :role => "dialog", :tabindex => "-1"}
@@ -128,30 +130,14 @@
 						/ /.modal-dialog
 					/ /.modal
 				/ /.products
-				.row
-					.col-md-12.banner
-						%a{:href => "#"}
-							%img.img-responsive{:alt => "", :src => "img/banner2.jpg"}
+				/ Here we have a commented responsive banner, which can be used later on
+				/ .row
+				/ 	.col-md-12.banner
+				/ 		%a{:href => "#"}
+				/ 			%img.img-responsive{:alt => "", :src => "img/banner2.jpg"}
 				.pages
-					%p.loadMore
-						%a.btn.btn-primary{:href => "#"}
-							%i.fa.fa-chevron-down
-							Load more
 					%ul.pagination
-						%li
-							%a{:href => "#"} &laquo;
-						%li.active
-							%a{:href => "#"} 1
-						%li
-							%a{:href => "#"} 2
-						%li
-							%a{:href => "#"} 3
-						%li
-							%a{:href => "#"} 4
-						%li
-							%a{:href => "#"} 5
-						%li
-							%a{:href => "#"} &raquo;
+						= will_paginate @products, previous_label: "&laquo;", next_label: "&raquo;"
 			/ /.col-md-9
 			/ *** LEFT COLUMN END ***
 			/
@@ -163,9 +149,9 @@
 					_________________________________________________________
 				=render 'filters'
 				/ *** MENUS AND FILTERS END ***
-				.banner
-					%a{:href => "category.html"}
-						%img.img-responsive{:alt => "sales 2014", :src => "img/banner.jpg"}
+				/ .banner
+				/ 	%a{:href => "category.html"}
+				/ 		%img.img-responsive{:alt => "sales 2014", :src => "img/banner.jpg"}
 				/ /.banner
 			/ /.col-md-3
 			/ *** RIGHT COLUMN END ***

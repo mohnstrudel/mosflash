@@ -7,4 +7,38 @@ module ApplicationHelper
 		end
 		link_to(name, '#', class: 'add_fields', data: {id: id, fields: fields.gsub("\n", "")})
 	end
+
+	def crb_kurs(dollars)
+		require 'nokogiri'
+		require 'open-uri'
+		
+		daterange = DateTime.now.to_date.strftime("%d/%m/%Y")
+		# Central Bank api does not accept single date value, thus, we're using twice the same day as range...
+		# don't ask me why this isn't implemented
+		# doc = Nokogiri::HTML(open("http://www.cbr.ru/scripts/XML_dynamic.asp?date_req1=#{daterange}&date_req2=#{daterange}&VAL_NM_RQ=R01235"))
+
+		doc = Nokogiri::HTML(open("http://www.cbr.ru/scripts/XML_daily_eng.asp?date_req=#{daterange}"))
+		
+		rateString = doc.xpath('//valcurs//valute[10]//value').inner_text	 
+		# Because there are commas in the float number divider we need to convert them into dots, because
+		# a number with a comma is considered a string by Rails
+		rate = rateString.gsub(/,/ , '.').to_f
+
+		# Custom + 3% to the whole value
+		priceInDollars = (dollars * rate) * 1.03
+
+		# To show customer current exchange rate we return both, the exchange rate and the dollar price
+		# additionally we'll add the original price aswell
+		return priceInDollars
+	end
+
+	def russianize(number)
+		if number == 1
+			return ""
+		elsif number == 2..4
+			return "а"
+		else
+			return 'ов'
+		end
+	end
 end

@@ -1,0 +1,4 @@
+-Setting.first.attributes.slice('vk', 'facebook', 'instagram', 'youtube').each do |key, value|
+	-unless value.nil?
+		=link_to value.to_s do
+			="<i class='fa fa-#{key}'></i>".html_safe

@@ -45,7 +45,7 @@
         .col-sm-6
           .box
             %h3 Опции данного товара
-            =form_for :line_item, url: line_items_path(product_id: @product.id) do |f|
+            =form_for :line_item, url: line_items_path(product_id: @product.id), remote: true do |f|
               / remote: true
               .sizes
                 %label{for: 'size'}
@@ -118,29 +118,22 @@
         %p
           %h4 Описание продукта
           %p=@product.description
-          %h4 Материал
-          %ul
-            -@product.options.each do |option|
-              %li=option.material
+          -if @product.material
+            %h4 Материал
+            =@product.material
           %h4 Размеры
           %ul
             -@product.options.each do |option|
               %li=option.size
-          %blockquote
-            %p
-              %em
-                =@product.fancy_quote
+          -if @product.fancy_quote
+            %blockquote
+              %p
+                %em
+                  =@product.fancy_quote
       #product-social.box.social
         %h4 Расскажите о нас друзьям
         %p
-          %a.external.facebook{"data-animate-hover" => "pulse", :href => "#"}
-            %i.fa.fa-facebook
-          %a.external.gplus{"data-animate-hover" => "pulse", :href => "#"}
-            %i.fa.fa-google-plus
-          %a.external.twitter{"data-animate-hover" => "pulse", :href => "#"}
-            %i.fa.fa-twitter
-          %a.email{"data-animate-hover" => "pulse", :href => "#"}
-            %i.fa.fa-envelope
+          =render 'shared/social'
       .row
         =render 'similar_products'
       .row
