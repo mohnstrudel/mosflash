@@ -3,7 +3,7 @@
 .box
 	%h4 Общие настройки
 	%h5 
-		=link_to 'Просмотреть'
+		=link_to 'Просмотреть', edit_admin_setting_path(@setting.id) 
 
 .box 
 	%h4 Товары
@@ -31,6 +31,15 @@
 	%h6 Действия
 	=link_to 'Создать новую подкатегорию', new_admin_subcategory_path
 	=link_to 'Просмотреть все товары', admin_subcategories_path
+
+.box
+	%h4 Допуслуги (для товаров)
+	%h5 Последние 5 созданных
+	=render 'shared/listing_addservices'
+
+	%h6 Действия
+	=link_to 'Создать новую доп.услугу', new_admin_addservice_path
+	=link_to 'Просмотреть все допуслуги', admin_addservices_path
 
 .box
 	%h4 Размеры флешек

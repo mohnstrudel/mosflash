@@ -1,0 +1,13 @@
+.row
+	.col-md-4.col-xs-12
+		=form_for([:admin, @addservice]) do |f|
+			=f.label 'Наименование категории'
+			=f.text_field :title, class: 'form-control'
+			%br
+			=f.label 'Базовая цена (в долларах)'
+			%h6 Данная цена является базовой и умножается на коеффициент в самом товаре
+			=f.number_field :price, class: 'form-control', step: 'any'
+			%br
+			=f.submit 'Сохранить', class: 'btn btn-success'
+			=link_to 'Отменить', admin_path, class: 'btn btn-info'
+	.col-md-8

@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     resources :subcategories
     resources :volumes
     resources :members
+    resources :addservices
+    resources :settings
   end
 
   resources :line_items

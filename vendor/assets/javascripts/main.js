@@ -3,5 +3,4 @@ angular.module("app.home").controller("HomeCtrl",["$scope",function(o){o.version
 },{}],2:[function(require,module,exports){
 module.exports=angular.module("app.home",[]),require("./HomeCtrl");
 },{"./HomeCtrl":1}],3:[function(require,module,exports){
-angular.module("app",[require("./home").name]);
 },{"./home":2}]},{},[3])

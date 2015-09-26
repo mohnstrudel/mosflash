@@ -18,13 +18,16 @@ before_action	:find_category, only: [:edit, :update, :show]
   def create
     @category = Category.new(category_params)
     if @category.save
-      redirect_to @category
+      redirect_to admin_categories_path
+      flash[:success] = 'Успешно создано'
     end
   end
 
   def update
-  	@category.update!(category_params)
-  	redirect_to @category
+  	if @category.update!(category_params)
+  	   redirect_to admin_categories_path
+       flash[:success] = 'Обновлено успешно'
+    end
   end
 
   private

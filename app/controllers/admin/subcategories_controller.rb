@@ -19,12 +19,21 @@ class Admin::SubcategoriesController < AdminController
     @subcategory = Subcategory.new(subcategory_params)
     if @subcategory.save
       redirect_to admin_volumes_path
+      flash[:success] = 'Успешно создано'
     end
   end
 
   def update
-  	@subcategory.update!(subcategory_params)
-  	redirect_to admin_volumes_path
+  	if @subcategory.update!(subcategory_params)
+      redirect_to admin_members_path
+      flash[:success] = 'Успешно обновлено'
+  end
+
+  def destroy
+    if @subcategory.destroy
+      redirect_to admin_members_path
+      flash[:info] = 'Удалено успешно'
+    end
   end
 
   private

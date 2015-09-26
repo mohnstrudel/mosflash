@@ -4,6 +4,7 @@ class StoreFrontController < ApplicationController
 		@products = Product.last(10)
 		@hotProducts = hotProduct
 		@members = Member.all
+		@setting = Setting.first
 	end
 
 	private

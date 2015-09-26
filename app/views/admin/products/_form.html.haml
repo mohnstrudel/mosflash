@@ -1,0 +1,80 @@
+.row
+	.col-md-4.col-xs-12
+		.box
+			=form_for([:admin, @product]) do |f|
+				%p
+					=f.label "Наименование товара"
+					=f.text_field :title, class: 'form-control'
+					%br
+					=f.label "Рекламный текст (идет сразу после наименования)"
+					=f.text_area :advertising_text, class: 'form-control'
+					%br
+					=f.label "Описание продукта (идет под кнопкой купить)"
+					=f.text_area :description, class: 'form-control'
+					%br
+					=f.label "Цитата (идет в самом низу)"
+					=f.text_area :fancy_quote, class: 'form-control'
+					%br
+					=f.label "Выбрать категорию товара"
+					=f.collection_select :category_id, Category.all, :id, :title, { prompt: 'Выбрать категорию' }
+					%br
+					=f.label "Выбрать подкатегорию товара"
+					=f.collection_select :subcategory_id, Subcategory.all, :id, :title, { prompt: 'Выбрать подкатегорию' }
+					%br
+					=f.label "Показывать товар на главной в самом верху?"
+					=f.check_box :hot
+					%p
+						Если показывать, то нужно загрузить "горячую" фотографию
+						%br
+						=f.label 'Загрузить фото'
+						=f.file_field :hotpic, class: 'form-control'
+					%br
+					=f.label 'Доступные для товара цвета'
+					=collection_check_boxes(:product, :color_ids, Color.all, :id, :value )
+					
+				%p
+					.box
+						%h3 Опции
+						=f.fields_for :options do |builder|
+							=render 'option_fields', f: builder
+							%br
+						=link_to_add_fields 'Добавить опцию', f, :options
+					.box
+						%h3 Дополнительные услуги товара
+						%h5 При создании нового товара нужно сначала отметить доп. услуги, сохранить и только при редактировании отметить все коеффициенты.
+						=collection_check_boxes(:product, :addservice_ids, Addservice.all, :id, :title) do |b|
+							=b.label class: 'checkbox' do
+								=b.check_box + b.text
+						%h5 Коэффициенты (на это значение будет умножена базовая цена доп.услуги). Заносить только начиная со второго поля!
+						=f.fields_for :servizations do |s|
+							=s.text_field :coefficient, class: 'form-control'
+							%br
+				%p
+					=f.fields_for :image, Image.new, html: { multipart: true, id: "fileupload"  } do |op|
+						= op.label 'Загрузить остальные фото товара'
+						= op.file_field :image, multiple: true, id: 'fileupload', name: "product[images_attributes][][image]", class: 'form-control'
+					-if @product.images.any?
+						.box
+							%h6 Удалить фотографии
+							%p
+								=f.fields_for :images do |builder|
+									=image_tag builder.object.image, width: 120
+									=builder.label :_destroy, 'Удалить фотографию'
+									=builder.check_box :_destroy
+									%br
+									%hr.short.alt
+				=f.submit 'Сохранить', id: 'submit-data', class: 'btn btn-success'
+				=link_to 'Отменить', admin_path, class: 'btn btn-info'
+
+		.box
+			Текущие связанные товары:
+			-@product.accompanies.each do |accompany|
+				%br
+				=accompany.title
+		.box
+			%h3 Добавлять только при редактировании, так как информация выше иначе сотрется
+			-Product.all.each do |product|
+				=product.title
+				%br
+				=link_to 'Добавить как сопутсвующий товар', accompanships_create_path(product_id: @product.id, accompany_id: product.id)
+	.col-md-8

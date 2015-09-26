@@ -14,14 +14,10 @@
 		.col-md-3.col-md-offset-1.col-sm-6
 			%h4 Мы в социальных сетях
 			%p.social
-				%a{:href => "#"}
-					%i.fa.fa-facebook-square
-				%a{:href => "#"}
-					%i.fa.fa-instagram
-				%a{:href => "#"}
-					%i.fa.fa-google-plus
-				%a{:href => "#"}
-					%i.fa.fa-envelope
+				-@setting.attributes.slice('vk', 'facebook', 'instagram', 'youtube').each do |key, value|
+					-unless value.empty?
+						=link_to value.to_s do
+							="<i class='fa fa-#{key}'></i>".html_safe
 			%hr.hidden-md.hidden-lg
 		/ /.col-md-3
 		.col-md-4.col-sm-6

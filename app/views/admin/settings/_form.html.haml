@@ -1,0 +1,18 @@
+.row
+	.col-md-4.col-xs-12
+		=form_for([:admin, @setting]) do |f|
+			=f.label 'Аккаунт фейсбука (вместе с http://)'
+			=f.text_field :facebook, class: 'form-control'
+			%br
+			=f.label 'Аккаунт вКонтакте (вместе с http://)'
+			=f.text_field :vk, class: 'form-control'
+			%br
+			=f.label 'Аккаунт инстраграма (вместе с http://)'
+			=f.text_field :instagram, class: 'form-control'
+			%br
+			=f.label 'Аккаунт ютуба (вместе с http://)'
+			=f.text_field :youtube, class: 'form-control'
+			%br
+			=f.submit 'Сохранить', class: 'btn btn-success'
+			=link_to 'Отменить', admin_path, class: 'btn btn-info'
+	.col-md-8

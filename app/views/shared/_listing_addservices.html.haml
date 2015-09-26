@@ -1,0 +1,5 @@
+-@addservices.each do |addsrvs|
+	%p
+		=addsrvs.title
+		=link_to 'Редактировать', edit_admin_addservice_path(addsrvs)
+		=link_to 'Удалить', admin_addservice_path(addsrvs), method: :delete, data: {confirm: 'Уверен?'}
