@@ -49,7 +49,7 @@ class Admin::ProductsController < AdminController
 				:fancy_quote, :hot, :hotpic, :product_size_ids, :material,
 				{ volume_ids: [] }, { color_ids: [] }, { addservice_ids: [] }, :category_id, :subcategory_id, 
 				options_attributes: [:size, :weight, :price, :material, :product_id, :id],
-				images_attributes: [ :image, :product_id ],
+				images_attributes: [ :image, :product_id, :id ],
 				servizations_attributes: [:id, :product_id, :addservice_id, :coefficient]
 				)
 		end

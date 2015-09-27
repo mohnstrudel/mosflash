@@ -14,9 +14,11 @@ class ProductsController < ApplicationController
     @randomProduct = youMayLike
 
     # Logic for the servizations
-    @servizations = Array.new
-    @product.servizations.each do |servization|
-      @servizations << [servization, getCurrency(servization.coefficient * Addservice.find_by(id: servization.addservice_id).price)]
+    if @product.addservices.any?
+      @servizations = Array.new
+      @product.servizations.each do |servization|
+        @servizations << [servization, getCurrency(servization.coefficient * Addservice.find_by(id: servization.addservice_id).price)]
+      end
     end
     # render json: @product.to_json(include: :options)
   end
@@ -28,7 +30,7 @@ class ProductsController < ApplicationController
     else
       @category = Category.find_by(title: params[:category])
       @category_id = @category.id
-      @products = Product.where(category_id: @category_id).order("created_at DESC").paginate(:per_page => @per_page, :page => params[:page])
+      @products = Product.where(category_id: @category_id).order(params[:sort, created_at: :desc]).paginate(:per_page => @per_page, :page => params[:page])
     end 
     # render json: @products.to_json(include: :options)
   end
