@@ -32,6 +32,15 @@
 	=link_to 'Создать новую подкатегорию', new_admin_subcategory_path
 	=link_to 'Просмотреть все товары', admin_subcategories_path
 
+.box 
+	%h4 Команда
+	%h5 Последние члены команды
+	=render 'shared/listing_members'
+
+	%h6 Действия
+	=link_to 'Создать нового сотрудника', new_admin_member_path
+	=link_to 'Просмотреть всех сотрудников', admin_members_path
+
 .box
 	%h4 Допуслуги (для товаров)
 	%h5 Последние 5 созданных
@@ -50,11 +59,13 @@
 	=link_to 'Создать новый размер флешки', new_admin_volume_path
 	=link_to 'Просмотреть все размеры флешек', admin_volumes_path
 
-.box 
-	%h4 Команда
-	%h5 Последние члены команды
-	=render 'shared/listing_members'
+.box
+	%h4 Способы доставки
+	%h5 Последние 5 созданных
+	=render 'shared/listing_deliveries'
 
 	%h6 Действия
-	=link_to 'Создать нового сотрудника', new_admin_member_path
-	=link_to 'Просмотреть всех сотрудников', admin_members_path
+	=link_to 'Создать новый способ доставки', new_admin_delivery_path
+	=link_to 'Просмотреть все способы доставки', admin_deliveries_path
+
+

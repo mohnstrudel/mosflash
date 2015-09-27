@@ -7,5 +7,6 @@ class Admin::DashboardController < AdminController
 		@members = Member.last(5)
 		@addservices = Addservice.last(5)
 		@setting = Setting.first
+		@deliveries = Delivery.last(5)
 	end
 end

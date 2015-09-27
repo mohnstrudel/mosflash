@@ -82,10 +82,10 @@
                         Дополнительные услуги
                       -@servizations.each do |servization|
                         %br
-                        =check_box_tag('addservices[]', [servization[0].addservice_id, servization[1][0]], false, class: 'addservice_checkbox')
+                        =check_box_tag('addservices[]', [servization[0].addservice_id, servization[1]], false, class: 'addservice_checkbox')
                         =Addservice.find_by(id: servization[0].addservice_id).title
                         -
-                        =servization[1][0]
+                        =sprintf('%.2f', servization[1])
                         руб.
                         
               .row
@@ -123,8 +123,10 @@
             =@product.material
           %h4 Размеры
           %ul
-            -@product.options.each do |option|
-              %li=option.size
+            -@volumes.each do |volume|
+              %li
+                =volume[0].value
+                мегабайт
           -if @product.fancy_quote
             %blockquote
               %p

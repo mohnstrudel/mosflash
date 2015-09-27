@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :members
     resources :addservices
     resources :settings
+    resources :deliveries
   end
 
   resources :line_items

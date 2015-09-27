@@ -1,0 +1,5 @@
+-@deliveries.each do |delivery|
+	%p
+		=delivery.value
+		=link_to 'Редактировать', edit_admin_delivery_path(delivery)
+		=link_to 'Удалить', admin_delivery_path(delivery), method: :delete, data: {confirm: 'Уверен?'}

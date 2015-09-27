@@ -1,0 +1,12 @@
+%h1 Админская панель
+%p
+	%ul
+		%li
+			=link_to 'На дашборд', admin_path
+		%li
+			=link_to 'Создать новый тип доставки', new_admin_delivery_path
+
+
+%h2 Все способы доставки
+
+=render 'shared/listing_deliveries'

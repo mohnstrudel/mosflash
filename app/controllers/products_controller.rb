@@ -4,12 +4,16 @@ class ProductsController < ApplicationController
 
   def show
     @getCurrency = Array.new
+    @volumes = Array.new
 
     @product.options.each do |option|
       @getCurrency << getCurrency(option.price)
+      # Here we get volumes as readable MB format, because option.size is just 1, 2, 3 etc
+      @volumes << Volume.where(id: option.size.to_i)
     end
     @productSizes = productSizes
     @options = @product.options
+
 
     @randomProduct = youMayLike
 
@@ -17,7 +21,7 @@ class ProductsController < ApplicationController
     if @product.addservices.any?
       @servizations = Array.new
       @product.servizations.each do |servization|
-        @servizations << [servization, getCurrency(servization.coefficient * Addservice.find_by(id: servization.addservice_id).price)]
+        @servizations << [servization, servization.coefficient * Addservice.find_by(id: servization.addservice_id).price]
       end
     end
     # render json: @product.to_json(include: :options)
