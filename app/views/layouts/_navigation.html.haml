@@ -40,10 +40,13 @@
                     .row
                       .col-sm-3
                         =image_tag category.avatar, class: 'img-responsive hidden-xs', alt: ''
-                      -category.subcategories.in_groups_of(4, false).each do |group_of_four|
+                      -category.subcategories.in_groups_of(4, false).each_with_index do |group_of_four, index|
                         .col-sm-3
                           %h3
-                            =category.title
+                            -if index==0
+                              =category.title
+                            -else
+                              =('<span style="color: #fff;">I</span>').html_safe
                           %ul
                             -group_of_four.each do |subcategory|
                               %li

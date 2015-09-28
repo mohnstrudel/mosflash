@@ -103,8 +103,6 @@
                       Купить
                     %button.btn.btn-default{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Add to wishlist", :type => "submit"}
                       %i.fa.fa-heart-o
-                    =link_to edit_product_path(@product.id), class: 'btn btn-default' do
-                      %i.fa.fa-pencil
           
             /   %a.thumb{:href => "img/detailbig1.jpg"}
             /     %img.img-responsive{:alt => "", :src => "img/detailsquare.jpg"}
@@ -136,8 +134,9 @@
         %h4 Расскажите о нас друзьям
         %p
           =render 'shared/social'
-      .row
-        =render 'similar_products'
+      -if @product.accompanships.any?
+        .row
+          =render 'similar_products'
       .row
         =render 'shared/you_may_like'
 

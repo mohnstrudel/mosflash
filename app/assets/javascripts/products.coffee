@@ -2,12 +2,22 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-jQuery ->
-	$('#fileuploads').fileupload()
-	add: (e, data) ->
-	    data.context = $("#submit-data")
-	    data.submit()
+$(document).ready ->
+    $('div.box form').submit (event) ->
+        url = $(this).attr('action')
+        sellprice = parseInt( $('#priceValue').text(), 10)
+        # console.log(url)
+        # console.log(sellprice)
 
+        $.ajax
+            type: 'POST'
+            url: url
+            data: { line_item: { sellprice: sellprice } }
+            dataType: 'json'
+            success: (json) ->
+                console.log('success')
+
+jQuery ->
     $('li a').click (event) ->
         # event.preventDefault()
         $('a').removeClass('active')

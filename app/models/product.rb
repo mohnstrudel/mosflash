@@ -25,7 +25,7 @@ class Product < ActiveRecord::Base
 	has_many	:addservices, through: :servizations
 
 	accepts_nested_attributes_for :options
-	accepts_nested_attributes_for :images, reject_if: proc { |attributes| attributes['image'].blank? }
+	accepts_nested_attributes_for :images
 	accepts_nested_attributes_for :hot_pics
 	accepts_nested_attributes_for :servizations
 

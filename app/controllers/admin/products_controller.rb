@@ -12,13 +12,15 @@ class Admin::ProductsController < AdminController
 	def new
 		@product = Product.new
 		option = @product.options.build
-		option_pic = option.option_pics.build
 		@product.servizations.build
 	end
 
 	def create
 		@product = Product.new(product_params)
 		if @product.save
+			if params[:images]
+				params[:images].each { |image| @product.images.create(image: image) }
+			end
 			redirect_to admin_products_path
 			flash[:success] = "Успешно создано"
 		else
@@ -27,11 +29,14 @@ class Admin::ProductsController < AdminController
 	end
 
 	def update
-		if @product.update!(product_params)
-			redirect_to admin_products_path
+		if @product.update(product_params)
+			if params[:images]
+				params[:images].each { |image| @product.images.create(image: image) }
+			end
+			redirect_to edit_admin_product_path(@product)
 			flash[:success] = "Успешно обновлено"
 		else
-			render edit
+			render action: :edit
 		end
 	end
 
@@ -49,7 +54,7 @@ class Admin::ProductsController < AdminController
 				:fancy_quote, :hot, :hotpic, :product_size_ids, :material,
 				{ volume_ids: [] }, { color_ids: [] }, { addservice_ids: [] }, :category_id, :subcategory_id, 
 				options_attributes: [:size, :weight, :price, :material, :product_id, :id],
-				images_attributes: [ :image, :product_id, :id ],
+				images_attributes: [ :id, :image, :product_id, :_destroy ],
 				servizations_attributes: [:id, :product_id, :addservice_id, :coefficient]
 				)
 		end

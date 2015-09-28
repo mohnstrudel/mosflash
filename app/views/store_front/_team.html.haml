@@ -1,7 +1,7 @@
 #member_slider.owl-carousel.owl-theme
-	.textoverlay
-		-@members.each do |member|
-			.item
+	-@members.each do |member|
+		.item
+			.overlay
 				%h2 Hoho
-				=image_tag 'default/blurred-office-11.jpg', class: 'img img-responsive', alt: ''
-				=member.name
+				/ =image_tag 'default/blurred-office-11.jpg', class: 'img img-responsive', alt: ''
+				=image_tag member.avatar, class: 'img img-responsive teammember'

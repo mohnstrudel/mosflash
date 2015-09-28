@@ -74,5 +74,15 @@
   -webkit-transform: translate3d(0,0,0);
   -moz-transform: translate3d(0,0,0);
   -ms-transform: translate3d(0,0,0);
+
+  .overlay{
+	  position: absolute;
+	  top: 0px;
+	  left: 0px;
+	  height: 700px;
+	  width: 1600px;
+	  background-color: red;
+	  opacity: 0.5;
+}
 }
 

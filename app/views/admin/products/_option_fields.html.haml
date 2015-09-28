@@ -1,5 +1,5 @@
 =f.label "Цена покупки товара (в долларах - цена Китай)"
-=f.text_field :price
+=f.number_field :price, step: :any
 %br
 =f.label "Размер"
 -Volume.all.each do |volume|

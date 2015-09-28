@@ -4,6 +4,6 @@ class LineItem < ActiveRecord::Base
   belongs_to :order
 
   def totalPrice
-  	product.options.first.price * quantity
+  	self.sellprice * quantity
   end
 end

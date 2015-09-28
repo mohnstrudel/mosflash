@@ -6,7 +6,7 @@
 					%li 
 						=msg
 		.box
-			=form_for([:admin, @product]) do |f|
+			=form_for([:admin, @product], html: { multipart: true }) do |f|
 				%p
 					=f.label "Наименование товара"
 					=f.text_field :title, class: 'form-control'
@@ -58,9 +58,10 @@
 							=s.text_field :coefficient, class: 'form-control'
 							%br
 				%p
-					=f.fields_for :image, Image.new, html: { multipart: true, id: "fileupload"  } do |op|
-						= op.label 'Загрузить остальные фото товара'
-						= op.file_field :image, multiple: true, id: 'fileupload', name: "product[images_attributes][][image]", class: 'form-control'
+					=file_field_tag :image, name: "images[]", id: 'fileupload', type: :file, multiple: true
+					/ =f.fields_for :image, Image.new, id: "fileupload" do |op|
+					/ 	= op.label 'Загрузить остальные фото товара'
+					/ 	= op.file_field :image, multiple: true, id: 'fileupload', name: "product[images_attributes][][image]", class: 'form-control'
 					-if @product.images.any?
 						.box
 							%h6 Удалить фотографии

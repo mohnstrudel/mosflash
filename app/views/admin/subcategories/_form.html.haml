@@ -10,7 +10,7 @@
 			%br
 			=f.label 'Выбрать категорию'
 			%h6 Выбрать категорию, к которой относится данная подкатегория
-			=select_tag :category_id, options_from_collection_for_select(Category.all, :id, :title), class: 'form-control'
+			=f.collection_select :category_id, Category.all, :id, :title, { prompt: 'Выбрать категорию' }, class: 'form-control'
 			%br
 			=f.submit 'Сохранить', class: 'btn btn-success'
 			=link_to 'Отменить', admin_path, class: 'btn btn-info'

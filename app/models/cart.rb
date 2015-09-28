@@ -18,7 +18,9 @@ class Cart < ActiveRecord::Base
     def cartAddServiceValue
       resultArray = Array.new
       line_items.each_with_index do |li, index|
-        resultArray << eval(li.addservices[(index+1).to_s]).fetch(:price).to_f
+        if li.addservices?
+          resultArray << eval(li.addservices[(index+1).to_s]).fetch(:price).to_f
+        end
       end
       resultArray.sum
     end

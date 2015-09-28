@@ -12,7 +12,7 @@
             %p.text-muted 
               На данный момент у вас
               =@cart.line_items.count 
-              товаров в корзине.
+              ="товар#{russianize(@cart.line_items.count)} в корзине."
     #basket.col-md-9.clearfix
       .box
         .table-responsive
@@ -33,15 +33,18 @@
                   %td
                     =link_to li.product.title, li.product
                   %td
-                    %input.form-control{:type => "number", value: li.quantity, size: 20}
+                    %input.form-control{:disabled => '', :type => "number", value: li.quantity, size: 20, id: 'quantity_input'}
                   %td
-                    / Here we do output the price value
-                    =li.product.options.first.price
-                    руб
+                    .priceOutput
+                      / Here we do output the price value
+                      =li.sellprice
+                      руб
                   %td 0.00 руб
                   %td
-                    =li.product.options.first.price * li.quantity
-                    руб
+                    .totalPrice
+                      / Total price for the line item
+                      =li.sellprice * li.quantity
+                      руб
                   %td
                     %a{:href => "#"}
                       %i.fa.fa-trash-o
@@ -49,6 +52,7 @@
               %tr
                 %th{:colspan => "5"} Сумма
                 %th{:colspan => "2"}
+                  / Total price for the cart
                   =@cart.cartValue
                   руб
           .box-footer

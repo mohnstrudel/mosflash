@@ -21,7 +21,9 @@ class ProductsController < ApplicationController
     if @product.addservices.any?
       @servizations = Array.new
       @product.servizations.each do |servization|
-        @servizations << [servization, servization.coefficient * Addservice.find_by(id: servization.addservice_id).price]
+        if servization.addservice_id
+          @servizations << [servization, servization.coefficient * Addservice.find_by(id: servization.addservice_id).price]
+        end
       end
     end
     # render json: @product.to_json(include: :options)

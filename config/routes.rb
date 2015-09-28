@@ -16,7 +16,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
-    resources :products
+    resources :products do
+      resources :images
+    end
     resources :categories
     resources :subcategories
     resources :volumes
@@ -26,10 +28,13 @@ Rails.application.routes.draw do
     resources :deliveries
   end
 
-  resources :line_items
+  
   resources :carts
   resources :categories
   resources :deliveries
+  resources :line_items do
+    put :sellprice, on: :member
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

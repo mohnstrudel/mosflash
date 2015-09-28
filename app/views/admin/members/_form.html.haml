@@ -1,6 +1,6 @@
 .row
 	.col-md-4.col-xs-12
-		=form_for([:admin, @member]) do |f|
+		=form_for([:admin, @member], html: { multipart: true }) do |f|
 			=f.label 'Имя сотрудника'
 			=f.text_field :name, class: 'form-control'
 			%br
@@ -21,6 +21,9 @@
 			=f.label 'Цитата сотрудника'
 			%h6 Появляется в слайдере "наша команда" призванием. Можно писать "сделать мир лучше". Слово "Цитата" писать не нужно
 			=f.text_area :cite, class: 'form-control'
+			%br
+			=f.label 'Загрузите фото сотрудника'
+			=f.file_field :avatar
 			%br
 			=f.submit 'Сохранить', class: 'btn btn-success'
 			=link_to 'Отменить', admin_path, class: 'btn btn-info'

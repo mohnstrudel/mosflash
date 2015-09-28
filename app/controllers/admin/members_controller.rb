@@ -24,7 +24,7 @@ class Admin::MembersController < AdminController
   end
 
   def update
-    if @member.update!(member_params)
+    if @member.update(member_params)
       redirect_to admin_members_path
       flash[:success] = 'Успешно обновлено'
     end
@@ -44,6 +44,6 @@ class Admin::MembersController < AdminController
 	  end
 
 	  def member_params
-	  	params.require(:member).permit(:name, :description, :position, :mail, :calling, :cite)
+	  	params.require(:member).permit(:name, :description, :position, :mail, :calling, :cite, :avatar)
 	  end
 end
