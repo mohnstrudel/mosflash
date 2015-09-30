@@ -119,12 +119,9 @@
           -if @product.material
             %h4 Материал
             =@product.material
-          %h4 Размеры
-          %ul
-            -@volumes.each do |volume|
-              %li
-                =volume[0].value
-                мегабайт
+          -if @product.size
+            %h4 Размер
+            =@product.size
           -if @product.fancy_quote
             %blockquote
               %p

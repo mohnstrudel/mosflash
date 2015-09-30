@@ -1,0 +1,9 @@
+.row
+	.col-md-4.col-xs-12
+		=form_for([:admin, @color]) do |f|
+			=f.label 'Значение цвета'
+			=f.text_field :value, class: 'form-control'
+			%br
+			=f.submit 'Сохранить', class: 'btn btn-success'
+			=link_to 'Отменить', admin_path, class: 'btn btn-info'
+	.col-md-8

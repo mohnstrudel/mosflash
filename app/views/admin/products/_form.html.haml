@@ -20,6 +20,9 @@
 					=f.label "Материал, из которого состоит продукт (в свободной форме)"
 					=f.text_field :material, class: 'form-control'
 					%br
+					=f.label "Размер флешки (в текстовом формате, например: '50мм х 100мм')"
+					=f.text_field :size, class: 'form-control'
+					%br
 					=f.label "Цитата (идет в самом низу)"
 					=f.text_area :fancy_quote, class: 'form-control'
 					%br
@@ -37,8 +40,11 @@
 						=f.label 'Загрузить фото'
 						=f.file_field :hotpic, class: 'form-control'
 					%br
-					=f.label 'Доступные для товара цвета'
-					=collection_check_boxes(:product, :color_ids, Color.all, :id, :value )
+					%h5 Доступные для товара цвета
+					=collection_check_boxes(:product, :color_ids, Color.all, :id, :value ) do |b|
+						%br
+						= b.label class: "label-checkbox" do
+							=b.check_box + b.text
 					
 				%p
 					.box
@@ -55,7 +61,7 @@
 								=b.check_box + b.text
 						%h5 Коэффициенты (на это значение будет умножена базовая цена доп.услуги). Заносить только начиная со второго поля!
 						=f.fields_for :servizations do |s|
-							=s.text_field :coefficient, class: 'form-control'
+							=s.number_field :coefficient, class: 'form-control'
 							%br
 				%p
 					=file_field_tag :image, name: "images[]", id: 'fileupload', type: :file, multiple: true

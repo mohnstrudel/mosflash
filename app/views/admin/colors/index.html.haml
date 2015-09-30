@@ -1,0 +1,12 @@
+%h1 Админская панель
+%p
+	%ul
+		%li
+			=link_to 'На дашборд', admin_path
+		%li
+			=link_to 'Создать новый цвет', new_admin_color_path
+
+
+%h2 Все цвета
+
+=render 'shared/listing_colors'

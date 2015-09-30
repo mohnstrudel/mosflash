@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resources :addservices
     resources :settings
     resources :deliveries
+    resources :colors
   end
 
   

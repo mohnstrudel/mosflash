@@ -8,5 +8,6 @@ class Admin::DashboardController < AdminController
 		@addservices = Addservice.last(5)
 		@setting = Setting.first
 		@deliveries = Delivery.last(5)
+		@colors = Color.last(5)
 	end
 end

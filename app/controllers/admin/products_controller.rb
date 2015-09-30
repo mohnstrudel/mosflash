@@ -12,7 +12,7 @@ class Admin::ProductsController < AdminController
 	def new
 		@product = Product.new
 		option = @product.options.build
-		@product.servizations.build
+		# @product.servizations.build
 	end
 
 	def create
@@ -51,7 +51,7 @@ class Admin::ProductsController < AdminController
 
 		def product_params
 			params.require(:product).permit(:title, :description, :advertising_text,
-				:fancy_quote, :hot, :hotpic, :product_size_ids, :material,
+				:fancy_quote, :hot, :hotpic, :product_size_ids, :material, :size,
 				{ volume_ids: [] }, { color_ids: [] }, { addservice_ids: [] }, :category_id, :subcategory_id, 
 				options_attributes: [:size, :weight, :price, :material, :product_id, :id],
 				images_attributes: [ :id, :image, :product_id, :_destroy ],

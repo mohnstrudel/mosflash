@@ -68,4 +68,13 @@
 	=link_to 'Создать новый способ доставки', new_admin_delivery_path
 	=link_to 'Просмотреть все способы доставки', admin_deliveries_path
 
+.box
+	%h4 Цвета
+	%h5 Последние 5 созданных
+	=render 'shared/listing_colors'
+
+	%h6 Действия
+	=link_to 'Создать новый цвет', new_admin_color_path
+	=link_to 'Просмотреть все цвета', admin_colors_path
+
 

@@ -1,0 +1,5 @@
+-@colors.each do |color|
+	%p
+		=color.value
+		=link_to 'Редактировать', edit_admin_color_path(color)
+		=link_to 'Удалить', admin_color_path(color), method: :delete, data: {confirm: 'Уверен?'}
