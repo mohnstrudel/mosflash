@@ -24,7 +24,7 @@ class Admin::DeliveriesController < AdminController
   end
 
   def update
-    if @delivery.update!(delivery_params)
+    if @delivery.update(delivery_params)
       redirect_to admin_deliveries_path
       flash[:success] = 'Успешно обновлено'
     end

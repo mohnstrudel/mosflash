@@ -61,7 +61,7 @@
 								=b.check_box + b.text
 						%h5 Коэффициенты (на это значение будет умножена базовая цена доп.услуги). Заносить только начиная со второго поля!
 						=f.fields_for :servizations do |s|
-							=s.number_field :coefficient, class: 'form-control'
+							=s.number_field :coefficient, class: 'form-control', step: :any
 							%br
 				%p
 					=file_field_tag :image, name: "images[]", id: 'fileupload', type: :file, multiple: true
