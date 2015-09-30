@@ -6,10 +6,10 @@
 /           =image_tag product.hotpic.thumb.to_s, class: 'img img-responsive', alt: ''
 
 #slider.owl-carousel.owl-theme
-  -@products.each do |product|
+  -@hotProducts.each do |product|
     .item
       =link_to product do
-        =image_tag product.images.first.image.to_s, class: 'img img-responsive', alt: ''
+        =image_tag product.hotpic.to_s, class: 'img img-responsive', alt: ''
 / /#slider
 / *** SLIDER END ***
 

@@ -1,7 +1,7 @@
 class StoreFrontController < ApplicationController
 
 	def index
-		@products = Product.last(10)
+		@products = Product.last(8)
 		@hotProducts = hotProduct
 		@members = Member.all
 	end
