@@ -26,21 +26,24 @@
       #productMain.row
         .col-sm-6
           #mainImage
-            =image_tag @product.images.first.image.to_s, class: 'img-responsive'
-            / %img.img-responsive{:alt => "", :src => "img/detailbig1.jpg"}
-          .ribbon.sale
-            .theribbon SALE
-            .ribbon-background
+            -if @product.images.any?
+              =image_tag @product.images.first.image.to_s, class: 'img-responsive'
+
+          / Lets switch it off for a while
+          / .ribbon.sale
+          /   .theribbon SALE
+          /   .ribbon-background
           / /.ribbon
           -if @product.created_at < 1.week.ago
             .ribbon.new
-              .theribbon NEW
+              .theribbon НОВИНКА
               .ribbon-background
           #thumbs.row
-            -@product.images.each do |pic|
-              .col-xs-4
-                =link_to pic.image.to_s, class: 'thumb' do
-                  =image_tag(pic.image.to_s, alt: "", class: 'img-responsive')
+            -if @product.images.any?
+              -@product.images.each do |pic|
+                .col-xs-4
+                  =link_to pic.image.to_s, class: 'thumb' do
+                    =image_tag(pic.image.to_s, alt: "", class: 'img-responsive')
           / /.ribbon
         .col-sm-6
           .box
