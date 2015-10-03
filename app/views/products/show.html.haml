@@ -22,7 +22,7 @@
     /
       *** LEFT COLUMN ***
       _________________________________________________________
-    .col-md-9
+    .col-md-12
       #productMain.row
         .col-sm-6
           #mainImage
@@ -76,11 +76,11 @@
                   .form-group
                     %label{for: 'delivery'}
                       Доставка
-                    =select_tag 'delivery', options_from_collection_for_select(Delivery.all, 'id', 'value'), class: 'form-control', id: 'delivery'
+                    =select_tag 'delivery', options_from_collection_for_select(Delivery.all, 'coefficient', 'value'), class: 'form-control', id: 'delivery'
               -if @product.addservices.any?
                 .row
                   .col-sm-9
-                    .form-group#addservices
+                    .form-group#addservices.reveal-closed
                       %label{for: 'addservices'}
                         Дополнительные услуги
                       -@servizations.each do |servization|
@@ -90,6 +90,11 @@
                         -
                         =sprintf('%.2f', servization[1])
                         руб.
+                    -if @servizations.count > 5
+                      #thediv
+                        %a.btn.btn-primary{:href => "#", id: 'load_more_btn'}
+                          %i.fa.fa-chevron-down
+                          Показать все
                         
               .row
                 .col-sm-12
@@ -104,17 +109,7 @@
                     =button_tag(type: 'submit', id: 'add_item_to_cart', class: 'btn btn-primary shopping-cart-btn') do
                       %i.fa.fa-shopping-cart
                       Купить
-                    %button.btn.btn-default{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Add to wishlist", :type => "submit"}
-                      %i.fa.fa-heart-o
           
-            /   %a.thumb{:href => "img/detailbig1.jpg"}
-            /     %img.img-responsive{:alt => "", :src => "img/detailsquare.jpg"}
-            / .col-xs-4
-            /   %a.thumb{:href => "img/detailbig2.jpg"}
-            /     %img.img-responsive{:alt => "", :src => "img/detailsquare2.jpg"}
-            / .col-xs-4
-            /   %a.thumb{:href => "img/detailbig3.jpg"}
-            /     %img.img-responsive{:alt => "", :src => "img/detailsquare3.jpg"}
       #details.box
         %p
           %h4 Описание продукта
@@ -139,19 +134,3 @@
           =render 'similar_products'
       .row
         =render 'shared/you_may_like'
-
-    / /.col-md-9
-    / *** LEFT COLUMN END ***
-    /
-      *** RIGHT COLUMN ***
-      _________________________________________________________
-    .col-sm-3
-      /
-        *** MENUS AND FILTERS ***
-        _________________________________________________________
-      =render 'filters'
-      / /.banner
-    / /.col-md-3
-    / *** RIGHT COLUMN END ***
-  / /.container
-/ /#content

@@ -41,62 +41,70 @@ jQuery ->
             when amount >= 3000 and amount < 7000 then multiplier = 1.2
         return multiplier
 
-    $('.size_input').click (event) ->
-        selected_value = $('input[name=volume]:checked').val()
-        array = selected_value.split(",")[1].replace(']','')
-        # console.log(array[1].replace(']',''))
+    get_delivery = ->
+        delivery = $('#delivery').val()
+        return parseFloat(delivery).toFixed(2)
 
-        current_value = parseInt( $('#priceValue').text(), 10)
-        multiplier = get_multiplier()
-        eventPrices = new Array()
-        $('input[name=addservices]:checked').each ->
-            value = $(this).val()
-            amount = parseInt( value.split(" ")[1], 10) 
-            eventPrices.push(amount)
+    get_size = ->
+        selected_size = $('input[name=volume]:checked').val()
+        array = selected_size.split(",")[1].replace(']','')
+        return parseFloat(array).toFixed(2)
+
+    get_all_addservices = ->
+        # This method delivers all checked addservice price
+        # so we can first substract it before applying any multiplications
+        addservices = new Array()
+        console.log('inside get all addservices:')
+        checkboxes = document.getElementsByName("addservices[]")
         
-        if eventPrices.length > 0
-            sum = eventPrices.reduce((a,b) => a+b)
+        for checkbox in checkboxes
+
+            addserviceprice_splitted = (checkbox.value).split(" ")
+            addserviceprice = parseFloat(addserviceprice_splitted[1]).toFixed(2)
+            if checkbox.checked
+                parsedPrice = parseFloat(addserviceprice)
+                addservices.push(parsedPrice)
+
+        if addservices.length > 0
+            sum = addservices.reduce((a,b) => a+b)
         else
             sum = 0
-        # console.log(sum)
-        
-        $('#priceValue').text(sum + array * multiplier)
+        console.log(addservices)
+        return parseFloat(sum)
+
+    recalculate = ->
+        # This function recalculates the price
+        base = get_size()
+        deliveryCoefficient = get_delivery()
+        amountCoefficient = get_multiplier()
+        addservices = get_all_addservices()
+
+        console.log('base - ' + base + '| delivery - ' + deliveryCoefficient + ' | add service sum - ' + addservices)
+
+        endPrice = base*deliveryCoefficient*amountCoefficient + addservices
+
+        $('#priceValue').text(endPrice.toFixed(2))
+
+    $('.size_input').click (event) ->
+        recalculate()
     
     $('.addservice_checkbox').change (event) ->
-        amount = $(this).val()
-        array = parseInt( amount.split(" ")[1], 10)
-
-        current_value = parseInt( $('#priceValue').text(), 10)
-        console.log(array)
-        console.log(current_value)
-        if (this.checked)
-            $('#priceValue').text(current_value + array)
-        else
-            $('#priceValue').text(current_value - array)
+        recalculate()
         
 
     $('#amount').on('input', (event) ->
-        amount = $(this).val()
-        # console.log(amount)
-        multiplier = get_multiplier()
+        recalculate()
+        )
 
-        selected_value = $('input[name=volume]:checked').val()
-        array = selected_value.split(",")[1].replace(']','')
+    $('#delivery').change (event) ->
+        recalculate()
 
-        eventPrices = new Array()
-        $('input[name=addservices]:checked').each ->
-            amount = parseInt( $(this).val(), 10)
-            eventPrices.push(amount)
-        
-        if eventPrices.length > 0
-            sum = eventPrices.reduce((a,b) => a+b)
-        else
-            sum = 0
-        # console.log(sum)
-        
-        $('#priceValue').text(sum + array * multiplier)
-    )
+    $("#thediv").click (event) ->
+        $("#addservices").toggleClass("reveal-closed").toggleClass("reveal-open")
 
+    $('#load_more_btn').click (event) ->
+        console.log('btn clicked')
+        event.preventDefault()
 
 		
     		

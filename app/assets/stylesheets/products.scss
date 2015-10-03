@@ -3,7 +3,17 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.shopping-cart-btn {
-	display: inline;
-	border-bottom: solid 10px #eeeeee;
+// .shopping-cart-btn {
+// 	display: inline;
+// 	border-bottom: solid 10px #eeeeee;
+// }
+
+.reveal-open {
+	overflow: auto;
+	height: auto;
+}
+
+.reveal-closed {
+	overflow: hidden;
+	height: 140px;
 }

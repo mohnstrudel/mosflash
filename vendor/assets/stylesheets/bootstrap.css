@@ -1124,6 +1124,7 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
+  width: 100%;
 }
 .img-rounded {
   border-radius: 6px;
@@ -1647,7 +1648,7 @@ pre code {
   width: 41.66666667%;
 }
 .col-xs-4 {
-  width: 33.33333333%;
+  width: 25%;
 }
 .col-xs-3 {
   width: 25%;

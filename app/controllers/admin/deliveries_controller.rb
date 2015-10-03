@@ -44,6 +44,6 @@ class Admin::DeliveriesController < AdminController
 	  end
 
 	  def delivery_params
-	  	params.require(:delivery).permit(:value)
+	  	params.require(:delivery).permit(:value, :coefficient)
 	  end
 end

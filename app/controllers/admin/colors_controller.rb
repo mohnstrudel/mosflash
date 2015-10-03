@@ -44,6 +44,6 @@ class Admin::ColorsController < AdminController
 	  end
 
 	  def color_params
-	  	params.require(:color).permit(:value)
+	  	params.require(:color).permit(:value, :csscolor)
 	  end
 end

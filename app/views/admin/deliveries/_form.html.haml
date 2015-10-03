@@ -4,6 +4,9 @@
 			=f.label 'Значение доставки'
 			=f.text_field :value, class: 'form-control'
 			%br
+			=f.label 'Коэффициент умножения за доставку (1,08 например)'
+			=f.number_field :coefficient, class: 'form-control', step: :any
+			%br
 			=f.submit 'Сохранить', class: 'btn btn-success'
 			=link_to 'Отменить', admin_path, class: 'btn btn-info'
 	.col-md-8

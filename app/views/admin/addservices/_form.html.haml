@@ -4,8 +4,8 @@
 			=f.label 'Наименование категории'
 			=f.text_field :title, class: 'form-control'
 			%br
-			=f.label 'Базовая цена (в долларах)'
-			%h6 Данная цена является базовой и умножается на коеффициент в самом товаре
+			=f.label 'Базовая цена (в рублях)'
+			%h6 Данная цена является базовой и просто прибавляется к общей стоимости товара
 			=f.number_field :price, class: 'form-control', step: 'any'
 			%br
 			=f.submit 'Сохранить', class: 'btn btn-success'
