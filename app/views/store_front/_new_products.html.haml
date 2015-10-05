@@ -4,7 +4,10 @@
 			.product
 				.image
 					=link_to product do
-						=image_tag product.images.first.image.to_s, class: 'img-responsive image1', alt: ''
+						-if product.images.first.image.url(:thumb_medium)
+							=image_tag product.images.first.image.url(:thumb_medium), class: 'img-responsive image1', alt: ''
+						-else
+							=image_tag product.images.first.image.url, class: 'img-responsive image1', alt: ''
 				.text
 					%h3
 						=link_to product.title, product

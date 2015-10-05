@@ -116,11 +116,15 @@
                     %br
                     доп.услуги:
                   .col-sm-4
-                    тест
-                    %br
-                    тест
-                    %br
-                    тест
+                    #priceForOne
+                      =(@getCurrency[0][0].to_f).ceil
+                      руб.
+                    #priceForAll
+                      =(@getCurrency[0][0].to_f).ceil
+                      руб.
+                    #priceForAddservices
+                      0
+                      руб.
                   .col-sm-4
               .row
                 .col-sm-12

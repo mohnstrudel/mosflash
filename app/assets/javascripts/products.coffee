@@ -82,11 +82,15 @@ jQuery ->
 
         console.log('base - ' + base + '| delivery - ' + deliveryCoefficient + ' | add service sum - ' + addservices)
 
-        endPriceAll = (base*deliveryCoefficient*amountCoefficient)*amount + addservices
-        endPriceOne = (base*deliveryCoefficient*amountCoefficient)
-        endPriceServices = addservices
+        endPriceOne = (base*deliveryCoefficient*amountCoefficient) + addservices
+        endPriceParty = (base * deliveryCoefficient * amountCoefficient) * amount
+        endPriceAll = endPriceOne * amount
+        endPriceServices = addservices * amount
 
-        $('#priceValue').text(endPrice.toFixed(2))
+        $('#priceValue').text(endPriceAll.toFixed(2))
+        $('#priceForOne').text(endPriceOne.toFixed(2))
+        $('#priceForAll').text(endPriceParty.toFixed(2))
+        $('#priceForAddservices').text(endPriceServices.toFixed(2))
 
     $('.size_input').click (event) ->
         recalculate()
