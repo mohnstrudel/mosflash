@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151003120330) do
+ActiveRecord::Schema.define(version: 20151005152644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -181,6 +181,10 @@ ActiveRecord::Schema.define(version: 20151003120330) do
     t.string   "color"
     t.string   "material"
     t.string   "size"
+    t.float    "weight"
+    t.float    "length"
+    t.float    "width"
+    t.float    "thickness"
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree

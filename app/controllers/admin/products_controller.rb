@@ -52,8 +52,9 @@ class Admin::ProductsController < AdminController
 		def product_params
 			params.require(:product).permit(:title, :description, :advertising_text,
 				:fancy_quote, :hot, :hotpic, :product_size_ids, :material, :size,
+				:weight, :length, :width, :thickness,
 				{ volume_ids: [] }, { color_ids: [] }, { addservice_ids: [] }, :category_id, :subcategory_id, 
-				options_attributes: [:size, :weight, :price, :material, :product_id, :id],
+				options_attributes: [:size, :weight, :price, :material, :product_id, :id, :_destroy],
 				images_attributes: [ :id, :image, :product_id, :_destroy ],
 				servizations_attributes: [:id, :product_id, :addservice_id, :coefficient]
 				)

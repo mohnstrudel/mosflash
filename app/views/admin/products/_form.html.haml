@@ -5,9 +5,16 @@
 				-@product.errors.full_messages.each do |msg|
 					%li 
 						=msg
-		.box
-			=form_for([:admin, @product], html: { multipart: true }) do |f|
+	.col-md-8
+	.col-md-12
+		=form_for([:admin, @product], html: { multipart: true }) do |f|
+			.col-md-4.col-xs-12
 				%p
+					=f.label "Выбрать категорию товара"
+					=f.collection_select :category_id, Category.all, :id, :title, { prompt: 'Выбрать категорию' }, class: 'form-control'
+					%br
+					=f.label "Выбрать подкатегорию товара"
+					=f.collection_select :subcategory_id, Subcategory.all, :id, :title, { prompt: 'Выбрать подкатегорию' }, class: 'form-control'
 					=f.label "Наименование товара"
 					=f.text_field :title, class: 'form-control'
 					%br
@@ -20,17 +27,8 @@
 					=f.label "Материал, из которого состоит продукт (в свободной форме)"
 					=f.text_field :material, class: 'form-control'
 					%br
-					=f.label "Размер флешки (в текстовом формате, например: '50мм х 100мм')"
-					=f.text_field :size, class: 'form-control'
-					%br
 					=f.label "Цитата (идет в самом низу)"
 					=f.text_area :fancy_quote, class: 'form-control'
-					%br
-					=f.label "Выбрать категорию товара"
-					=f.collection_select :category_id, Category.all, :id, :title, { prompt: 'Выбрать категорию' }
-					%br
-					=f.label "Выбрать подкатегорию товара"
-					=f.collection_select :subcategory_id, Subcategory.all, :id, :title, { prompt: 'Выбрать подкатегорию' }
 					%br
 					=f.label "Показывать товар на главной в самом верху?"
 					=f.check_box :hot
@@ -59,7 +57,7 @@
 						=collection_check_boxes(:product, :addservice_ids, Addservice.all, :id, :title) do |b|
 							=b.label class: 'checkbox' do
 								=b.check_box + b.text
-						%h5 Коэффициенты (на это значение будет умножена базовая цена доп.услуги). Заносить только начиная со второго поля!
+						%h5 Коэффициенты (на это значение будет умножена базовая цена доп.услуги).
 						=f.fields_for :servizations do |s|
 							=s.number_field :coefficient, class: 'form-control', step: :any
 							%br
@@ -78,18 +76,35 @@
 									=builder.check_box :_destroy
 									%br
 									%hr.short.alt
+			.col-md-2
+			.col-md-4.col-xs-12
+				%p
+					.row
+						%h5 Физические данные товара
+						=f.label 'Вес товара (только число в граммах, например 325)'
+						=f.number_field :weight, step: :any, class: 'form-control'
+					.row
+						=f.label 'Длина товара (только число, в миллиметрах, например 280)'
+						=f.number_field :length, step: :any, class: 'form-control'
+					.row
+						=f.label 'Ширина товара (только число, в миллиметрах, например 125)'
+						=f.number_field :width, step: :any, class: 'form-control'
+					.row
+						=f.label 'Толщина товара (только число, в миллиметрах, например 52)'
+						=f.number_field :thickness, step: :any, class: 'form-control'
+
 				=f.submit 'Сохранить', id: 'submit-data', class: 'btn btn-success'
 				=link_to 'Отменить', admin_path, class: 'btn btn-info'
 
-		.box
-			Текущие связанные товары:
-			-@product.accompanies.each do |accompany|
-				%br
-				=accompany.title
-		.box
-			%h3 Добавлять только при редактировании, так как информация выше иначе сотрется
-			-Product.all.each do |product|
-				=product.title
-				%br
-				=link_to 'Добавить как сопутсвующий товар', accompanships_create_path(product_id: @product.id, accompany_id: product.id)
-	.col-md-8
+				.box
+					Текущие связанные товары:
+					-@product.accompanies.each do |accompany|
+						%br
+						=accompany.title
+				.box
+					%h3 Добавлять только при редактировании, так как информация выше иначе сотрется
+					-Product.all.each do |product|
+						=product.title
+						%br
+						=link_to 'Добавить как сопутсвующий товар', accompanships_create_path(product_id: @product.id, accompany_id: product.id)
+			.col-md-2

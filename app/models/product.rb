@@ -24,8 +24,8 @@ class Product < ActiveRecord::Base
 	has_many	:servizations
 	has_many	:addservices, through: :servizations
 
-	accepts_nested_attributes_for :options
-	accepts_nested_attributes_for :images
+	accepts_nested_attributes_for :options, allow_destroy: true
+	accepts_nested_attributes_for :images, allow_destroy: true
 	accepts_nested_attributes_for :hot_pics
 	accepts_nested_attributes_for :servizations
 

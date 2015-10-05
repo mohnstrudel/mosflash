@@ -57,7 +57,7 @@
                 -@productSizes.each_with_index do |volume, index|
                   -volume.each do |item|
                     =link_to "#", class: 'size_input' do
-                      =sprintf('%.0f', item.value/1000.to_f)
+                      =sprintf('%.0f', item.value.to_f)
                       Гб
                     %input#size_s.size-input{:name => "volume", :type => "radio", :value => [item.value, (@getCurrency[index][0].to_f).ceil] }
 
@@ -66,16 +66,15 @@
                   %label{for: 'color'}
                     Цвет
                   =select_tag 'color', options_from_collection_for_select(@product.colors, 'id', 'value'), class: 'form-control', id: 'color'
-              .row
                 .col-sm-6        
                   %label{for: 'amount'}
                     Количество
                   %input.form-control{:type => "number", value: 1, size: 5, id: 'amount', name: 'amount'}
               .row
-                .col-sm-9
+                .col-sm-12
                   .form-group
                     %label{for: 'delivery'}
-                      Доставка
+                      Сроки
                     =select_tag 'delivery', options_from_collection_for_select(Delivery.all, 'coefficient', 'value'), class: 'form-control', id: 'delivery'
               -if @product.addservices.any?
                 .row
@@ -92,7 +91,7 @@
                         руб.
                     -if @servizations.count > 5
                       #thediv
-                        %a.btn.btn-primary{:href => "#", id: 'load_more_btn'}
+                        %a.btn.btn-primary{:href => "#", id: 'load_more_btn', onclick: "toggle(this)"}
                           %i.fa.fa-chevron-down
                           Показать все
                         
@@ -103,6 +102,20 @@
                     
                     =(@getCurrency[0][0].to_f).ceil
                   руб.
+                .col-sm-12
+                  .col-sm-4
+                    за штуку:
+                    %br
+                    за тираж:
+                    %br
+                    доп.услуги:
+                  .col-sm-4
+                    тест
+                    %br
+                    тест
+                    %br
+                    тест
+                  .col-sm-4
               .row
                 .col-sm-12
                   %p.text-center
@@ -112,14 +125,25 @@
           
       #details.box
         %p
-          %h4 Описание продукта
+          %h4 
+            Характеристики продукта
+          .row
+            .col-md-2
+              Вес:
+              %br
+              Размер:
+              %br
+              Материал:
+            .col-md-2
+              ="#{@product.weight} г" if @product.weight
+              %br
+              ="#{@product.length} х #{@product.width} x #{@product.thickness} мм"
+              %br
+              =@product.material
+            .col-md-8
+          %h4 Дополнительная информация
           %p=@product.description
-          -if @product.material
-            %h4 Материал
-            =@product.material
-          -if @product.size
-            %h4 Размер
-            =@product.size
+
           -if @product.fancy_quote
             %blockquote
               %p
@@ -127,7 +151,7 @@
                   =@product.fancy_quote
       #product-social.box.social
         %h4 Расскажите о нас друзьям
-        %p
+        %p.social
           =render 'shared/social'
       -if @product.accompanships.any?
         .row

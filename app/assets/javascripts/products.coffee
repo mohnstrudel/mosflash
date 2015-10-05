@@ -78,10 +78,13 @@ jQuery ->
         deliveryCoefficient = get_delivery()
         amountCoefficient = get_multiplier()
         addservices = get_all_addservices()
+        amount = $('#amount').val()
 
         console.log('base - ' + base + '| delivery - ' + deliveryCoefficient + ' | add service sum - ' + addservices)
 
-        endPrice = base*deliveryCoefficient*amountCoefficient + addservices
+        endPriceAll = (base*deliveryCoefficient*amountCoefficient)*amount + addservices
+        endPriceOne = (base*deliveryCoefficient*amountCoefficient)
+        endPriceServices = addservices
 
         $('#priceValue').text(endPrice.toFixed(2))
 
@@ -103,8 +106,4 @@ jQuery ->
         $("#addservices").toggleClass("reveal-closed").toggleClass("reveal-open")
 
     $('#load_more_btn').click (event) ->
-        console.log('btn clicked')
         event.preventDefault()
-
-		
-    		

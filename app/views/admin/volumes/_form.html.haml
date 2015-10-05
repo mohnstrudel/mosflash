@@ -1,7 +1,7 @@
 .row
 	.col-md-4.col-xs-12
 		=form_for([:admin, @volume]) do |f|
-			=f.label 'Объем'
+			=f.label "Объем (в гигабайтах, т.е. 1,2,4, 8...)"
 			=f.text_field :value, class: 'form-control'
 			%br
 			=f.submit 'Сохранить', class: 'btn btn-success'
