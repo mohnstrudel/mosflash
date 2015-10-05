@@ -31,7 +31,7 @@ gem 'will_paginate'
 
 #Image uploading
 gem 'carrierwave'
-gem 'rmagick'
+gem 'mini_magick'
 gem 'jquery-fileupload-rails'
 
 # Use jquery as the JavaScript library

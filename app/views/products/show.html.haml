@@ -27,7 +27,10 @@
         .col-sm-6
           #mainImage
             -if @product.images.any?
-              =image_tag @product.images.first.image.to_s, class: 'img-responsive'
+              -if @product.images.first.image.url(:thumb_large)
+                =image_tag @product.images.first.image.url(:thumb_large), class: 'img-responsive'
+              -else
+                =image_tag @product.images.first.image.to_s, class: 'img-responsive'
 
           / Lets switch it off for a while
           / .ribbon.sale
@@ -42,8 +45,11 @@
             -if @product.images.any?
               -@product.images.each do |pic|
                 .col-xs-4
-                  =link_to pic.image.to_s, class: 'thumb' do
-                    =image_tag(pic.image.to_s, alt: "", class: 'img-responsive')
+                  =link_to pic.image.url(:thumb_large), class: 'thumb' do
+                    -if pic.image.url(:thumb_small)
+                      =image_tag(pic.image.url(:thumb_small), alt: "", class: 'img-responsive')
+                    -else
+                      =image_tag(pic.image.url, alt: "", class: 'img-responsive')
           / /.ribbon
         .col-sm-6
           .box
