@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
 
-	validates :title, :description, :advertising_text, presence: true
+	validates :title, :advertising_text, presence: true
 	validates :category_id, :subcategory_id, presence: true
 
 	mount_uploader :hotpic, HotpicUploader
@@ -11,6 +11,8 @@ class Product < ActiveRecord::Base
 	has_many	:images, dependent: :destroy
 	has_many	:hot_pics
 	has_many	:line_items
+
+	has_many	:characteristics, dependent: :destroy
 
 	has_many	:voluminazations
 	has_many	:volumes, through: :voluminazations
@@ -28,6 +30,7 @@ class Product < ActiveRecord::Base
 	accepts_nested_attributes_for :images, allow_destroy: true
 	accepts_nested_attributes_for :hot_pics
 	accepts_nested_attributes_for :servizations
+	accepts_nested_attributes_for :characteristics
 
 	before_destroy	:ensure_not_referenced_by_any_line_item
 

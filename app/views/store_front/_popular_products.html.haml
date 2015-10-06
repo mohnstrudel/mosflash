@@ -4,7 +4,7 @@
 			.product
 				.image
 					=link_to product do
-						-if product.images.first.image.url(:thumb_medium)
+						-if product.images.first.image.url && product.images.first.image.thumb_medium.file.exists?
 							=image_tag product.images.first.image.url(:thumb_medium), class: 'img-responsive image1', alt: ''
 						-else
 							=image_tag product.images.first.image.url, class: 'img-responsive image1', alt: ''

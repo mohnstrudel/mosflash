@@ -29,7 +29,10 @@
                 %tr
                   %td
                     =link_to li.product do
-                      =image_tag li.product.images.first.image.to_s, alt: '#{li.product.images.first.image.to_s}'
+                      -if li.product.images.first.image.url && li.product.images.first.image.thumb_small.file.exists?
+                        =image_tag li.product.images.first.image.url(:thumb_small), alt: '#{li.product.images.first.image.to_s}'
+                      -else
+                        =image_tag li.product.images.first.image.url, alt: '#{li.product.images.first.image.to_s}'
                   %td
                     =link_to li.product.title, li.product
                   %td
@@ -61,15 +64,12 @@
                 %i.fa.fa-chevron-left
                 Продолжить покупки
               
-              =button_to @cart, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-warning' do  
-                %i.fa.fa-trash-o
-                Удалить
+              / =button_to @cart, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-warning' do  
+              /   %i.fa.fa-trash-o
+              /   Удалить
               
             .pull-right
-              %button.btn.btn-default
-                %i.fa.fa-refresh
-                Обновить корзину
-              =button_to new_order_path, class: 'btn btn-primary' ,method: :get do
+              =button_to new_order_path, class: 'btn btn-primary', method: :get do
                 Завершить заказ
                 %i.fa.fa-chevron-right
       / /.box
@@ -77,17 +77,3 @@
         = render 'shared/you_may_like'
     .col-md-3
       =render 'order_summary'
-      .box
-        .box-header
-          %h4 Coupon code
-        %p.text-muted If you have a coupon code, please enter it in the box below.
-        %form
-          .input-group
-            %input.form-control{:type => "text"}
-              %span.input-group-btn
-                %button.btn.btn-primary{:type => "button"}
-                  %i.fa.fa-gift
-          / /input-group
-    / /.col-md-3
-  / /.container
-/ /#content

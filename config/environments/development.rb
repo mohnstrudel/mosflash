@@ -43,5 +43,16 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   # Specify what domain to use for mailer URLs 
-  # config.action_mailer.default_url_options = {host: "localhost:3000"}
+  config.action_mailer.default_url_options = {host: "localhost:3000"}
+
+  ActionMailer::Base.smtp_settings = {
+    :user_name => ENV["SENDGRID_USER"],
+    :password => ENV["SENDGRID_PASSWORD"],
+    :domain => 'mosflash.ru',
+    :address => 'smtp.sendgrid.net',
+    :port => 25,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
+
 end

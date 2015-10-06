@@ -189,11 +189,11 @@ function productDetailGallery(confDetailSwitch) {
 	timer = setInterval(autoSwitch, confDetailSwitch);
     });
     function autoSwitch() {
-	var nextThumb = $('#productMain .thumb.active').closest('div').next('div').find('.thumb');
-	if (nextThumb.length == 0) {
-	    nextThumb = $('#productMain .thumb:first');
-	}
-	switchImage(nextThumb);
+	// var nextThumb = $('#productMain .thumb.active').closest('div').next('div').find('.thumb');
+	// if (nextThumb.length == 0) {
+	//     nextThumb = $('#productMain .thumb:first');
+	// }
+	// switchImage(nextThumb);
     }
 
     function switchImage(thumb) {

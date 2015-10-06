@@ -36,7 +36,11 @@ class ProductsController < ApplicationController
     else
       @category = Category.find_by(title: params[:category])
       @category_id = @category.id
-      @products = Product.where(category_id: @category_id).order(params[:sort, created_at: :desc]).paginate(:per_page => @per_page, :page => params[:page])
+      if params[:sort]
+        @products = Product.where(category_id: @category_id).order(params[:sort, created_at: :desc]).paginate(:per_page => @per_page, :page => params[:page])
+      else
+        @products = Product.where(category_id: @category_id).order(params[created_at: :desc]).paginate(:per_page => @per_page, :page => params[:page])
+        end  
     end 
     # render json: @products.to_json(include: :options)
   end

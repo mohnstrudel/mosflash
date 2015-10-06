@@ -41,10 +41,10 @@
             .ribbon.new
               .theribbon НОВИНКА
               .ribbon-background
-          #thumbs.row
+          #thumbs.row.thumbrow
             -if @product.images.any?
               -@product.images.each do |pic|
-                .col-xs-4
+                .col-xs-4#thumbrowcols
                   =link_to pic.image.url(:thumb_large), class: 'thumb' do
                     -if pic.image.url(:thumb_small)
                       =image_tag(pic.image.url(:thumb_small), alt: "", class: 'img-responsive')
@@ -135,30 +135,33 @@
           
       #details.box
         %p
-          %h4 
-            Характеристики продукта
-          .row
-            .col-md-2
-              Вес:
-              %br
-              Размер:
-              %br
-              Материал:
-            .col-md-2
-              ="#{@product.weight} г" if @product.weight
-              %br
-              ="#{@product.length} х #{@product.width} x #{@product.thickness} мм"
-              %br
-              =@product.material
-            .col-md-8
-          %h4 Дополнительная информация
-          %p=@product.description
+          -if @product.characteristics.any?
+            %h4 
+              Характеристики продукта
+            .row
+              .col-md-2
+                Вес:
+                %br
+                Размер:
+                %br
+                Материал:
+              .col-md-2
+                ="#{@product.characteristics[0].weight} г" if @product.characteristics[0].weight
+                %br
+                ="#{@product.characteristics[0].length} х #{@product.characteristics[0].width} x #{@product.characteristics[0].thickness} мм"
+                %br
+                =@product.material
+              .col-md-8
 
-          -if @product.fancy_quote
-            %blockquote
-              %p
-                %em
-                  =@product.fancy_quote
+          -unless @product.description.empty?
+            %h4 Дополнительная информация
+            %p=@product.description
+          -else
+            -if @product.fancy_quote
+              %blockquote
+                %p
+                  %em
+                    =@product.fancy_quote
       #product-social.box.social
         %h4 Расскажите о нас друзьям
         %p.social

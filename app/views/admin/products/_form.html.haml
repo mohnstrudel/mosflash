@@ -21,7 +21,7 @@
 					=f.label "Рекламный текст (идет сразу после наименования)"
 					=f.text_area :advertising_text, class: 'form-control'
 					%br
-					=f.label "Описание продукта (идет под кнопкой купить)"
+					=f.label "Дополнительная информация продукта (идет под характеристиками)"
 					=f.text_area :description, class: 'form-control'
 					%br
 					=f.label "Материал, из которого состоит продукт (в свободной форме)"
@@ -78,20 +78,21 @@
 									%hr.short.alt
 			.col-md-2
 			.col-md-4.col-xs-12
-				%p
-					.row
-						%h5 Физические данные товара
-						=f.label 'Вес товара (только число в граммах, например 325)'
-						=f.number_field :weight, step: :any, class: 'form-control'
-					.row
-						=f.label 'Длина товара (только число, в миллиметрах, например 280)'
-						=f.number_field :length, step: :any, class: 'form-control'
-					.row
-						=f.label 'Ширина товара (только число, в миллиметрах, например 125)'
-						=f.number_field :width, step: :any, class: 'form-control'
-					.row
-						=f.label 'Толщина товара (только число, в миллиметрах, например 52)'
-						=f.number_field :thickness, step: :any, class: 'form-control'
+				=f.fields_for :characteristics do |charBuilder|
+					%p
+						.row
+							%h5 Физические данные товара
+							=charBuilder.label 'Вес товара (только число в граммах, например 325)'
+							=charBuilder.number_field :weight, step: :any, class: 'form-control'
+						.row
+							=charBuilder.label 'Длина товара (только число, в миллиметрах, например 280)'
+							=charBuilder.number_field :length, step: :any, class: 'form-control'
+						.row
+							=charBuilder.label 'Ширина товара (только число, в миллиметрах, например 125)'
+							=charBuilder.number_field :width, step: :any, class: 'form-control'
+						.row
+							=charBuilder.label 'Толщина товара (только число, в миллиметрах, например 52)'
+							=charBuilder.number_field :thickness, step: :any, class: 'form-control'
 
 				=f.submit 'Сохранить', id: 'submit-data', class: 'btn btn-success'
 				=link_to 'Отменить', admin_path, class: 'btn btn-info'

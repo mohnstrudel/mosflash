@@ -51,7 +51,10 @@
 							.product
 								.image
 									=link_to product do
-										=image_tag(product.images.first.image.to_s, class: 'img img-responsive image1', alt: '')
+										-if product.images.first.image.url && product.images.first.image.thumb_medium.file.exists?
+											=image_tag(product.images.first.image.url(:thumb_medium), class: 'img img-responsive image1', alt: '')
+										-else
+											=image_tag(product.images.first.image.url, class: 'img img-responsive image 1', alt: '')
 									/ .quick-view-button
 									/ 	%a.btn.btn-default.btn-sm{"data-target" => "#product-quick-view-modal", "data-toggle" => "modal", :href => "#"} Quick view
 								/ /.image
@@ -60,10 +63,12 @@
 										=link_to '#', data: { target: '#product-quick-view-modal', toggle: 'modal'} do
 											= product.title
 									%p.price
-										от
-										=sprintf('%.2f', crb_kurs(product.options.first.price)) 
-
-										руб.
+										-if product.options.first.price
+											от
+											=sprintf('%.2f', crb_kurs(product.options.first.price))
+											руб.
+										-else
+											N/A
 
 					#product-quick-view-modal.modal.fade{"aria-hidden" => "false", :role => "dialog", :tabindex => "-1"}
 						.modal-dialog.modal-lg

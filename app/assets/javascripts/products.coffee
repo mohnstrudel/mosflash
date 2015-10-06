@@ -3,6 +3,9 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
+
+    $('.size_input').click
+
     $('div.box form').submit (event) ->
         url = $(this).attr('action')
         sellprice = parseInt( $('#priceValue').text(), 10)

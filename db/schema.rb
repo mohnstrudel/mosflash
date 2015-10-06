@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151005152644) do
+ActiveRecord::Schema.define(version: 20151006134859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,18 @@ ActiveRecord::Schema.define(version: 20151005152644) do
     t.datetime "updated_at",  null: false
     t.string   "avatar"
   end
+
+  create_table "characteristics", force: :cascade do |t|
+    t.float    "weight"
+    t.float    "length"
+    t.float    "width"
+    t.float    "thickness"
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "characteristics", ["product_id"], name: "index_characteristics_on_product_id", using: :btree
 
   create_table "colorizations", force: :cascade do |t|
     t.integer  "product_id"
@@ -236,6 +248,7 @@ ActiveRecord::Schema.define(version: 20151005152644) do
   add_index "voluminazations", ["product_id"], name: "index_voluminazations_on_product_id", using: :btree
   add_index "voluminazations", ["volume_id"], name: "index_voluminazations_on_volume_id", using: :btree
 
+  add_foreign_key "characteristics", "products"
   add_foreign_key "hot_pics", "products"
   add_foreign_key "images", "products"
   add_foreign_key "line_items", "carts"

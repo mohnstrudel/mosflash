@@ -1,0 +1,25 @@
+%h3 Получен новый заказ
+
+%h4
+	Покупатель:
+=@order.fname
+
+%h4
+	Телефон:
+=@order.phone
+
+%h4
+	Эл.почта:
+=@order.mail
+
+%h3 Заказ:
+
+%table
+	%tr
+		%th{colspan: 2}
+			Кол-во
+		%th
+			Описание
+		%th
+			Стоимость
+	=render @order.line_items

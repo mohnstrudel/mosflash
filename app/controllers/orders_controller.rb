@@ -37,6 +37,7 @@ class OrdersController < ApplicationController
       if @order.save
 
         OrderNotifier.received(@order).deliver
+        OrderNotifier.notifyShop(@order).deliver
 
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
