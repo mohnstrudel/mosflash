@@ -69,15 +69,16 @@
               =link_to category.title, products_path(category: category.title), class: 'dropdown-toggle'
     / /.nav-collapse
     #basket-overview.navbar-collapse.collapse.right
-      =link_to cart_path(session[:cart_id]), class: 'btn btn-primary navbar-btn', id: 'cart_button' do
-        %i.fa.fa-shopping-cart
-        %span.hidden-sm
-          -if Cart.find(session[:cart_id]).line_items.any? 
-            =Cart.find(session[:cart_id]).line_items.to_a.sum { |item| item.quantity }
-            товаров
-            %span.hidden-md в корзине 
-          -else
-            Корзина пустая
+      -if session[:cart_id]
+        =link_to(cart_path(session[:cart_id]), class: 'btn btn-primary navbar-btn', id: 'cart_button') do
+          %i.fa.fa-shopping-cart
+          %span.hidden-sm
+            -if Cart.find(session[:cart_id]).line_items.any? 
+              =Cart.find(session[:cart_id]).line_items.to_a.sum { |item| item.quantity }
+              товаров
+              %span.hidden-md в корзине 
+            -else
+              Корзина пустая
     / /.nav-collapse
     .navbar-collapse.collapse.right
       %button.btn.navbar-btn.btn-default{"data-target" => "#search", "data-toggle" => "collapse", :type => "button"}
