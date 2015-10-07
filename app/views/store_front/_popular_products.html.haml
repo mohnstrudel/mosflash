@@ -13,5 +13,5 @@
 						=link_to product.title, product
 					%p.price
 						от
-						=sprintf('%.2f', crb_kurs(product.options.first.price)) if product.options.first.price?
+						=sprintf('%.2f', initialPrice(product.options.first.price)) if product.options.first.price?
 						руб.

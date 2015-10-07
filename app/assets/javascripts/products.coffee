@@ -4,7 +4,8 @@
 
 $(document).ready ->
 
-    $('.size_input').click
+    if $('a.size_input').length != 0
+        $('a.size_input')[0].click()
 
     $('div.box form').submit (event) ->
         url = $(this).attr('action')

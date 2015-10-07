@@ -32,6 +32,13 @@ module ApplicationHelper
 		return priceInDollars
 	end
 
+	def initialPrice(dollars)
+		rubles = crb_kurs(dollars)
+		amountMultiplier = 1.5
+      	amountDelivery = Delivery.all.order(coefficient: :asc).first.coefficient
+      	return rubles * amountMultiplier * amountDelivery
+    end
+
 	def russianize(number)
 		if number == 1
 			return ""

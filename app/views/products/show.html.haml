@@ -81,7 +81,7 @@
                   .form-group
                     %label{for: 'delivery'}
                       Сроки
-                    =select_tag 'delivery', options_from_collection_for_select(Delivery.all, 'coefficient', 'value'), class: 'form-control', id: 'delivery'
+                    =select_tag 'delivery', options_from_collection_for_select(Delivery.all.order(coefficient: :asc), 'coefficient', 'value'), class: 'form-control', id: 'delivery'
               -if @product.addservices.any?
                 .row
                   .col-sm-9
@@ -105,8 +105,7 @@
                 .col-sm-12
                   Цена:
                   %p.price#priceValue
-                    
-                    =(@getCurrency[0][0].to_f).ceil
+                    =sprintf('%.2f', @initialPrice)
                   руб.
                 .col-sm-12
                   .col-sm-4
@@ -117,10 +116,10 @@
                     доп.услуги:
                   .col-sm-4
                     #priceForOne
-                      =(@getCurrency[0][0].to_f).ceil
+                      =sprintf('%.2f', @initialPrice)
                       руб.
                     #priceForAll
-                      =(@getCurrency[0][0].to_f).ceil
+                      =sprintf('%.2f', @initialPrice)
                       руб.
                     #priceForAddservices
                       0

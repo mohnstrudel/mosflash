@@ -14,7 +14,8 @@ class ProductsController < ApplicationController
     @productSizes = productSizes
     @options = @product.options
 
-
+    @initialPrice = initialPrice(@options.first.price)
+    
     @randomProduct = youMayLike
 
     # Logic for the servizations
@@ -85,6 +86,14 @@ class ProductsController < ApplicationController
     # def product_params
     #   params.require(:product).permit!
     # end
+
+    def initialPrice(dollars)
+      rubles = getCurrency(dollars)[0]
+
+      amountMultiplier = 1.5
+      amountDelivery = Delivery.all.order(coefficient: :asc).first.coefficient
+      return rubles * amountMultiplier * amountDelivery
+    end
 
     def getCurrency(dollars)
       # This code will take the Central Bank exchange rate for current date and apply it on the 
