@@ -93,6 +93,11 @@
 						.row
 							=charBuilder.label 'Толщина товара (только число, в миллиметрах, например 52)'
 							=charBuilder.number_field :thickness, step: :any, class: 'form-control'
+				%p
+				%h5 Вводить только если категория товара НЕ флешка
+				%h6 Если введена данная цена, то размеры не будут отображаться!
+				=f.label 'Базовая цена товара в долларах'
+				=f.number_field :basicprice, class: 'form-control', step: :any
 
 				=f.submit 'Сохранить', id: 'submit-data', class: 'btn btn-success'
 				=link_to 'Отменить', admin_path, class: 'btn btn-info'
