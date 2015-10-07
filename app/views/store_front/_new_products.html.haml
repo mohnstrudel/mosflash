@@ -13,5 +13,10 @@
 						=link_to product.title, product
 					%p.price
 						от
-						=sprintf('%.2f', initialPrice(product.options.first.price)) if product.options.first.price?
+						-if product.basicprice
+							=sprintf('%.2f', initialPrice(product.basicprice))
+						-elsif product.options.first.price
+							=sprintf('%.2f', initialPrice(product.options.first.price))
+						-else
+							="N/A"
 						руб.

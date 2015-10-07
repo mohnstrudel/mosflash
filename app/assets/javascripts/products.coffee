@@ -51,8 +51,11 @@ jQuery ->
 
     get_size = ->
         selected_size = $('input[name=volume]:checked').val()
-        array = selected_size.split(",")[1].replace(']','')
-        return parseFloat(array).toFixed(2)
+        if (selected_size == undefined)
+            return 1
+        else
+            array = selected_size.split(",")[1].replace(']','')
+            return parseFloat(array).toFixed(2)
 
     get_all_addservices = ->
         # This method delivers all checked addservice price

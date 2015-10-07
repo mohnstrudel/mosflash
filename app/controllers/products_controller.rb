@@ -5,16 +5,21 @@ class ProductsController < ApplicationController
   def show
     @getCurrency = Array.new
     @volumes = Array.new
-
-    @product.options.each do |option|
-      @getCurrency << getCurrency(option.price)
-      # Here we get volumes as readable MB format, because option.size is just 1, 2, 3 etc
-      @volumes << Volume.where(id: option.size.to_i)
-    end
-    @productSizes = productSizes
     @options = @product.options
 
-    @initialPrice = initialPrice(@options.first.price)
+    unless @product.basicprice
+      @product.options.each do |option|
+        @getCurrency << getCurrency(option.price)
+        # Here we get volumes as readable MB format, because option.size is just 1, 2, 3 etc
+        @volumes << Volume.where(id: option.size.to_i)
+      end
+      @initialPrice = initialPrice(@options.first.price)
+    end
+    @productSizes = productSizes
+    
+
+
+    
     
     @randomProduct = youMayLike
 

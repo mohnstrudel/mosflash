@@ -13,6 +13,7 @@ class Admin::ProductsController < AdminController
 		@product = Product.new
 		option = @product.options.build
 		@product.characteristics.build
+		@product.additionalcharacteristics.build
 		# @product.servizations.build
 	end
 
@@ -57,7 +58,8 @@ class Admin::ProductsController < AdminController
 				options_attributes: [:size, :weight, :price, :material, :product_id, :id, :_destroy],
 				images_attributes: [ :id, :image, :product_id, :_destroy ],
 				servizations_attributes: [:id, :product_id, :addservice_id, :coefficient],
-				characteristics_attributes: [:id, :product_id, :weight, :length, :width, :thickness]
+				characteristics_attributes: [:id, :product_id, :weight, :length, :width, :thickness],
+				additionalcharacteristics_attributes: [:id, :product_id, :name, :value]
 				)
 		end
 

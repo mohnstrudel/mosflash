@@ -8,6 +8,7 @@ class Product < ActiveRecord::Base
 	belongs_to	:category 
 	belongs_to	:subcategory
 	has_many	:options
+	has_many	:additionalcharacteristics
 	has_many	:images, dependent: :destroy
 	has_many	:hot_pics
 	has_many	:line_items
@@ -27,7 +28,9 @@ class Product < ActiveRecord::Base
 	has_many	:addservices, through: :servizations
 
 	accepts_nested_attributes_for :options, allow_destroy: true
+
 	accepts_nested_attributes_for :images, allow_destroy: true
+	accepts_nested_attributes_for :additionalcharacteristics, allow_destroy: true
 	accepts_nested_attributes_for :hot_pics
 	accepts_nested_attributes_for :servizations
 	accepts_nested_attributes_for :characteristics

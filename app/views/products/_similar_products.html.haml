@@ -16,5 +16,10 @@
           =accompany.title
         %p.price
           от
-          =sprintf('%.2f', initialPrice(accompany.options.first.price))
+          -if product.basicprice
+            =sprintf('%.2f', initialPrice(product.basicprice))
+          -elsif product.options.first.price
+            =sprintf('%.2f', initialPrice(product.options.first.price))
+          -else
+            ="N/A"
           руб.

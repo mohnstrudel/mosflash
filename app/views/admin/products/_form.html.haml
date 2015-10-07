@@ -93,14 +93,23 @@
 						.row
 							=charBuilder.label 'Толщина товара (только число, в миллиметрах, например 52)'
 							=charBuilder.number_field :thickness, step: :any, class: 'form-control'
-				%p
-				%h5 Вводить только если категория товара НЕ флешка
-				%h6 Если введена данная цена, то размеры не будут отображаться!
-				=f.label 'Базовая цена товара в долларах'
-				=f.number_field :basicprice, class: 'form-control', step: :any
+				.row
+					%h5 Вводить только если категория товара НЕ флешка
+					%h6 Если введена данная цена, то размеры не будут отображаться!
+					=f.label 'Базовая цена товара в долларах'
+					=f.number_field :basicprice, class: 'form-control', step: :any
+
+				.row
+					.box
+						%h3 Дополнительные характеристики
+						=f.fields_for :additionalcharacteristics do |addchar_builder|
+							=render 'additionalcharacteristic_fields', f: addchar_builder
+							%br
+						=link_to_add_fields 'Добавить характеристику', f, :additionalcharacteristics
 
 				=f.submit 'Сохранить', id: 'submit-data', class: 'btn btn-success'
 				=link_to 'Отменить', admin_path, class: 'btn btn-info'
+				
 
 				.box
 					Текущие связанные товары:

@@ -1,0 +1,10 @@
+.col-md-6
+	=f.label "Название характеристики (например интерфейс)"
+	=f.text_field :name
+.col-md-6
+	=f.label "Значение дополнительной характеристики"
+	=f.text_field :value
+
+=f.label 'Удалить?'
+=f.check_box :_destroy
+%br

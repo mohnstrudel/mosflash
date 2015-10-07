@@ -56,16 +56,17 @@
             %h3 Опции данного товара
             =form_for :line_item, url: line_items_path(product_id: @product.id), remote: true do |f|
               / remote: true
-              .sizes
-                %label{for: 'size'}
-                  Выберите объем
-                %br
-                -@productSizes.each_with_index do |volume, index|
-                  -volume.each do |item|
-                    =link_to "#", class: 'size_input' do
-                      =sprintf('%.0f', item.value.to_f)
-                      Гб
-                    %input#size_s.size-input{:name => "volume", :type => "radio", :value => [item.value, (@getCurrency[index][0].to_f).ceil] }
+              -unless @product.basicprice
+                .sizes
+                  %label{for: 'size'}
+                    Выберите объем
+                  %br
+                  -@productSizes.each_with_index do |volume, index|
+                    -volume.each do |item|
+                      =link_to "#", class: 'size_input' do
+                        =sprintf('%.0f', item.value.to_f)
+                        Гб
+                      %input#size_s.size-input{:name => "volume", :type => "radio", :value => [item.value, (@getCurrency[index][0].to_f).ceil] }
 
               .row
                 .col-sm-6
@@ -105,7 +106,10 @@
                 .col-sm-12
                   Цена:
                   %p.price#priceValue
-                    =sprintf('%.2f', @initialPrice)
+                    -if @product.basicprice
+                      =sprintf('%.2f', crb_kurs(@product.basicprice))
+                    -elsif
+                      =sprintf('%.2f', @initialPrice)
                   руб.
                 .col-sm-12
                   .col-sm-4
@@ -116,10 +120,16 @@
                     доп.услуги:
                   .col-sm-4
                     #priceForOne
-                      =sprintf('%.2f', @initialPrice)
+                      -if @product.basicprice
+                        =sprintf('%.2f', crb_kurs(@product.basicprice))
+                      -elsif
+                        =sprintf('%.2f', @initialPrice)
                       руб.
                     #priceForAll
-                      =sprintf('%.2f', @initialPrice)
+                      -if @product.basicprice
+                        =sprintf('%.2f', crb_kurs(@product.basicprice))
+                      -elsif
+                        =sprintf('%.2f', @initialPrice)
                       руб.
                     #priceForAddservices
                       0
@@ -151,6 +161,14 @@
                 %br
                 =@product.material
               .col-md-8
+            / Additional characteristics output
+            -@product.additionalcharacteristics.each do |addchar|
+              .row
+                .col-md-2
+                  ="#{addchar.name}:"
+                .col-md-2
+                  =addchar.value
+                .col-md-8
 
           -unless @product.description.empty?
             %h4 Дополнительная информация
