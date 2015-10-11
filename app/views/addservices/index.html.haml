@@ -1,2 +1,34 @@
-%h1 Addservices#index
-%p Find me in app/views/addservices/index.html.haml
+#content
+	.container
+		.col-md-12
+			%ul.breadcrumb
+				%li
+					%a{:href => "#"} Главная
+				%li Услуги
+			.box.text-center
+				.row
+					.col-sm-10.col-sm-offset-1
+						%h1 Дополнительные услуги
+						%p
+							Немного бла бла про то, какая это замечательная страница
+		/
+			*** LEFT COLUMN ***
+			_________________________________________________________
+		.col-md-12.clearfix
+			#text-page.box
+				%h2 Перечень услуг
+				%blockquote
+					%p
+						Благодаря нашим услугам вы сможете индивидуализировать свой заказ.
+				#addservices
+					%ul
+						-@addservices.each do |addservice|
+							%li
+								.row
+									.col-md-4
+										%h4
+											=addservice.title
+									.col-md-4
+										%h5
+											="- от #{addservice.price} руб."
+									.col-md-4
