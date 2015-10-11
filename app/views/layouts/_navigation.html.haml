@@ -74,8 +74,15 @@
           =link_to addservices_path do
             Услуги
         %li.dropdown.yamm-fw
-          =link_to '#' do
+          =link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
             О нас
+            %b.caret
+          %ul.dropdown-menu
+            %li
+              .yamm-content
+                .row
+                  .col-sm-3
+                    =link_to 'Новости', blogposts_path
     / /.nav-collapse
     #basket-overview.navbar-collapse.collapse.right
       -if session[:cart_id]

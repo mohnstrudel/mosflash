@@ -9,5 +9,6 @@ class Admin::DashboardController < AdminController
 		@setting = Setting.first
 		@deliveries = Delivery.last(5)
 		@colors = Color.last(5)
+		@blogposts = Blogpost.last(5)
 	end
 end

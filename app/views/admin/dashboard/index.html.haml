@@ -77,4 +77,13 @@
 	=link_to 'Создать новый цвет', new_admin_color_path
 	=link_to 'Просмотреть все цвета', admin_colors_path
 
+.box
+	%h4 Посты
+	%h5 Последние 5 созданных
+	=render 'shared/listing_blogposts'
+
+	%h6 Действия
+	=link_to 'Создать новый пост', new_admin_blogpost_path
+	=link_to 'Просмотреть все посты', admin_blogposts_path
+
 

@@ -1,0 +1,72 @@
+#content
+  .container
+    .col-md-12
+      %ul.breadcrumb
+        %li
+          %a{:href => "#"} Главная
+        %li Новости
+      .box.text-center
+        .row
+          .col-sm-10.col-sm-offset-1
+            %h1 Новости компании
+            %p Текст о том, что в новостях можно прочитать кучу всего интересного
+    /
+      *** LEFT COLUMN ***
+      _________________________________________________________
+    #blog-listing.col-sm-9
+      -@blogposts.each do |blogpost|
+        .post
+          %h2
+            =link_to blogpost.title, blogpost_path(blogpost)
+          %p.author-category
+            Автор:
+            =link_to '#' do
+              =blogpost.author
+            в категории
+            =link_to '#' do
+              Общие новости
+          %hr
+            %p.date-comments
+              =link_to blogpost_path(blogpost) do
+                %i.fa.fa-calendar-o
+                =blogpost.created_at.strftime("%-d/%m/%Y")
+              / %a{:href => "post.html"}
+              /   %i.fa.fa-comment-o
+              /   8 Comments
+            .image
+              %a{:href => "post.html"}
+                %img.img-responsive{:alt => "Example blog post alt", :src => "img/blog2.jpg"}
+            %p.intro
+              =blogpost.leadparagraph
+            %p.read-more
+              =link_to blogpost_path(blogpost), class: 'btn btn-primary' do
+                Читать далее
+      %ul.pager
+        %li.previous
+          %a{:href => "#"} &larr; Older
+        %li.next.disabled
+          %a{:href => "#"} Newer &rarr;
+    / /.col-md-9
+    / *** LEFT COLUMN END ***
+    /
+      *** RIGHT COLUMN ***
+      _________________________________________________________
+    .col-sm-3
+      #categoryMenu
+        %h3 Blog
+        %ul.nav.nav-pills.nav-stacked
+          %li
+            %a{:href => "blog.html"} About us
+          %li
+            %a{:href => "blog.html"} Fashion
+          %li
+            %a{:href => "blog.html"} News and gossip
+          %li
+            %a{:href => "blog.html"} Design
+      .banner
+        %a{:href => "category.html"}
+          %img.img-responsive{:alt => "sales 2014", :src => "img/banner.jpg"}
+      / /.banner
+    / /.col-md-3
+    / *** RIGHT COLUMN END ***
+  / /.container

@@ -1,0 +1,5 @@
+-@blogposts.each do |blogpost|
+	%p
+		=blogpost.title
+		=link_to 'Редактировать', edit_admin_blogpost_path(blogpost)
+		=link_to 'Удалить', admin_blogpost_path(blogpost), method: :delete, data: {confirm: 'Уверен?'}

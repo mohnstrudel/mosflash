@@ -1,0 +1,11 @@
+%h1 Админская панель
+%p
+	%ul
+		%li
+			=link_to 'На дашборд', admin_path
+		%li
+			=link_to 'Создать новый пост', new_admin_blogpost_path
+
+%h2 Все посты
+
+=render 'shared/listing_blogposts'

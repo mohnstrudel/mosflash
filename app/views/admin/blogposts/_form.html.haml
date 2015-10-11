@@ -1,0 +1,19 @@
+.row
+	.col-md-4.col-xs-12
+		=form_for([:admin, @blogpost]) do |f|
+			=f.label 'Титул новости/поста'
+			=f.text_field :title, class: 'form-control'
+			%br
+			=f.label 'Зазывающий параграф'
+			%h6 Появляется в каталоге, если клиент нажал на данную категорию. Не рекомендуется оставлять пустым
+			=f.text_area :leadparagraph, class: 'form-control'
+			%br
+			=f.label 'Автор новости/поста'
+			=f.text_field :author, class: 'form-control'
+			%br
+			=f.label 'Текст новости/поста'
+			=f.text_area :body, class: 'form-control'
+			%br
+			=f.submit 'Сохранить', class: 'btn btn-success'
+			=link_to 'Отменить', admin_path, class: 'btn btn-info'
+	.col-md-8

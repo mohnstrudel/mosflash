@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
 
-
-
-  get 'addservices/index'
-
   resources :orders
   resources :addservices, only: :index
+  resources :blogposts, only: [:show, :index]
 
   resources :products do
     resources :servizations
@@ -20,6 +17,7 @@ Rails.application.routes.draw do
     resources :products do
       resources :images
     end
+    resources :blogposts
     resources :categories
     resources :subcategories
     resources :volumes
