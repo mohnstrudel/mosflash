@@ -856,7 +856,8 @@ button i.fa {
 #content .quick-view-social p a,
 #content #product-social p a {
   margin: 0 10px 0 0;
-  color: #fff;
+  /* removed color white as if 11/10/2015*/
+  /*color: #fff;*/
   display: inline-block;
   width: 26px;
   height: 26px;
@@ -1172,6 +1173,9 @@ button i.fa {
 .nav > li > a {
   padding: 10px 15px;
 }
+ul#navbar-left li:first-child a {
+  padding-left: 0px;
+}
 .nav > li > a:hover,
 .nav > li > a:focus {
   background-color: #eeeeee;
@@ -1241,6 +1245,9 @@ button i.fa {
   margin-bottom: 30px;
   border-bottom: 1px solid transparent;
 }
+.navbar_secondrow {
+  padding-right: -15px;
+}
 @media (min-width: 768px) {
   .navbar {
     border-radius: 0;
@@ -1307,7 +1314,8 @@ button i.fa {
   padding: 10px 15px;
   font-size: 18px;
   line-height: 20px;
-  height: 80px;
+  /* Commented out as of 11/10/2015*/
+  /*height: 80px;*/
 }
 .navbar-brand:hover,
 .navbar-brand:focus {
@@ -1354,8 +1362,9 @@ button i.fa {
     float: left;
   }
   .navbar-nav > li > a {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    /* Commented out as of 11/10/2015*/
+    /*padding-top: 30px;
+    padding-bottom: 30px;*/
   }
   .navbar-nav.navbar-right:last-child {
     margin-right: -15px;
@@ -1377,6 +1386,10 @@ button i.fa {
 .navbar-btn {
   margin-top: 23px;
   margin-bottom: 23px;
+}
+.navbar-btn.btn-scndrow {
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 .navbar-btn.btn-sm {
   margin-top: 25px;
@@ -1520,6 +1533,8 @@ hr {
   background-color: #ffffff;
   border-radius: 0;
   text-align: right;
+  /* 11/10/2015 - add padding because menu got too large (2 rows)*/
+  padding-top: 25px;
 }
 .breadcrumb > li + li:before {
   content: ">\00a0";
@@ -1756,6 +1771,9 @@ h6,
   line-height: 1.1;
   color: #333333;
 }
+.under_phone_number {
+  text-align: right;
+}
 h1,
 .h1,
 h2,
@@ -1767,6 +1785,10 @@ h3,
 }
 p {
   margin: 0 0 10px;
+}
+.phone_number {
+  margin-bottom: -10px;
+  margin-top: 10px;
 }
 .lead {
   margin-bottom: 20px;

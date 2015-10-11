@@ -8,22 +8,24 @@
         =image_tag 'default/logo_full.png', class: 'hidden-xs hidden-sm', alt: "Логотип Мосфлеш", width: 180
         =image_tag 'default/logo_small.png', class: 'visible-xs visible-sm', alt: 'Логотип Мосфлеш'
         %span.sr-only Мосфлеш - обратно на главную
-      .navbar-buttons
-        %button.navbar-toggle.btn-primary{"data-target" => "#navigation", "data-toggle" => "collapse", :type => "button"}
-          %span.sr-only Toggle navigation
-          %i.fa.fa-align-justify
-        %a.btn.btn-primary.navbar-toggle{:href => "basket.html"}
-          %i.fa.fa-shopping-cart
-          %span.hidden-xs 3 items in cart
-        %button.navbar-toggle.btn-default{"data-target" => "#search", "data-toggle" => "collapse", :type => "button"}
-          %span.sr-only Toggle search
-          %i.fa.fa-search
-        %button.navbar-toggle.btn-default{"data-target" => "#login-modal", "data-toggle" => "modal", :type => "button"}
-          %span.sr-only User login
-          %i.fa.fa-users
+    / Descriptor text
+    .navbar-header.descriptor
+      %h6 
+        Рекламно-сувенираня продукция
+        %br
+        под нанесение вашего логотипа
+        %br
+        с доставкой по России и СНГ
+
+    #basket-overview.navbar-collapse.collapse.right
+      %h3.phone_number
+        =link_to '#' do
+          +7 (499) 755-80-55
+      %h6.under_phone_number Режим работы: 10:00 - 20:00 (пн-пт)
     / /.navbar-header
+  .container
     #navigation.navbar-collapse.collapse
-      %ul.nav.navbar-nav.navbar-left
+      %ul.nav.navbar-nav#navbar-left
         %li.active.dropdown.normal-dropdown
           =link_to 'Главная', root_path
 
@@ -67,10 +69,17 @@
                       /     Brands
             -else
               =link_to category.title, products_path(category: category.title), class: 'dropdown-toggle'
+        / Custom menu for additional services and "about us"
+        %li.dropdown.yamm-fw
+          =link_to '#' do
+            Услуги
+        %li.dropdown.yamm-fw
+          =link_to '#' do
+            О нас
     / /.nav-collapse
     #basket-overview.navbar-collapse.collapse.right
       -if session[:cart_id]
-        =link_to(cart_path(session[:cart_id]), class: 'btn btn-primary navbar-btn', id: 'cart_button') do
+        =link_to(cart_path(session[:cart_id]), class: 'btn btn-primary navbar-btn btn-scndrow', id: 'cart_button') do
           %i.fa.fa-shopping-cart
           %span.hidden-sm
             -if Cart.find(session[:cart_id]).line_items.any? 
@@ -80,21 +89,21 @@
             -else
               Корзина пустая
     / /.nav-collapse
-    .navbar-collapse.collapse.right
-      %button.btn.navbar-btn.btn-default{"data-target" => "#search", "data-toggle" => "collapse", :type => "button"}
-        %span.sr-only Toggle search
-        %i.fa.fa-search
-    .navbar-collapse.collapse.right
-      %button.btn.navbar-btn.btn-default{"data-target" => "#login-modal", "data-toggle" => "modal", :type => "button"}
-        %span.sr-only User login
-        %i.fa.fa-users
-    #search.collapse.clearfix
-      %form.navbar-form{:role => "search"}
-        .input-group
-          %input.form-control{:placeholder => "Search", :type => "text"}
-            %span.input-group-btn
-              %button.btn.btn-primary{:type => "submit"}
-                %i.fa.fa-search
+    / .navbar-collapse.collapse.right
+    /   %button.btn.navbar-btn.btn-default{"data-target" => "#search", "data-toggle" => "collapse", :type => "button"}
+    /     %span.sr-only Toggle search
+    /     %i.fa.fa-search
+    / .navbar-collapse.collapse.right
+    /   %button.btn.navbar-btn.btn-default{"data-target" => "#login-modal", "data-toggle" => "modal", :type => "button"}
+    /     %span.sr-only User login
+    /     %i.fa.fa-users
+    / #search.collapse.clearfix
+    /   %form.navbar-form{:role => "search"}
+    /     .input-group
+    /       %input.form-control{:placeholder => "Search", :type => "text"}
+    /         %span.input-group-btn
+    /           %button.btn.btn-primary{:type => "submit"}
+    /             %i.fa.fa-search
     / /.nav-collapse
 / /#navbar
 / *** NAVBAR END ***

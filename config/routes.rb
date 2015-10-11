@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
-  get 'accompanships/create'
 
-  get 'accompanships/destroy'
+
+  get 'addservices/index'
 
   resources :orders
+  resources :addservices, only: :index
 
   resources :products do
     resources :servizations
@@ -27,6 +28,8 @@ Rails.application.routes.draw do
     resources :settings
     resources :deliveries
     resources :colors
+    get 'accompanships/create'
+    get 'accompanships/destroy'
   end
 
   

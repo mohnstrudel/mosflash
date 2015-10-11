@@ -155,9 +155,9 @@
                 %br
                 Материал:
               .col-md-2
-                ="#{@product.characteristics[0].weight} г" if @product.characteristics[0].weight
+                ="#{sprintf('%.0f', @product.characteristics[0].weight)} г" if @product.characteristics[0].weight
                 %br
-                ="#{@product.characteristics[0].length} х #{@product.characteristics[0].width} x #{@product.characteristics[0].thickness} мм"
+                ="#{sprintf('%.0f', @product.characteristics[0].length)} х #{sprintf('%.0f', @product.characteristics[0].width)} x #{sprintf('%.0f', @product.characteristics[0].thickness)} мм"
                 %br
                 =@product.material
               .col-md-8

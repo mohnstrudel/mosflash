@@ -1657,8 +1657,9 @@ pre code {
 .col-xs-5 {
   width: 41.66666667%;
 }
+/*change as of 11/10/2015 to implement 6 preview pics in a row*/
 .col-xs-4 {
-  width: 25%;
+  width: 16.66666667%;
 }
 .col-xs-3 {
   width: 25%;

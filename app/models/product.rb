@@ -1,5 +1,7 @@
 class Product < ActiveRecord::Base
 
+	scope :hot, lambda{ where.not(hotpic: nil) }
+
 	validates :title, :advertising_text, presence: true
 	validates :category_id, :subcategory_id, presence: true
 

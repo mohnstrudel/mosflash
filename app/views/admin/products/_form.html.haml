@@ -120,6 +120,6 @@
 					%h3 Добавлять только при редактировании, так как информация выше иначе сотрется
 					-Product.all.each do |product|
 						=product.title
+						=link_to 'Добавить как сопутсвующий товар', admin_accompanships_create_path(product_id: @product.id, accompany_id: product.id)
 						%br
-						=link_to 'Добавить как сопутсвующий товар', accompanships_create_path(product_id: @product.id, accompany_id: product.id)
 			.col-md-2
