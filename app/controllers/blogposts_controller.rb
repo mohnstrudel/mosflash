@@ -5,5 +5,6 @@ class BlogpostsController < ApplicationController
 
 	def show
 		@blogpost = Blogpost.find(params[:id])
+		@splittedSentences = @blogpost.body.split('.')
 	end
 end

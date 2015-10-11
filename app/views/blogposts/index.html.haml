@@ -34,8 +34,8 @@
               /   %i.fa.fa-comment-o
               /   8 Comments
             .image
-              %a{:href => "post.html"}
-                %img.img-responsive{:alt => "Example blog post alt", :src => "img/blog2.jpg"}
+              =link_to blogpost_path(blogpost) do
+                =image_tag blogpost.avatar.url(:news_thumb), class: 'img img-responsive'
             %p.intro
               =blogpost.leadparagraph
             %p.read-more

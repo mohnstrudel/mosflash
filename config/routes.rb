@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  match '/contacts', to: 'static_pages#contacts',     via: 'get'
+
   resources :orders
   resources :addservices, only: :index
   resources :blogposts, only: [:show, :index]

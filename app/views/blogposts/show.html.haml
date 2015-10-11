@@ -1,0 +1,54 @@
+#content
+  .container
+    .col-md-12
+      %ul.breadcrumb
+        %li
+          %a{:href => "index.html"} Главная
+        %li
+          %a{:href => "blog.html"} Новости
+        %li
+          =@blogpost.title
+      .box.text-center
+        .row
+          .col-sm-10.col-sm-offset-1
+            %h1
+              =@blogpost.title
+            %p.text-italic.text-muted
+              Автор:
+              =link_to '#' do
+                =@blogpost.author
+              |
+              =@blogpost.created_at.strftime("%-d/%m/%Y")
+            %p.lead
+              =@blogpost.leadparagraph
+    /
+      *** LEFT COLUMN ***
+      _________________________________________________________
+    #blog-post.col-sm-9
+      #post-content
+        %p
+          ="#{@splittedSentences[0..4].join('.')}."
+        %p
+          =image_tag @blogpost.avatar.url(:news_thumb), class: 'img img-responsive', alt: @blogpost.title
+        %p
+          ="#{@splittedSentences[5..-1].join('.')}."
+      / /#post-content
+    / *** LEFT COLUMN END ***
+    /
+      *** RIGHT COLUMN ***
+      _________________________________________________________
+    .col-sm-3
+      #categoryMenu
+        %h3 О Нас
+        %ul.nav.nav-pills.nav-stacked
+          %li
+            %a{:href => "blog.html"} Новости
+          %li.active
+            %a{:href => "blog.html"} Контакты
+          %li
+            %a{:href => "blog.html"} История
+
+      / /.banner
+    / /.col-md-3
+    / *** RIGHT COLUMN END ***
+  / /.container
