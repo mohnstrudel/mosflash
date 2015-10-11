@@ -5,7 +5,6 @@ class RemoveUnnessesaryfieldsFromProducts < ActiveRecord::Migration
     remove_column :products, :width, :float
     remove_column :products, :thickness, :float
     remove_column :products, :avatar, :string
-    remove_column :products, :avatars, :json
     remove_column :products, :size, :string
   end
 end
