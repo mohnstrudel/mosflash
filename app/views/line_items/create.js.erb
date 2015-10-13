@@ -1,2 +1,2 @@
 $("#cart_button").html("<i class='fa fa-shopping-cart'></i> <%=Cart.find(session[:cart_id]).line_items.to_a.sum { |item| item.quantity }%> товаров в корзине");
-$("#add_item_to_cart").html("<i class='fa fa-shopping-cart'></i> Товар добавлен в корзину").delay(500);
+$("#add_item_to_cart").html("<i class='fa fa-shopping-cart'></i> Добавлено").delay(500);

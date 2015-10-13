@@ -30,7 +30,7 @@
           =link_to 'Главная', root_path
 
         
-        -Category.all.each do |category|
+        -Category.all.order(orderid: :asc).each do |category|
           %li.dropdown.yamm-fw
             -if category.subcategories.any?
               =link_to products_path(category: category.title), class: 'dropdown-toggle', data: { toggle: 'dropdown' } do

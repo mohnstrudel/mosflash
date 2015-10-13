@@ -37,7 +37,7 @@ before_action	:find_category, only: [:edit, :update, :show]
 	  end
 
 	  def category_params
-	  	params.require(:category).permit(:title, :description, :avatar)
+	  	params.require(:category).permit(:title, :description, :avatar, :orderid)
 	  end
 
 end

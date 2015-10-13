@@ -8,6 +8,9 @@
 			%h6 Данная цена является базовой и просто прибавляется к общей стоимости товара
 			=f.number_field :price, class: 'form-control', step: 'any'
 			%br
+			=f.label 'Услуга добавляется к каждому товару или к партии товара? (Например разработка логотипа идет на партию, в то время как гравировка на каждый товар)'
+			=f.check_box :toparty, class: 'form-control'
+			%br
 			=f.submit 'Сохранить', class: 'btn btn-success'
 			=link_to 'Отменить', admin_path, class: 'btn btn-info'
 	.col-md-8

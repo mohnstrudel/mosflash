@@ -26,6 +26,16 @@ class LineItemsController < ApplicationController
 		end
 	end
 
+	def destroy
+		if @line_item.destroy
+	        respond_to do |format|
+	            format.js
+	            format.html { redirect_to @line_item.cart }
+	            format.json { head :no_content }
+	        end
+	    end
+	end
+
 	def sellprice
 		@line_item = LineItem.find(params[:id])
 		@line_item.sellprice = params[:line_item][:sellprice]

@@ -91,7 +91,7 @@
                         Дополнительные услуги
                       -@servizations.each do |servization|
                         %br
-                        =check_box_tag('addservices[]', [servization[0].addservice_id, servization[1]], false, class: 'addservice_checkbox')
+                        =check_box_tag('addservices[]', [servization[0].addservice_id, servization[1], Addservice.find_by(id: servization[0].addservice_id).toparty], false, class: 'addservice_checkbox')
                         =Addservice.find_by(id: servization[0].addservice_id).title
                         -
                         =sprintf('%.2f', servization[1])
@@ -137,10 +137,9 @@
                   .col-sm-4
               .row
                 .col-sm-12
-                  %p.text-center
-                    =button_tag(type: 'submit', id: 'add_item_to_cart', class: 'btn btn-primary shopping-cart-btn') do
-                      %i.fa.fa-shopping-cart
-                      Купить
+                  =button_tag(type: 'submit', id: 'add_item_to_cart', class: 'btn-buy btn-primary shopping-cart-btn') do
+                    %i.fa.fa-shopping-cart
+                    Купить
           
       #details.box
         %p
@@ -179,10 +178,10 @@
                 %p
                   %em
                     =@product.fancy_quote
-      #product-social.box.social
-        %h4 Расскажите о нас друзьям
-        %p.social
-          =render 'shared/social'
+      / #product-social.box.social
+      /   %h4 Расскажите о нас друзьям
+      /   %p.social
+      /     =render 'shared/social'
       -if @product.accompanships.any?
         .row
           =render 'similar_products'

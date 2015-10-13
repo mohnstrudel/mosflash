@@ -61,23 +61,41 @@ jQuery ->
         # This method delivers all checked addservice price
         # so we can first substract it before applying any multiplications
         addservices = new Array()
+        addservicesParty = new Array()
+
         console.log('inside get all addservices:')
         checkboxes = document.getElementsByName("addservices[]")
         
         for checkbox in checkboxes
 
             addserviceprice_splitted = (checkbox.value).split(" ")
+            # console.log(addserviceprice_splitted[2])
+            
+            # Here we need to check if the 'apply to whole party is true or false'
+            party = addserviceprice_splitted[2]
+                
+
             addserviceprice = parseFloat(addserviceprice_splitted[1]).toFixed(2)
             if checkbox.checked
                 parsedPrice = parseFloat(addserviceprice)
-                addservices.push(parsedPrice)
+
+                if party == 'true'
+                    addservicesParty.push(parsedPrice)
+                else
+                    addservices.push(parsedPrice)
 
         if addservices.length > 0
             sum = addservices.reduce((a,b) => a+b)
         else
             sum = 0
-        console.log(addservices)
-        return parseFloat(sum)
+
+        if addservicesParty.length > 0
+            sumParty = addservicesParty.reduce((a,b) => a+b)
+        else
+            sumParty = 0
+
+        console.log('Addservices combined: ' + addservices + '| Addservice to whole party: '+ addservicesParty)
+        return [parseFloat(sum), parseFloat(sumParty)]
 
     recalculate = ->
         # This function recalculates the price
@@ -85,14 +103,18 @@ jQuery ->
         deliveryCoefficient = get_delivery()
         amountCoefficient = get_multiplier()
         addservices = get_all_addservices()
+
+        addserviceOne = addservices[0]
+        addserviceParty = addservices[1]
+
         amount = $('#amount').val()
 
         console.log('base - ' + base + '| delivery - ' + deliveryCoefficient + ' | add service sum - ' + addservices)
 
-        endPriceOne = (base*deliveryCoefficient*amountCoefficient) + addservices
+        endPriceOne = (base*deliveryCoefficient*amountCoefficient) + addserviceOne
         endPriceParty = (base * deliveryCoefficient * amountCoefficient) * amount
-        endPriceAll = endPriceOne * amount
-        endPriceServices = addservices * amount
+        endPriceAll = endPriceOne * amount + addserviceParty
+        endPriceServices = (addserviceOne * amount) + addserviceParty
 
         $('#priceValue').text(endPriceAll.toFixed(2))
         $('#priceForOne').text(endPriceOne.toFixed(2))
