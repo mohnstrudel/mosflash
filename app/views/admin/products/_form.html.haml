@@ -37,6 +37,9 @@
 						%br
 						=f.label 'Загрузить фото'
 						=f.file_field :hotpic, class: 'form-control'
+					%hr
+					=f.label "Загрузить фото для превью (это та фотка, которая в карточке товара будет идти всегда первой)"
+					=f.file_field :previewpic, class: 'form-control'
 					%br
 					%h5 Доступные для товара цвета
 					=collection_check_boxes(:product, :color_ids, Color.all, :id, :value ) do |b|
@@ -63,9 +66,7 @@
 							%br
 				%p
 					=file_field_tag :image, name: "images[]", id: 'fileupload', type: :file, multiple: true
-					/ =f.fields_for :image, Image.new, id: "fileupload" do |op|
-					/ 	= op.label 'Загрузить остальные фото товара'
-					/ 	= op.file_field :image, multiple: true, id: 'fileupload', name: "product[images_attributes][][image]", class: 'form-control'
+
 					-if @product.images.any?
 						.box
 							%h6 Удалить фотографии
@@ -116,6 +117,7 @@
 					-@product.accompanies.each do |accompany|
 						%br
 						=accompany.title
+						=link_to 'Удалить', admin_accompanships_destroy_path(product_id: @product.id, accompany_id: accompany.id), method: :delete, data: { confirm: "Действительно удалить?" }
 				.box
 					%h3 Добавлять только при редактировании, так как информация выше иначе сотрется
 					-Product.all.each do |product|

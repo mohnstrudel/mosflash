@@ -39,14 +39,28 @@ class ProductsController < ApplicationController
     @per_page = params[:per_page] || Product.per_page || 20
     if params[:category].blank?
       @products = Product.all.order(params[:sort], created_at: :desc).paginate(:per_page => @per_page, :page => params[:page])
-    else
+    elsif params[:subcategory].blank?
       @category = Category.find_by(title: params[:category])
       @category_id = @category.id
       if params[:sort]
         @products = Product.where(category_id: @category_id).order(params[:sort, created_at: :desc]).paginate(:per_page => @per_page, :page => params[:page])
       else
         @products = Product.where(category_id: @category_id).order(params[created_at: :desc]).paginate(:per_page => @per_page, :page => params[:page])
-        end  
+      end
+
+    else
+
+      @category = Category.find_by(title: params[:category])
+      @category_id = @category.id
+      @subcategory = Subcategory.find_by(title: params[:subcategory])
+      @subcategory_id = @subcategory.id
+
+      if params[:sort]
+        @products = Product.where(category_id: @category_id).where(subcategory_id: @subcategory_id).order(params[:sort, created_at: :desc]).paginate(:per_page => @per_page, :page => params[:page])
+      else
+        @products = Product.where(category_id: @category_id).where(subcategory_id: @subcategory_id).order(params[created_at: :desc]).paginate(:per_page => @per_page, :page => params[:page])
+      end
+
     end 
     # render json: @products.to_json(include: :options)
   end

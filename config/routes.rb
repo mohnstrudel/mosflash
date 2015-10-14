@@ -29,7 +29,8 @@ Rails.application.routes.draw do
     resources :deliveries
     resources :colors
     get 'accompanships/create'
-    get 'accompanships/destroy'
+    delete 'accompanships/destroy'
+
   end
 
   

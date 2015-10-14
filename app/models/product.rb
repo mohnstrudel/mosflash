@@ -3,14 +3,15 @@ class Product < ActiveRecord::Base
 	scope :hot, lambda{ where.not(hotpic: nil) }
 
 	validates :title, :advertising_text, presence: true
-	validates :category_id, :subcategory_id, presence: true
+	validates :category_id, presence: true
 
 	mount_uploader :hotpic, HotpicUploader
+	mount_uploader :previewpic, PreviewpicUploader
 	
 	belongs_to	:category 
 	belongs_to	:subcategory
 	has_many	:options
-	has_many	:additionalcharacteristics
+	has_many	:additionalcharacteristics, dependent: :destroy
 	has_many	:images, dependent: :destroy
 	has_many	:hot_pics
 	has_many	:line_items

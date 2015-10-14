@@ -1,16 +1,17 @@
-.col-md-3.col-sm-6
+.col-md-12.col-sm-12
   .box
-    %h3 Дополняющие товары
+    .center
+      %h3 Дополняющие товары
 
 -@product.accompanies.each do |accompany|
-  .col-md-3.col-sm-6
+  .col-md-2.col-sm-3
     .product
       .image
-        =link_to '#' do
-          -if accompany.images.first.image.url(:thumb_medium)
-            =image_tag accompany.images.first.image.url(:thumb_medium), class: 'img-responsive image1', alt: ''
+        =link_to accompany do
+          -if accompany.previewpic.url
+            =image_tag accompany.previewpic.url(:thumb_medium), class: 'img-responsive image1', alt: ''
           -else
-            =image_tag accompany.images.first.image.to_s, class: 'img-responsive image1', alt: ''
+            =image_tag accompany.images.first.image.url(:thumb_medium), class: 'img-responsive image1', alt: ''
       .text
         %h3
           =accompany.title

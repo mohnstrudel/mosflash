@@ -1,10 +1,11 @@
-.col-md-3.col-sm-6
+.col-md-12.col-sm-12
   .box
-    %h3 Вам также может понравиться
+    .center
+      %h3 Вам также может понравиться
 
 -@randomProduct.each do |product|
   -if product.options.first.price
-    .col-md-3.col-sm-6
+    .col-md-2.col-sm-3
       .product
         .image
           =link_to product do
