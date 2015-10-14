@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  match '/contacts', to: 'static_pages#contacts',     via: 'get'
+  match '/contacts',  to: 'static_pages#contacts',    via: 'get'
+  match '/history',   to: 'static_pages#history',     via: 'get'
 
   resources :orders
   resources :addservices, only: :index

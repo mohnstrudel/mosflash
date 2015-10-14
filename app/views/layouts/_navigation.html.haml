@@ -85,6 +85,8 @@
                     =link_to 'Новости', blogposts_path
                     =link_to contacts_path do
                       Контакты
+                    =link_to history_path do
+                      История
     / /.nav-collapse
     #basket-overview.navbar-collapse.collapse.right
       -if session[:cart_id]
