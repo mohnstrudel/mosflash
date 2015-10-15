@@ -1,36 +1,23 @@
-%p#notice= notice
-
-%p
-  %b Fname:
-  = @order.fname
-%p
-  %b Lname:
-  = @order.lname
-%p
-  %b Company:
-  = @order.company
-%p
-  %b Street:
-  = @order.street
-%p
-  %b City:
-  = @order.city
-%p
-  %b Zip:
-  = @order.zip
-%p
-  %b Phone:
-  = @order.phone
-%p
-  %b Mail:
-  = @order.mail
-%p
-  %b Pay type:
-  = @order.pay_type
-%p
-  %b Delivery type:
-  = @order.delivery_type
-
-= link_to 'Edit', edit_order_path(@order)
-\|
-= link_to 'Back', orders_path
+#content
+  .container
+    .col-md-12
+      %ul.breadcrumb
+        %li
+          %a{:href => "#"} Главная
+        %li Заказ
+      .box.text-center
+        .row
+          .col-sm-10.col-sm-offset-1
+            %h1 Спасибо за ваш заказ.
+            %p.lead 
+              Уважаемый/ая 
+              ="#{@order.fname}!"
+              Ваш заказ №
+              =@order.id
+              принят и наш менеджер свяжется с вами в ближайшее время по указанному вами телефону:
+              =@order.phone
+              ="."
+            %p.text-muted
+              Мы отправили вам письмо с подтверждением заказа на адрес
+              =link_to "mailto:#{@order.mail}" do
+                ="#{@order.mail}."
