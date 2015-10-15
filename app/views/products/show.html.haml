@@ -67,6 +67,9 @@
                         =sprintf('%.0f', item.value.to_f)
                         Гб
                       %input#size_s.size-input{:name => "volume", :type => "radio", :value => [item.value, (@getCurrency[index][0].to_f).ceil] }
+              -else
+                #basicprice.hiddenfield
+                  =crb_kurs(@product.basicprice)
 
               .row
                 .col-sm-6
@@ -107,7 +110,7 @@
                   Цена:
                   %p.price#priceValue
                     -if @product.basicprice
-                      =sprintf('%.2f', crb_kurs(@product.basicprice))
+                      =sprintf('%.2f', initialPrice(@product.basicprice))
                     -elsif
                       =sprintf('%.2f', @initialPrice)
                   руб.

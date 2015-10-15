@@ -50,9 +50,13 @@ jQuery ->
         return parseFloat(delivery).toFixed(2)
 
     get_size = ->
+        # in this method we either select the price value based on the flash
+        # drive size, or, if it has a basic price, just simply the basic price
+        # from the hidden #basicprice id
+
         selected_size = $('input[name=volume]:checked').val()
         if (selected_size == undefined)
-            return 1
+            return parseFloat($('#basicprice')[0].innerText)
         else
             array = selected_size.split(",")[1].replace(']','')
             return parseFloat(array).toFixed(2)
@@ -109,7 +113,7 @@ jQuery ->
 
         amount = $('#amount').val()
 
-        console.log('base - ' + base + '| delivery - ' + deliveryCoefficient + ' | add service sum - ' + addservices)
+        console.log('base - ' + base + '| delivery - ' + deliveryCoefficient + ' | add service sum - ' + addservices + ' | amount coefficient - ' + amountCoefficient)
 
         endPriceOne = (base*deliveryCoefficient*amountCoefficient) + addserviceOne
         endPriceParty = (base * deliveryCoefficient * amountCoefficient) * amount
