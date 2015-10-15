@@ -59,7 +59,7 @@
 										-if product.previewpic.url && product.previewpic.thumb_medium.file.exists?
 											=image_tag(product.previewpic.url(:thumb_medium), class: 'img img-responsive image1', alt: '')
 										-else
-											=image_tag(product.images.first.image.url, class: 'img img-responsive image 1', alt: '')
+											=image_tag(product.images.first.image.url(:thumb_medium), class: 'img img-responsive image 1', alt: '')
 
 								.text
 									%h3

@@ -4,6 +4,8 @@
 	%h1 Мы отвечаем за качество наших флешек!
 	%p.lead Скачайте приложение по проверке качества чипов и убедитесь, что ваша флешка соответствует заявленным характеристикам!
 	%p.text-center
-		%a.btn.btn-primary.btn-lg{:href => "index2.html"} Скачать
+		=link_to 'https://yadi.sk/d/C-jBOTHhi4ZiC', class: 'btn btn-primary btn-lg' do
+			Скачать
 	%p.lead
-		Узнать подробнее
+		=link_to checkflash_path do
+			Узнать подробнее

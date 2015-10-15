@@ -4,4 +4,7 @@ class StaticPagesController < ApplicationController
 
   def history
   end
+
+  def checkflash
+  end
 end

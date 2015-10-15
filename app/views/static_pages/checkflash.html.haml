@@ -1,0 +1,103 @@
+#content.grey-background.black-text
+	.container
+		.col-md-12
+			%ul.breadcrumb.transparent
+				%li
+					%a{:href => "#"} Главная
+				%li Проверка качества
+			.box.text-center.transparent
+				.row
+					.col-sm-10.col-sm-offset-1
+						%h1
+							Мы отвечаем
+							%br
+							за качество наших флешек!
+						%p
+							Скачайте приложение по проверке качества чипов и убедитесь,
+							что ваша флешка соответствует заявленным характериcтикам!
+		/
+			*** LEFT COLUMN ***
+			_________________________________________________________
+		.col-md-12.clearfix
+			#text-page.box.transparent
+				%p
+					.text-center
+						%h4 
+							=link_to 'https://yadi.sk/d/C-jBOTHhi4ZiC' do
+								Программа тестирования флешек
+
+				.center
+					=link_to 'https://yadi.sk/d/C-jBOTHhi4ZiC' do
+						=image_tag 'default/arrow_down.png', width: 80
+
+				%p
+					.text-center
+						%h2
+							=link_to 'https://yadi.sk/d/C-jBOTHhi4ZiC' do
+								Скачать
+
+				%hr
+
+				%p
+					.text-center.text-block
+						Тест показывает скорость записи/чтения и реальный объем флешки пригодный 
+						%br 
+						для записи информации. Если во время теста появится красный экран, 
+						%br
+						то реальный объем памяти меньше заявленного.
+				.row
+					.col-md-12
+						.col-md-3
+						.col-md-2
+							.text-center
+								%h3
+									Шаг 1
+							.center
+								=image_tag 'icons/usb39.svg', height: 120
+							.text-center.text-block
+								%h4
+									Вставьте флешку
+									%br
+									в компьютер
+						.col-md-2
+							.text-center
+								%h3
+									Шаг 2
+							.center
+								=image_tag 'icons/power5.svg', height: 120
+							.text-center.text-block
+								%h4
+									Запустите программу
+									%br
+									тестирования
+						.col-md-2
+							.text-center
+								%h3
+									Шаг 3
+							.center
+								=image_tag 'icons/checked21.svg', height: 120
+							.text-center.text-block
+								%h4
+									Смотрите результат
+									%br
+									скорости и объема
+						.col-md-3
+
+				
+				%hr
+
+				%h3 Подробная инструкция
+				%ol
+					%li 
+						Вставляем флешку в свободный USB. Запоминаем как определился диск.
+					%li
+						Запускаем программу.
+					%li
+						Выбираем язык English на панели.
+					%li
+						При нажатии на "Select target" выбираем раздел с флешкой. Выбираем нужный раздел и жмем "ОК"
+					%li
+						Нажимаем на "Write + Verify" и ждем результатов тестирования.
+				.text-block
+					%h5
+						Внимание! При тестировании вся информация с флешки будет удалена!
