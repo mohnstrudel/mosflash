@@ -1,0 +1,9 @@
+=link_to(cart_path(session[:cart_id]), class: 'btn btn-primary navbar-btn btn-scndrow', id: 'cart_button') do
+  %i.fa.fa-shopping-cart
+  %span.hidden-sm
+    -if Cart.find(session[:cart_id]).line_items.any? 
+      =Cart.find(session[:cart_id]).line_items.to_a.sum { |item| item.quantity }
+      товаров
+      %span.hidden-md в корзине 
+    -else
+      Корзина пустая

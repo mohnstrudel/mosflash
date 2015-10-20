@@ -101,35 +101,5 @@
 
     / /.nav-collapse
     #basket-overview.navbar-collapse.collapse.right
-      -if session[:cart_id]
-        =link_to(cart_path(session[:cart_id]), class: 'btn btn-primary navbar-btn btn-scndrow', id: 'cart_button') do
-          %i.fa.fa-shopping-cart
-          %span.hidden-sm
-            -if Cart.find(session[:cart_id]).line_items.any? 
-              =Cart.find(session[:cart_id]).line_items.to_a.sum { |item| item.quantity }
-              товаров
-              %span.hidden-md в корзине 
-            -else
-              Корзина пустая
-    / /.nav-collapse
-    / .navbar-collapse.collapse.right
-    /   %button.btn.navbar-btn.btn-default{"data-target" => "#search", "data-toggle" => "collapse", :type => "button"}
-    /     %span.sr-only Toggle search
-    /     %i.fa.fa-search
-    / .navbar-collapse.collapse.right
-    /   %button.btn.navbar-btn.btn-default{"data-target" => "#login-modal", "data-toggle" => "modal", :type => "button"}
-    /     %span.sr-only User login
-    /     %i.fa.fa-users
-    / #search.collapse.clearfix
-    /   %form.navbar-form{:role => "search"}
-    /     .input-group
-    /       %input.form-control{:placeholder => "Search", :type => "text"}
-    /         %span.input-group-btn
-    /           %button.btn.btn-primary{:type => "submit"}
-    /             %i.fa.fa-search
-    / /.nav-collapse
-/ /#navbar
-/ *** NAVBAR END ***
-/
-  *** LOGIN MODAL ***
-  _________________________________________________________
+      =hidden_div_if(Cart.find(session[:cart_id]).line_items.empty?, id: 'cart') do
+        =render 'shared/cart_button'

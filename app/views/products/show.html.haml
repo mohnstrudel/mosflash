@@ -140,7 +140,7 @@
                   .col-sm-4
               .row
                 .col-sm-12
-                  =button_tag(type: 'submit', id: 'add_item_to_cart', class: 'btn-buy btn-primary shopping-cart-btn') do
+                  =button_tag(type: 'submit', id: 'add_item_to_cart', class: 'btn-buy btn-primary shopping-cart-btn', "data-target" => "#product-quick-view-modal", "data-toggle" => "modal") do
                     %i.fa.fa-shopping-cart
                     Купить
           
@@ -190,3 +190,39 @@
           =render 'similar_products'
       .row
         =render 'shared/you_may_like'
+      .row
+        .quick-view-button
+          %a.btn.btn-default.btn-sm{"data-target" => "#product-quick-view-modal", "data-toggle" => "modal", :href => "#"} Quick view
+
+#product-quick-view-modal.modal.fade{"aria-hidden" => "false", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-body
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
+        .row.quick-view.product-main
+          .col-sm-6
+            .quick-view-main-image
+              =image_tag @product.images.first.image.url(:thumb_large), class: 'img-responsive'
+          
+          .col-sm-6
+            %h2
+              = @product.title
+            %p.text-muted.text-small.text-center
+            .box
+              %form
+                .sizes
+                  %h3
+                    Товар успешно добавлен в корзину
+            / /.box
+            .quick-view-social
+              %h4 Расскажите друзьям о своей покупке!
+              %p
+                %a.external.facebook{"data-animate-hover" => "pulse", :href => "#"}
+                  %i.fa.fa-facebook
+                %a.external.gplus{"data-animate-hover" => "pulse", :href => "#"}
+                  %i.fa.fa-google-plus
+                %a.external.twitter{"data-animate-hover" => "pulse", :href => "#"}
+                  %i.fa.fa-twitter
+                %a.email{"data-animate-hover" => "pulse", :href => "#"}
+                  %i.fa.fa-envelope
+  / /.modal-dialog
