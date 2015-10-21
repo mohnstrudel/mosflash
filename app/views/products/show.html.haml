@@ -156,21 +156,21 @@
                 Размер:
                 %br
                 Материал:
-              .col-md-2
+              .col-md-8
                 ="#{sprintf('%.0f', @product.characteristics[0].weight)} г" if @product.characteristics[0].weight
                 %br
                 ="#{sprintf('%.0f', @product.characteristics[0].length)} х #{sprintf('%.0f', @product.characteristics[0].width)} x #{sprintf('%.0f', @product.characteristics[0].thickness)} мм"
                 %br
                 =@product.material
-              .col-md-8
+              .col-md-2
             / Additional characteristics output
             -@product.additionalcharacteristics.each do |addchar|
               .row
                 .col-md-2
                   ="#{addchar.name}:"
-                .col-md-2
-                  =addchar.value
                 .col-md-8
+                  =addchar.value
+                .col-md-2
 
           -unless @product.description.empty?
             %h4 Дополнительная информация

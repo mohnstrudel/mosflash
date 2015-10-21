@@ -52,6 +52,10 @@ class Admin::ProductsController < AdminController
 
 	private
 
+		# def remove_image(product)
+			
+
+
 		def product_params
 			params.require(:product).permit(:title, :description, :advertising_text,
 				:fancy_quote, :hot, :hotpic, :product_size_ids, :material, :basicprice,
