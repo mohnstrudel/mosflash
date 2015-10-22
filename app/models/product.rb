@@ -40,6 +40,10 @@ class Product < ActiveRecord::Base
 
 	before_destroy	:ensure_not_referenced_by_any_line_item
 
+	def init
+		self.sorting ||= 500
+	end
+
 	def initialized_servizations # this is the key method
     [].tap do |o|
       Addservice.all.each do |addservice|

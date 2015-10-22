@@ -30,18 +30,21 @@
 					=f.label "Цитата (идет в самом низу)"
 					=f.text_area :fancy_quote, class: 'form-control'
 					%br
-					=f.label "Показывать товар на главной в самом верху?"
-					=f.check_box :hot
+					=f.label "Сортировка для товара на главной (с меньшим числом будет левее)"
+					=f.number_field :sorting
 					%p
-						Если показывать, то нужно загрузить "горячую" фотографию
+						Если нужно показать товар на главной, в разделе "горячие товары" (в самом верху), то нужно загрузить "горячую" фотографию
 						%br
 						=f.label 'Загрузить фото'
 						=f.file_field :hotpic, class: 'form-control'
+
 
 						-if @product.hotpic
 							Текущая горячая фотография:
 							%br
 							=image_tag @product.hotpic.url(:thumb), width: 120
+							=f.check_box :remove_hotpic
+							=f.label :remove_hotpic, 'Удалить?'
 							/ =link_to 'Удалить', remove_image(@product), :confirm => "Уверен?", :method => :delete
 
 					%hr
@@ -49,6 +52,8 @@
 					=f.file_field :previewpic, class: 'form-control'
 					- if @product.previewpic.url(:thumb_medium)
 						=image_tag @product.previewpic.url(:thumb_medium), width: 120
+						=f.check_box :remove_previewpic
+						=f.label :remove_previewpic, 'Удалить?'
 
 					%br
 					%h5 Доступные для товара цвета
