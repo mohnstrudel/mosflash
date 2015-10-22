@@ -129,7 +129,7 @@
 
 				.box
 					Текущие связанные товары:
-					-@product.accompanies.each do |accompany|
+					-@accompanies.each do |accompany|
 						%br
 						=accompany.title
 						=link_to 'Удалить', admin_accompanships_destroy_path(product_id: @product.id, accompany_id: accompany.id), method: :delete, data: { confirm: "Действительно удалить?" }

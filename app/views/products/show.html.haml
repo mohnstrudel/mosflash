@@ -1,15 +1,7 @@
 #content
   .container
     .col-md-12
-      %ul.breadcrumb
-        %li
-          =link_to 'Главная', root_path
-        %li
-          =link_to @product.category.title, root_path
-        %li
-          =link_to @product.subcategory.title, root_path
-        %li
-          = @product.title
+      =render 'shared/breadcrumbs'
       .box.text-center
         .row
           .col-sm-10.col-sm-offset-1

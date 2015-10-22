@@ -8,6 +8,7 @@ class Admin::ProductsController < AdminController
 	end
 
 	def edit
+		@accompanies = @product.accompanies.sort_by { |p| p.title.downcase }
 	end
 
 	def new
@@ -65,7 +66,7 @@ class Admin::ProductsController < AdminController
 				images_attributes: [ :id, :image, :product_id, :_destroy ],
 				servizations_attributes: [:id, :product_id, :addservice_id, :coefficient],
 				characteristics_attributes: [:id, :product_id, :weight, :length, :width, :thickness],
-				additionalcharacteristics_attributes: [:id, :product_id, :name, :value]
+				additionalcharacteristics_attributes: [:id, :product_id, :name, :value, :_destroy]
 				)
 		end
 

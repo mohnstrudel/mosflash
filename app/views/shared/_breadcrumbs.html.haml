@@ -1,0 +1,18 @@
+%ul.breadcrumb
+	%li
+		=link_to 'Главная', root_path
+	-if @product
+		-if @product.category
+			%li
+				=link_to @product.category.title, products_path(category: @product.category.title)
+		-if @product.subcategory
+			%li
+				=link_to @product.subcategory.title, products_path(category: @product.category.title, subcategory: @product.subcategory.title)
+		%li
+			= @product.title
+	-elsif params[:category]
+		%li
+			=link_to params[:category], products_path(category: params[:category])
+		-if params[:subcategory]
+			%li
+				=params[:subcategory]
