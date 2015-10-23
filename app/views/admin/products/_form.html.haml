@@ -72,12 +72,16 @@
 					.box
 						%h3 Дополнительные услуги товара
 						%h5 При создании нового товара нужно сначала отметить доп. услуги, сохранить и только при редактировании отметить все коеффициенты.
+						
+
 						=collection_check_boxes(:product, :addservice_ids, Addservice.all, :id, :title) do |b|
 							=b.label class: 'checkbox' do
 								=b.check_box + b.text
 						%h5 Коэффициенты (на это значение будет умножена базовая цена доп.услуги).
 						=f.fields_for :servizations do |s|
 							=s.number_field :coefficient, class: 'form-control', step: :any
+							=s.label :_destroy, "Удалить"
+							=s.check_box :_destroy
 							%br
 				%p
 					=file_field_tag :image, name: "images[]", id: 'fileupload', type: :file, multiple: true
@@ -129,10 +133,11 @@
 
 				.box
 					Текущие связанные товары:
-					-@accompanies.each do |accompany|
-						%br
-						=accompany.title
-						=link_to 'Удалить', admin_accompanships_destroy_path(product_id: @product.id, accompany_id: accompany.id), method: :delete, data: { confirm: "Действительно удалить?" }
+					-if @accompanies
+						-@accompanies.each do |accompany|
+							%br
+							=accompany.title
+							=link_to 'Удалить', admin_accompanships_destroy_path(product_id: @product.id, accompany_id: accompany.id), method: :delete, data: { confirm: "Действительно удалить?" }
 				.box
 					%h3 Добавлять только при редактировании, так как информация выше иначе сотрется
 					-Product.all.each do |product|
