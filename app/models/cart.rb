@@ -7,6 +7,9 @@ class Cart < ActiveRecord::Base
   			current_item.quantity += quantity
   		else
   			current_item = line_items.build(product_id: product_id)
+        # I don't know why exactly, but if there is no item, your first addition
+        # to the cart will always put in #itemcount + 1 into the cart. Hence, the substraction.
+        current_item.quantity -= 1
   		end
   		current_item
   	end

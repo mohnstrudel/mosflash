@@ -204,7 +204,7 @@
               %form
                 .sizes
                   %h3
-                    Товар успешно добавлен в корзину
+                    Товар успешно добавлен в корзину!
             / /.box
             .quick-view-social
               %h4 Расскажите друзьям о своей покупке!
@@ -217,4 +217,7 @@
                   %i.fa.fa-twitter
                 %a.email{"data-animate-hover" => "pulse", :href => "#"}
                   %i.fa.fa-envelope
+            .box
+              =link_to 'Оформить заказ', cart_path(session[:cart_id]), class: 'btn btn-primary'
+              =link_to 'Продолжить покупки', root_path, class: 'btn btn-primary'
   / /.modal-dialog

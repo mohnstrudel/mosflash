@@ -8,7 +8,7 @@ class Admin::ProductsController < AdminController
 	end
 
 	def edit
-		@accompanies ||= @product.accompanies.sort_by { |p| p.title.downcase }
+		@accompanies = @product.accompanies.sort_by { |p| p.title.downcase }
 	end
 
 	def new

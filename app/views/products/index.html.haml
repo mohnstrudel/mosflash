@@ -60,11 +60,11 @@
 									%p.price
 										-if product.basicprice
 											от
-											=sprintf('%.2f', crb_kurs(product.basicprice))
+											=sprintf('%.2f', initialPrice(product.basicprice))
 											руб.
 										-elsif product.options.first.price
 											от
-											=sprintf('%.2f', crb_kurs(product.options.first.price))
+											=sprintf('%.2f', initialPrice(product.options.first.price))
 											руб.
 										-else
 											N/A
