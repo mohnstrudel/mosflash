@@ -6,10 +6,10 @@ class Cart < ActiveRecord::Base
   		if current_item
   			current_item.quantity += quantity
   		else
-  			current_item = line_items.build(product_id: product_id)
+  			current_item = line_items.build(product_id: product_id, quantity: quantity)
         # I don't know why exactly, but if there is no item, your first addition
         # to the cart will always put in #itemcount + 1 into the cart. Hence, the substraction.
-        current_item.quantity -= 1
+        # current_item.quantity -= 1
   		end
   		current_item
   	end
@@ -19,13 +19,26 @@ class Cart < ActiveRecord::Base
   	end
 
     def cartAddServiceValue
-      resultArray = Array.new
+      # this method is called in the order summary partial to add up all additional services
+      resultArrayEach = Array.new
+      resultArrayParty = Array.new
+      result = 0
+
       line_items.each_with_index do |li, index|
         if li.addservices?
-          resultArray << eval(li.addservices[(index+1).to_s]).fetch(:price).to_f
+          li.addservices.each do |key, value|
+            if eval(value).fetch(:toparty) == nil
+              resultArrayEach << eval(value).fetch(:price)
+            else
+              resultArrayParty << eval(value).fetch(:price)
+            end
+          end
         end
+
+        result = resultArrayEach.sum * li.quantity + resultArrayParty.sum
       end
-      resultArray.sum
+
+      return result
     end
         
 end

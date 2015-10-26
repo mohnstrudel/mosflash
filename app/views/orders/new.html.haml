@@ -48,24 +48,4 @@
 			/ /.box
 		/ /.col-md-9
 		.col-md-3
-			#order-summary.box
-				.box-header
-					%h3 Order summary
-				%p.text-muted Shipping and additional costs are calculated based on the values you have entered.
-				.table-responsive
-					%table.table
-						%tbody
-							%tr
-								%td Order subtotal
-								%th $446.00
-							%tr
-								%td Shipping and handling
-								%th $10.00
-							%tr
-								%td Tax
-								%th $0.00
-							%tr.total
-								%td Total
-								%th $456.00
-		/ /.col-md-3
-	/ /.container
+			=render 'carts/order_summary'

@@ -40,13 +40,13 @@
                   %td
                     .priceOutput
                       / Here we do output the price value
-                      =li.sellprice
+                      =sprintf('%.2f', li.sellprice)
                       руб
                   %td 0.00 руб
                   %td
                     .totalPrice
                       / Total price for the line item
-                      =li.sellprice * li.quantity
+                      =sprintf('%.2f', li.sellprice * li.quantity)
                       руб
                   %td
                     =link_to li, method: :delete do
@@ -56,7 +56,7 @@
                 %th{:colspan => "5"} Сумма
                 %th{:colspan => "2"}
                   / Total price for the cart
-                  =@cart.cartValue
+                  =sprintf('%.2f', @cart.cartValue)
                   руб
           .box-footer
             .pull-left

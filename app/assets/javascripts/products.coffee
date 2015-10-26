@@ -7,19 +7,19 @@ $(document).ready ->
     if $('a.size_input').length != 0
         $('a.size_input')[0].click()
 
-    $('div.box form').submit (event) ->
-        url = $(this).attr('action')
-        sellprice = parseInt( $('#priceValue').text(), 10)
+    # $('div.box form').submit (event) ->
+    #     url = $(this).attr('action')
+    #     sellprice = parseInt( $('#priceValue').text(), 10)
         # console.log(url)
         # console.log(sellprice)
 
-        $.ajax
-            type: 'POST'
-            url: url
-            data: { line_item: { sellprice: sellprice } }
-            dataType: 'json'
-            success: (json) ->
-                console.log('success')
+        # $.ajax
+        #     type: 'POST'
+        #     url: url
+        #     data: { line_item: { sellprice: sellprice } }
+        #     dataType: 'json'
+        #     success: (json) ->
+        #         console.log('success')
 
 jQuery ->
     $('li a').click (event) ->
