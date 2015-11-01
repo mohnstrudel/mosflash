@@ -26,15 +26,15 @@
 								.col-sm-12
 									.form-group
 										=f.label 'Имя'
-										=f.text_field :fname, id: 'firstname', class: 'form-control'
+										=f.text_field :fname, id: 'firstname', class: 'form-control', required: true
 								.col-sm-12
 									.form-group
 										=f.label 'Телефон'
-										=f.text_field :phone, id: 'phone', class: 'form-control'
+										=f.text_field :phone, id: 'phone', class: 'form-control', required: true
 								.col-sm-12
 									.form-group
 										=f.label 'Электронная почта'
-										=f.text_field :mail, id: 'mail', class: 'form-control'
+										=f.text_field :mail, id: 'mail', class: 'form-control', required: true
 
 							/ /.row
 							.box-footer

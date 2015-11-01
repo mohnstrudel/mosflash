@@ -12,6 +12,9 @@
 			%h6 Выбрать категорию, к которой относится данная подкатегория
 			=f.collection_select :category_id, Category.all, :id, :title, { prompt: 'Выбрать категорию' }, class: 'form-control'
 			%br
+			=f.label 'Загрузить фотографию подкатегории (если это флешка, то фотография появится на странице с выбором подкатегорий для флешек'
+			=f.file_field :avatar
+			%br
 			=f.submit 'Сохранить', class: 'btn btn-success'
 			=link_to 'Отменить', admin_path, class: 'btn btn-info'
 	.col-md-8

@@ -32,6 +32,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.add_line_items_from_cart(@cart)
+    @order.totalsum = @cart.cartValue
 
     respond_to do |format|
       if @order.save
@@ -80,6 +81,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:fname, :lname, :company, :street, :city, :zip, :phone, :mail, :pay_type, :delivery_type)
+      params.require(:order).permit(:totalsum, :fname, :lname, :company, :street, :city, :zip, :phone, :mail, :pay_type, :delivery_type)
     end
 end

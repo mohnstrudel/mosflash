@@ -5,5 +5,12 @@
 	%td
 		=line_item.product.title
 	%td.item_price
-		=line_item.sellprice
-		руб.
+		=sprintf("%.2f", line_item.sellprice)
+		руб
+
+	%td
+		=sprintf("%.2f", line_item.calculateAdditionalServices(line_item))
+		руб
+	%td 
+		=sprintf("%.2f", line_item.totalPrice + line_item.calculateAdditionalServices(line_item))
+		руб

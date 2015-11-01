@@ -11,7 +11,7 @@
         %tr
           %td Ваш заказ
           %th
-            =sprintf('%.2f', @cart.cartValue)
+            =sprintf('%.2f', @cart.cartValueWithoutServices)
             руб
         %tr
           %td Доставка и обработка заказа
@@ -24,5 +24,5 @@
         %tr.total
           %td Итого
           %th
-            =sprintf('%.2f', @cart.cartValue + @cart.cartAddServiceValue)
+            =sprintf('%.2f', @cart.cartValueWithoutServices + @cart.cartAddServiceValue + 1000)
             руб

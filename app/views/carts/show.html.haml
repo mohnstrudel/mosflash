@@ -1,3 +1,4 @@
+-counter=0
 #content
   .container
     .col-md-12
@@ -8,25 +9,30 @@
       .box.text-center
         .row
           .col-sm-10.col-sm-offset-1
-            %h1 Корзина
+            %h1 Ваш заказ
             %p.text-muted 
               На данный момент у вас
               =@cart.line_items.count 
               ="товар#{russianize(@cart.line_items.count)} в корзине."
-    #basket.col-md-9.clearfix
+    #basket.col-md-12.clearfix
       .box
         .table-responsive
           %table.table
             %thead
               %tr
+                %th
                 %th{:colspan => "2"} Товар
                 %th Количество
                 %th Цена
+                %th Доп. услуги
                 %th Скидка
                 %th{:colspan => "2"} Общая сумма
             %tbody
-              -@cart.line_items.each do |li|
+              -@cart.line_items.each_with_index do |li, index|
+                -counter = index+1
                 %tr
+                  %td
+                    ="#{index+1}."
                   %td
                     =link_to li.product do
                       -if li.product.images.first.image.url && li.product.images.first.image.thumb_small.file.exists?
@@ -42,21 +48,46 @@
                       / Here we do output the price value
                       =sprintf('%.2f', li.sellprice)
                       руб
+                  %td
+                    / Here go the additional services
+                    =sprintf('%.2f', li.calculateAdditionalServices(li))
+                    руб
                   %td 0.00 руб
                   %td
                     .totalPrice
                       / Total price for the line item
-                      =sprintf('%.2f', li.sellprice * li.quantity)
+                      =sprintf('%.2f', li.sellprice * li.quantity + li.calculateAdditionalServices(li))
                       руб
                   %td
                     =link_to li, method: :delete do
                       %i.fa.fa-trash-o
+              %tr
+                %td
+                  ="#{counter+1}."
+                %td
+                  =""
+                %td 
+                  Доставка
+                %td
+                  =""
+                %td
+                  =sprintf("%.2f", 1000)
+                  руб
+                %td
+                  =""
+                %td
+                  =""
+                %td
+                  =sprintf("%.2f", 1000)
+                  руб
+                %td
+                  =""
             %tfoot
               %tr
-                %th{:colspan => "5"} Сумма
+                %th{:colspan => "7"} Сумма
                 %th{:colspan => "2"}
                   / Total price for the cart
-                  =sprintf('%.2f', @cart.cartValue)
+                  =sprintf('%.2f', @cart.cartValue + 1000)
                   руб
           .box-footer
             .pull-left
@@ -75,5 +106,5 @@
       / /.box
       .row
         = render 'shared/you_may_like'
-    .col-md-3
-      =render 'order_summary'
+    / .col-md-3
+    /   =render 'order_summary'

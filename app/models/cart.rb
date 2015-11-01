@@ -15,30 +15,16 @@ class Cart < ActiveRecord::Base
   	end
 
   	def cartValue
-  		line_items.to_a.sum { |item| item.totalPrice}
+  		line_items.to_a.sum { |item| item.totalPrice + item.calculateAdditionalServices(item)}
   	end
+
+    def cartValueWithoutServices
+      line_items.to_a.sum { |item| item.totalPrice }
+    end
 
     def cartAddServiceValue
       # this method is called in the order summary partial to add up all additional services
-      resultArrayEach = Array.new
-      resultArrayParty = Array.new
-      result = 0
-
-      line_items.each_with_index do |li, index|
-        if li.addservices?
-          li.addservices.each do |key, value|
-            if eval(value).fetch(:toparty) == nil
-              resultArrayEach << eval(value).fetch(:price)
-            else
-              resultArrayParty << eval(value).fetch(:price)
-            end
-          end
-        end
-
-        result = resultArrayEach.sum * li.quantity + resultArrayParty.sum
-      end
-
-      return result
+      line_items.to_a.sum { |item| item.calculateAdditionalServices(item) }
     end
         
 end

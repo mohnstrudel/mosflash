@@ -4,10 +4,29 @@
 
 %table
 	%tr
-		%th{colspan: 2}
+		%th
 			Кол-во
 		%th
 			Описание
 		%th
-			Стоимость
+			Стоимость за шт.
+		%th
+			Доп.услуги
+		%td 
+			Общая сумма
 	=render @order.line_items
+	%tr
+		%td
+			=""
+		%td
+			Доставка
+		%td
+			1000.00 руб
+		%td 
+			=""
+		%td
+			1000.00 руб
+	%tr
+		%td{colspan: 5, "align" => "right"}
+			=sprintf("%.2f", @order.totalsum + 1000)
+			руб

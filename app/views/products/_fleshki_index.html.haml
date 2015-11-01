@@ -1,0 +1,11 @@
+.box.info-bar.full-width.no-border
+.row.products
+	-@category.subcategories.each do |subcat|
+		.col-md-3.col-sm-4
+			.product
+				.image
+					=image_tag subcat.avatar.url, class: 'img img-responsive image1'
+				.text
+					%h3
+						=link_to products_path(category_id: @category.id, subcategory_id: subcat.id) do
+							=subcat.title
