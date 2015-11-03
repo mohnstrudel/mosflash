@@ -5,13 +5,20 @@
   .container
     .navbar-header
       =link_to root_path, class: 'navbar-brand home' do
-        =image_tag 'default/logo_full.png', class: 'hidden-xs hidden-sm', alt: "Логотип Мосфлеш", width: 180
-        =image_tag 'default/logo_small.png', class: 'visible-xs visible-sm', alt: 'Логотип Мосфлеш'
+        =image_tag 'default/logo_small_v2.png', class: 'hidden-xs hidden-sm', alt: "Логотип Мосфлеш", width: 52
+        =image_tag 'default/logo_small_v2.png', class: 'visible-xs visible-sm', alt: 'Логотип Мосфлеш'
         %span.sr-only Мосфлеш - обратно на главную
     / Descriptor text
+    .navbar-header
+      %h1
+        .mosflash_logotext
+          МОСФЛЕШ
+      %h2
+        .mosflash_sublogotext
+          СУВЕНИРНАЯ ПРОДУКЦИЯ
     .navbar-header.descriptor
       %h6 
-        Рекламно-сувенираня продукция
+        Рекламно-сувенирная продукция
         %br
         под нанесение вашего логотипа
         %br
