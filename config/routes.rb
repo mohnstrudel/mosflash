@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'downloads/exe'
+
   match '/contacts',  to: 'static_pages#contacts',    via: 'get'
   match '/history',   to: 'static_pages#history',     via: 'get'
   match '/checkflash',to: 'static_pages#checkflash',   via: 'get'
@@ -7,6 +9,7 @@ Rails.application.routes.draw do
   resources :orders
   resources :addservices, only: :index
   resources :blogposts, only: [:show, :index]
+  resources :donwloads
 
   resources :products do
     resources :servizations
