@@ -5,24 +5,25 @@
   .container
     .navbar-header
       =link_to root_path, class: 'navbar-brand home' do
-        =image_tag 'default/logo_small_v2.png', class: 'hidden-xs hidden-sm', alt: "Логотип Мосфлеш", width: 52
-        =image_tag 'default/logo_small_v2.png', class: 'visible-xs visible-sm', alt: 'Логотип Мосфлеш'
+        =image_tag 'default/logo_small_v3.png', class: 'hidden-xs hidden-sm', alt: "Логотип Мосфлеш", width: 52
+        =image_tag 'default/logo_small_v3.png', class: 'visible-xs visible-sm', alt: 'Логотип Мосфлеш', width: 52
         %span.sr-only Мосфлеш - обратно на главную
     / Descriptor text
     .navbar-header
       %h1
         .mosflash_logotext
-          МОСФЛЕШ
+          =link_to 'МОСФЛЕШ', root_path, style: 'text-decoration: none; color: #d85054;'
       %h2
         .mosflash_sublogotext
-          СУВЕНИРНАЯ ПРОДУКЦИЯ
+          =link_to 'СУВЕНИРНАЯ ПРОДУКЦИЯ', root_path, style: 'text-decoration: none; color: black;'
     .navbar-header.descriptor
-      %h6 
-        Рекламно-сувенирная продукция
-        %br
-        под нанесение вашего логотипа
-        %br
-        с доставкой по России и СНГ
+      %h6
+        .add_descriptor_class 
+          Cувенирная продукция
+          %br
+          под нанесение вашего логотипа
+          %br
+          с доставкой по России и СНГ
 
     #basket-overview.navbar-collapse.collapse.right
       %h3.phone_number
