@@ -7,5 +7,5 @@
 					=image_tag subcat.avatar.url, class: 'img img-responsive image1'
 				.text
 					%h3
-						=link_to products_path(category_id: @category.id, subcategory_id: subcat.id) do
+						=link_to products_path(category: @category.title, subcategory: subcat.title) do
 							=subcat.title

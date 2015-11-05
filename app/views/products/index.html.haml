@@ -20,7 +20,7 @@
 			/
 				*** LEFT COLUMN ***
 				_________________________________________________________
-			-if @category.title == 'Флешки'
+			-if @category.title == 'Флешки' && @subcategory.blank?
 				=render 'fleshki_index'
 			-else
 				=render 'regular_index'
