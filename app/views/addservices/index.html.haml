@@ -11,24 +11,21 @@
 						%h1 Дополнительные услуги
 						%p
 							Немного бла бла про то, какая это замечательная страница
-		/
-			*** LEFT COLUMN ***
-			_________________________________________________________
 		.col-md-12.clearfix
-			#text-page.box
+			#text-page
 				%h2 Перечень услуг
 				%blockquote
 					%p
-						Благодаря нашим услугам вы сможете индивидуализировать свой заказ.
+						Благодаря нашим услугам вы сможете сделать свой заказ индивидуальным.
 				#addservices
 					%ul
 						-@addservices.each do |addservice|
 							%li
 								.row
-									.col-md-4
+									.col-md-6
 										%h4
 											=addservice.title
 									.col-md-4
 										%h5
-											="- от #{addservice.price} руб."
-									.col-md-4
+											="- от #{sprintf('%.0f',addservice.price)} руб."
+									.col-md-2
