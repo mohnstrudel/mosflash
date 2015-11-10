@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   get 'downloads/exe'
 
   match '/contacts',  to: 'static_pages#contacts',    via: 'get'

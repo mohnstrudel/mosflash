@@ -19,6 +19,9 @@ gem 'coffee-rails', '~> 4.1.0'
 # Lets store some environment variables
 gem 'figaro'
 
+# Lets manage users
+gem 'devise'
+
 
 # Using haml
 gem 'haml-rails', '~> 0.9.0'
