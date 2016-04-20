@@ -1,5 +1,33 @@
 module ApplicationHelper
 
+	def image_or_default(object, options = {})
+		# Usage:
+		# as object you give either the 'parent' object, for example a product. Or you can give a specific image, that's
+		# where which_one: 'each' comes in.
+		# options[:which_one] - you can specify 'first', 'second', 'last' etc. or 'each' if you need to loop through all images.
+		# options[:class] - a css class to provide, optional
+		# options[:thumb] - the name for thumbnail you specified in the uploader class
+
+		which_one = options[:which_one] || 'first'		
+		thumb = options[:thumb]
+		attributes_array = Array.new
+		# object.attribute_names.each { |attribute| attributes_array.push(object.send(attribute)) }
+
+		alt = request.original_fullpath.split(/[\/-]/).join(" ")
+
+		if which_one == :each
+			return image_tag(object.image.url(thumb), class: options[:class], alt: alt)
+		elsif object.try(:images)
+			if object.images.any?
+				return image_tag(object.images.send(which_one).image.url(thumb), class: options[:class], alt: alt)
+			else
+				return image_tag("default.png", size: "270x380")
+			end
+		else
+			return image_tag(object.send(options[:image_name]).url(thumb), class: options[:class], alt: alt)
+		end		
+	end
+
 
 	def hidden_div_if(condition, attributes = {}, &block)
 		if condition

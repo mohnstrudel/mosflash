@@ -9,17 +9,15 @@
 							-if @category_id && @subcategory_id.blank?
 								%h1 
 									=@category.title
-								%p.text-muted 
-									=@category.description
+								-unless @category.title == 'Флешки' && @subcategory.blank?
+									%p.text-muted 
+										=@category.description
 							-elsif @category_id && @subcategory_id
 								%h1
 									="#{@subcategory.title} (#{@category.title})"
 								%p.text-muted
 									=@subcategory.description
 		.row
-			/
-				*** LEFT COLUMN ***
-				_________________________________________________________
 			-if @category.title == 'Флешки' && @subcategory.blank?
 				=render 'fleshki_index'
 			-else

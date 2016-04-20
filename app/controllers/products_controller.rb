@@ -36,6 +36,9 @@ class ProductsController < ApplicationController
   end
 
   def index
+
+    @members = Member.all
+
     @per_page = params[:per_page] || Product.per_page || 20
     if params[:category].blank?
       @products = Product.all.order(params[:sort], created_at: :desc).paginate(:per_page => @per_page, :page => params[:page])

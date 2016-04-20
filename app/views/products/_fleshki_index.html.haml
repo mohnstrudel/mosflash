@@ -9,3 +9,12 @@
 					%h3
 						=link_to products_path(category: @category.title, subcategory: subcat.title) do
 							=subcat.title
+.row
+	.col-sm-12
+		.box.text-center
+			%h3.text-uppercase Наша команда
+	=render "store_front/team"
+.row
+	.box.text-center
+		%p.text-muted 
+			=@category.description

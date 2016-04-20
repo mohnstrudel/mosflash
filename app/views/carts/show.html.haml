@@ -1,4 +1,4 @@
--counter=0
+-counter = 0
 #content
   .container
     .col-md-12
@@ -6,27 +6,81 @@
         %li
           %a{:href => "index.html"} Главная
         %li Корзина
-      .box.text-center
-        .row
+
+
+    .container
+      .row
+        .col-md-1
+        .col-md-11
+          %b
+            ООО "МТ"
+            %br
+            101000 г. Москва, Армянский переулок д.9/1/1, строение 1, помещение Х.
+            %br
+            Тел.: +7(499) 755-80-55
+      .row
+        .col-md-7
+          .row
+            .col-md-6.use_border
+              ИНН 9701001922
+            .col-md-6.use_border
+              КПП 770101001
+          .row.use_border
+            .col-md-12
+              Получатель
+              %br
+              ООО "МТ"
+          .row.use_border
+            .col-md-12
+              Банк получателя
+              %br
+              ПАО "ХАНТЫМАНСИЙСКИЙ БАНК ОТКРЫТИЕ" Москва
+
+        .col-md-5
+          .row
+            .col-md-3.use_border.use_padding_top_2
+              %br
+              %br
+              Сч. №
+            .col-md-9.use_border.use_padding_top_2
+              %br
+              %br
+              р/с 40702810800000024468
+          .row
+            .col-md-3.use_border
+              БИК
+              %br
+              Сч. №
+            .col-md-9.use_border
+              044583297
+              %br
+              30101810700000000297
+      .row
+        .text-center
           .col-sm-10.col-sm-offset-1
-            %h1 Ваш заказ
-            %p.text-muted 
-              На данный момент у вас
-              =@cart.line_items.count 
-              ="товар#{russianize(@cart.line_items.count)} в корзине."
+            %h1 СЧЕТ № 2351 от 01.04.2016
+            %br
+            Счет на оплату
+      .row
+        .col-md-12
+          Плательщик: ООО "Альтернативный маркетинг"
+
+
     #basket.col-md-12.clearfix
       .box
         .table-responsive
           %table.table
             %thead
               %tr
-                %th
-                %th{:colspan => "2"} Товар
-                %th Количество
-                %th Цена
+                %th №
+                %th{:colspan => "2"} Наименование товара
+                %th Кол-во
+                %th Ед.
+                %th Цена, руб.
                 %th Доп. услуги
                 %th Скидка
-                %th{:colspan => "2"} Общая сумма
+                %th Ставка НДС
+                %th{:colspan => "2"} Сумма, руб.
             %tbody
               -@cart.line_items.each_with_index do |li, index|
                 -counter = index+1
@@ -44,6 +98,8 @@
                   %td
                     %input.form-control{:disabled => '', :type => "number", value: li.quantity, size: 20, id: 'quantity_input'}
                   %td
+                    шт
+                  %td
                     .priceOutput
                       / Here we do output the price value
                       =sprintf('%.2f', li.sellprice)
@@ -53,6 +109,8 @@
                     =sprintf('%.2f', li.calculateAdditionalServices(li))
                     руб
                   %td 0.00 руб
+                  %td
+                    18%
                   %td
                     .totalPrice
                       / Total price for the line item
@@ -71,8 +129,12 @@
                 %td
                   =""
                 %td
+                  =""
+                %td
                   =sprintf("%.2f", 1000)
                   руб
+                %td
+                  =""
                 %td
                   =""
                 %td
@@ -84,7 +146,18 @@
                   =""
             %tfoot
               %tr
-                %th{:colspan => "7"} Сумма
+                %th{colspan: 8} 
+                %th{colspan: 1} В том числе НДС:
+                %th{:colspan => "2"}
+                  / Total price for the cart
+                  =sprintf('%.2f', (@cart.cartValue + 1000)*0.18)
+
+
+
+                  руб
+              %tr
+                %th{colspan: 8} 
+                %th{colspan: 1} Итого:
                 %th{:colspan => "2"}
                   / Total price for the cart
                   =sprintf('%.2f', @cart.cartValue + 1000)
@@ -103,8 +176,19 @@
               =button_to new_order_path, class: 'btn btn-primary', method: :get do
                 Завершить заказ
                 %i.fa.fa-chevron-right
-      / /.box
+      .row
+        .col-md-12
+          Всего наименований 2, на сумму 1174.40 руб.
+          %br
+          %b Одна тысяча сто семдесят четыре рубля 40 копеек.
+      .row.use_margin
+        .col-md-12
+          %p
+            %b Условия и комментарии
+            %br
+            В случае непоступления средств на расчетный счет продавца в течении пяти банковских дней со дня выписки счета, продавец оставляет за собой право пересмотреть отпускную цену товара в рублях пропорционально изменение курса доллара и выставить счет на доплату. В платежном поручении обязательно указать номер и дату выставления счета. Получение товара только после прихода денег на расчетный счет компании.
       .row
         = render 'shared/you_may_like'
+
     / .col-md-3
     /   =render 'order_summary'
