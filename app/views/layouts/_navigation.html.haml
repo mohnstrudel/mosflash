@@ -28,7 +28,7 @@
     #basket-overview.navbar-collapse.collapse.right
       %h3.phone_number
         =link_to '#' do
-          +7 (499) 755-80-55
+          +7 (499) 755 58 48
       %h6.under_phone_number Режим работы: 10:00 - 20:00 (пн-пт)
     / /.navbar-header
   .container
@@ -73,5 +73,6 @@
 
     / /.nav-collapse
     #basket-overview.navbar-collapse.collapse.right
-      =hidden_div_if(Cart.find(session[:cart_id]).line_items.empty?, id: 'cart') do
-        =render 'shared/cart_button'
+      #mosflash-cart
+        =hidden_div_if(Cart.find(session[:cart_id]).line_items.empty?, id: 'cart') do
+          =render 'shared/cart_button'

@@ -46,7 +46,7 @@
         .col-sm-6
           .box
             %h3 Опции данного товара
-            =form_for :line_item, url: line_items_path(product_id: @product.id), remote: true do |f|
+            =form_for :line_item, url: line_items_path(product_id: @product.id) do |f|
               / remote: true
               -unless @product.basicprice
                 .sizes
@@ -132,7 +132,7 @@
                   .col-sm-4
               .row
                 .col-sm-12
-                  =button_tag(type: 'submit', id: 'add_item_to_cart', class: 'btn-buy btn-primary shopping-cart-btn', "data-target" => "#product-quick-view-modal", "data-toggle" => "modal") do
+                  =button_tag(type: 'submit', id: 'add_item_to_cart', class: 'btn-buy btn-primary shopping-cart-btn') do
                     %i.fa.fa-shopping-cart
                     Купить
           
