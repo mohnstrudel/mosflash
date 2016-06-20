@@ -22,6 +22,8 @@ $(document).ready ->
         #         console.log('success')
 
 jQuery ->
+    
+
     $('li a').click (event) ->
         # event.preventDefault()
         $('a').removeClass('active')
@@ -153,6 +155,8 @@ jQuery ->
         $('#priceForOne').text(endPriceOne.toFixed(2))
         $('#priceForAll').text(endPriceParty.toFixed(2))
         $('#priceForAddservices').text(endPriceServices.toFixed(2))
+
+    recalculate()
 
     $('.size_input').click (event) ->
         recalculate()
