@@ -103,6 +103,10 @@ class ProductsController < ApplicationController
     return param * 5
   end
 
+  def get_service(id)
+    Addservice.find_by(id)
+  end
+
   private
 
     # def product_params

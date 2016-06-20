@@ -1,16 +1,5 @@
 #content
-  .container
-    .col-md-12
-      =render 'shared/breadcrumbs'
-      .box.text-center
-        .row
-          .col-sm-10.col-sm-offset-1
-            %h1 
-              =@product.title
-            %p.text-muted
-              =@product.advertising_text
-            %p.goToDescription
-              %a.scroll-to{:href => "#details"} Пролистните вниз, что бы узнать все детали товара
+  .container.mosflash_mt_20
     /
       *** LEFT COLUMN ***
       _________________________________________________________
@@ -45,7 +34,8 @@
           / /.ribbon
         .col-sm-6
           .box
-            %h3 Опции данного товара
+            %h3
+              =@product.title
             =form_for :line_item, url: line_items_path(product_id: @product.id) do |f|
               / remote: true
               -unless @product.basicprice
@@ -71,13 +61,15 @@
                 .col-sm-6        
                   %label{for: 'amount'}
                     Количество
-                  %input.form-control{:type => "number", value: 1, size: 5, id: 'amount', name: 'amount'}
+                  %input.form-control{:type => "number", value: 1000, size: 5, id: 'amount', name: 'amount'}
               .row
                 .col-sm-12
                   .form-group
                     %label{for: 'delivery'}
-                      Сроки
-                    =select_tag 'delivery', options_from_collection_for_select(Delivery.all.order(coefficient: :asc), 'coefficient', 'value'), class: 'form-control', id: 'delivery'
+                      Срок поставки
+                      %input.form-control{:type => "text", value: "3 дня", size: 5, id: 'delivery', name: 'delivery', disabled: true, size: 200}
+
+                    / =select_tag 'delivery', options_from_collection_for_select(Delivery.all.order(coefficient: :asc), 'coefficient', 'value'), class: 'form-control', id: 'delivery'
               -if @product.addservices.any?
                 .row
                   .col-sm-9
@@ -86,11 +78,22 @@
                         Дополнительные услуги
                       -@servizations.each do |servization|
                         %br
-                        =check_box_tag('addservices[]', [servization[0].addservice_id, servization[1], Addservice.find_by(id: servization[0].addservice_id).toparty], false, class: 'addservice_checkbox')
-                        =Addservice.find_by(id: servization[0].addservice_id).title
-                        -
-                        =sprintf('%.2f', servization[1])
-                        руб.
+                        -if Addservice.find_by(id: servization[0].addservice_id).amount_name
+                          .form-inline
+                            =check_box_tag('addservices[]', [servization[0].addservice_id, servization[1], Addservice.find_by(id: servization[0].addservice_id).toparty], false, class: 'addservice_checkbox')
+                            =Addservice.find_by(id: servization[0].addservice_id).title
+                            ="-"
+                            =sprintf('%.2f', servization[1])
+                            руб.
+                            %input.form-control{type: "number", value: 1, name: 'addservice_amount', style: "width: 60px;"}
+                            =Addservice.find_by(id: servization[0].addservice_id).amount_name
+                        -else
+                          =check_box_tag('addservices[]', [servization[0].addservice_id, servization[1], Addservice.find_by(id: servization[0].addservice_id).toparty], false, class: 'addservice_checkbox')
+                          =Addservice.find_by(id: servization[0].addservice_id).title
+                          ="-"
+                          =sprintf('%.2f', servization[1])
+                          руб.
+
                     -if @servizations.count > 5
                       #thediv
                         %a.btn.btn-primary{:href => "#", id: 'load_more_btn', onclick: "toggle(this)"}
@@ -99,7 +102,7 @@
                         
               .row
                 .col-sm-12
-                  Цена:
+                  Сумма:
                   %p.price#priceValue
                     -if @product.basicprice
                       =sprintf('%.2f', initialPrice(@product.basicprice))
@@ -131,12 +134,17 @@
                       руб.
                   .col-sm-4
               .row
-                .col-sm-12
+                .col-sm-12.mosflash_text_center
                   =button_tag(type: 'submit', id: 'add_item_to_cart', class: 'btn-buy btn-primary shopping-cart-btn') do
                     %i.fa.fa-shopping-cart
                     Купить
           
       #details.box
+        %p
+          %h4 Условия работы
+          %ul
+            %li
+              Изготовление 2-х уникальных образцов включено в стоимость. Каждый дополнительный + 500 руб. к заказу
         %p
           -if @product.characteristics.any?
             %h4 

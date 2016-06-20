@@ -44,6 +44,6 @@ class Admin::AddservicesController < AdminController
 	  end
 
 	  def addservice_params
-	  	params.require(:addservice).permit(:title, :price, :toparty)
+	  	params.require(:addservice).permit(:title, :price, :toparty, :amount_name)
 	  end
 end

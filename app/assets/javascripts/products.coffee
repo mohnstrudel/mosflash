@@ -49,6 +49,10 @@ jQuery ->
         delivery = $('#delivery').val()
         return parseFloat(delivery).toFixed(2)
 
+    get_amount = ->
+        amount = $('#amount').val()
+        return parseFloat(amount).toFixed(2)
+
     get_size = ->
         # in this method we either select the price value based on the flash
         # drive size, or, if it has a basic price, just simply the basic price
@@ -101,6 +105,31 @@ jQuery ->
         console.log('Addservices combined: ' + addservices + '| Addservice to whole party: '+ addservicesParty)
         return [parseFloat(sum), parseFloat(sumParty)]
 
+    calculate_delivery = ->
+        # We recalculate delivery time based on amount of goods user has selected. When up to 200 cards, delivery time should
+        # be one (1) day. Between 100 and 500, delivery time is 2 days. etc.
+        amount_of_goods = get_amount()
+        delivery = 1
+        day = "день"
+        switch
+            when amount_of_goods <= 100 
+                delivery = 1
+                day = "день"
+            when amount_of_goods >= 101 and amount_of_goods <= 500
+                delivery = 2
+                day = "дня"
+            when amount_of_goods >= 501 and amount_of_goods <= 1500
+                delivery = 3
+                day = "дня"
+            when amount_of_goods > 1500
+                delivery = 6
+                day = "дней"
+            else
+                delivery = 3
+                day = "дня"
+        $("#delivery").val(delivery + " " + day)
+
+
     recalculate = ->
         # This function recalculates the price
         base = get_size()
@@ -134,6 +163,7 @@ jQuery ->
 
     $('#amount').on('input', (event) ->
         recalculate()
+        calculate_delivery()
         )
 
     $('#delivery').change (event) ->
