@@ -138,53 +138,58 @@
                   =button_tag(type: 'submit', id: 'add_item_to_cart', class: 'btn-buy btn-primary shopping-cart-btn') do
                     %i.fa.fa-shopping-cart
                     Купить
-          
+      
       #details.box
-        %p
-          %h4 Условия работы
-          %ul
-            %li
-              Изготовление 2-х уникальных образцов включено в стоимость. Каждый дополнительный + 500 руб. к заказу
-        %p
-          -if @product.characteristics.any?
-            %h4 
-              Характеристики продукта
-            .row
-              .col-md-2
-                Вес:
-                %br
-                Размер:
-                %br
-                Материал:
-              .col-md-8
-                ="#{sprintf('%.0f', @product.characteristics[0].weight)} г" if @product.characteristics[0].weight
-                %br
-                ="#{sprintf('%.0f', @product.characteristics[0].length)} х #{sprintf('%.0f', @product.characteristics[0].width)} x #{sprintf('%.0f', @product.characteristics[0].thickness)} мм"
-                %br
-                =@product.material
-              .col-md-2
-            / Additional characteristics output
-            -@product.additionalcharacteristics.each do |addchar|
-              .row
-                .col-md-2
-                  ="#{addchar.name}:"
-                .col-md-8
-                  =addchar.value
-                .col-md-2
+        .row
+          .col-md-6
+            %p
+              %h4 Условия работы
+              %ul
+                %li
+                  Изготовление 2-х уникальных образцов включено в стоимость. Каждый дополнительный + 500 руб. к заказу
+            %p
+              -if @product.characteristics.any?
+                %h4 
+                  Характеристики продукта
+                .row
+                  .col-md-2
+                    Вес:
+                    %br
+                    Размер:
+                    %br
+                    Материал:
+                  .col-md-8
+                    ="#{sprintf('%.0f', @product.characteristics[0].weight)} г" if @product.characteristics[0].weight
+                    %br
+                    ="#{sprintf('%.0f', @product.characteristics[0].length)} х #{sprintf('%.0f', @product.characteristics[0].width)} x #{sprintf('%.0f', @product.characteristics[0].thickness)} мм"
+                    %br
+                    =@product.material
+                  .col-md-2
+                / Additional characteristics output
+                -@product.additionalcharacteristics.each do |addchar|
+                  .row
+                    .col-md-2
+                      ="#{addchar.name}:"
+                    .col-md-8
+                      =addchar.value
+                    .col-md-2
 
-          -unless @product.description.empty?
-            %h4 Дополнительная информация
-            %p=@product.description
-          -else
-            -if @product.fancy_quote
-              %blockquote
-                %p
-                  %em
-                    =@product.fancy_quote
-      / #product-social.box.social
-      /   %h4 Расскажите о нас друзьям
-      /   %p.social
-      /     =render 'shared/social'
+              -unless @product.description.empty?
+                %h4 Дополнительная информация
+                %p=@product.description
+              -else
+                -if @product.fancy_quote
+                  %blockquote
+                    %p
+                      %em
+                        =@product.fancy_quote
+          / #product-social.box.social
+          /   %h4 Расскажите о нас друзьям
+          /   %p.social
+          /     =render 'shared/social'
+          .col-md-6
+            -if @product.makets.any?
+              =render 'makets'
       -if @product.accompanships.any?
         .row
           =render 'similar_products'

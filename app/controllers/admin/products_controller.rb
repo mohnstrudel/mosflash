@@ -66,7 +66,8 @@ class Admin::ProductsController < AdminController
 				images_attributes: [ :id, :image, :product_id, :_destroy ],
 				servizations_attributes: [:id, :product_id, :addservice_id, :coefficient, :_destroy],
 				characteristics_attributes: [:id, :product_id, :weight, :length, :width, :thickness],
-				additionalcharacteristics_attributes: [:id, :product_id, :name, :value, :_destroy]
+				additionalcharacteristics_attributes: [:id, :product_id, :name, :value, :_destroy],
+				makets_attributes: [ :id, :name, :maket_type, :attachment, :_destroy ]
 				)
 		end
 

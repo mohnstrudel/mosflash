@@ -1,0 +1,14 @@
+.col-md-6
+	=f.label "Название макета"
+	=f.text_field :name
+.col-md-6
+	=f.label "Тип файла jpg, png, pdf..."
+	=f.text_field :maket_type
+.col-md-6
+	=f.label "Загрузить файл"
+	=f.file_field :attachment
+-if :attachment
+	=f.object.name
+	=f.label 'Удалить?'
+	=f.check_box :_destroy
+%br

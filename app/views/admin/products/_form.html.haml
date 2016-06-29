@@ -126,6 +126,13 @@
 							=render 'additionalcharacteristic_fields', f: addchar_builder
 							%br
 						=link_to_add_fields 'Добавить характеристику', f, :additionalcharacteristics
+				.row
+					.box
+						%h3 Загрузить макеты
+						=f.fields_for :makets do |maket_builder|
+							=render 'maket_fields', f: maket_builder
+							%br
+						=link_to_add_fields 'Добавить макет', f, :makets
 
 				=f.submit 'Сохранить', id: 'submit-data', class: 'btn btn-success'
 				=link_to 'Отменить', admin_path, class: 'btn btn-info'

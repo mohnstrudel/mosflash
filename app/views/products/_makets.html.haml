@@ -1,0 +1,5 @@
+%h4 Макеты для скачивания
+%ol
+	-@product.makets.each do |maket|
+		%li
+			=link_to "#{maket.name} - #{maket.maket_type}", maket.attachment.url

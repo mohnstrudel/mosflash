@@ -15,6 +15,7 @@ class Product < ActiveRecord::Base
 	has_many	:images, dependent: :destroy
 	has_many	:hot_pics
 	has_many	:line_items
+	has_many	:makets
 
 	has_many	:characteristics, dependent: :destroy
 
@@ -37,6 +38,7 @@ class Product < ActiveRecord::Base
 	accepts_nested_attributes_for :hot_pics
 	accepts_nested_attributes_for :servizations
 	accepts_nested_attributes_for :characteristics
+	accepts_nested_attributes_for :makets, allow_destroy: true
 
 	before_destroy	:ensure_not_referenced_by_any_line_item
 
