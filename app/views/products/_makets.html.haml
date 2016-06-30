@@ -1,5 +1,6 @@
 %h4 Макеты для скачивания
-%ol
-	-@product.makets.each do |maket|
-		%li
-			=link_to "#{maket.name} - #{maket.maket_type}", maket.attachment.url
+%ol#example1
+=recaptcha_tags
+-@product.makets.each do |maket|
+	%li
+		=link_to "#{maket.name} - #{maket.maket_type}", product_download_path(product_id: @product.id, maket: maket)

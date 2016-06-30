@@ -22,6 +22,8 @@ gem 'figaro'
 # Lets manage users
 gem 'devise'
 
+# Captcha for Downloading
+gem "recaptcha", require: "recaptcha/rails"
 
 # Using haml
 gem 'haml-rails', '~> 0.9.0'

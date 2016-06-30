@@ -107,6 +107,19 @@ class ProductsController < ApplicationController
     Addservice.find_by(id)
   end
 
+  def download_maket
+    @product = Product.find(params[:product_id])
+    @maket = Maket.find(params[:maket])
+    if verify_recaptcha(model: @product)
+      send_file(@maket.attachment.path, filename: @maket.attachment.file.filename)
+      flash[:success] = "Скачивание скоро начнется"
+    else
+      p "failed!!!"
+      redirect_to @product
+      flash[:danger] = "Вы не нажали на капчу. Возможно вы бот?"
+    end
+  end
+
   private
 
     # def product_params

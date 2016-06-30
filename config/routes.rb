@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   devise_for :users
   get 'downloads/exe'
 
+
+
   match '/contacts',  to: 'static_pages#contacts',    via: 'get'
   match '/history',   to: 'static_pages#history',     via: 'get'
   match '/checkflash',to: 'static_pages#checkflash',   via: 'get'
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
   resources :donwloads
 
   resources :products do
+    match '/download',  to: 'products#download_maket',   via: 'get'
     resources :servizations
     resources :colors
     resources :options do
