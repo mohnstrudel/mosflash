@@ -7,6 +7,9 @@ $(document).ready ->
     if $('a.size_input').length != 0
         $('a.size_input')[0].click()
 
+    $('.seduce_me').addClass('hideme')
+
+
     # $('div.box form').submit (event) ->
     #     url = $(this).attr('action')
     #     sellprice = parseInt( $('#priceValue').text(), 10)
@@ -178,20 +181,3 @@ jQuery ->
 
     $('#load_more_btn').click (event) ->
         event.preventDefault()
-
-verifyCallback = (response) ->
-  alert response
-  return
-
-onloadCallback = ->
-  # Renders the HTML element with id 'example1' as a reCAPTCHA widget.
-  # The id of the reCAPTCHA widget is assigned to 'widgetId1'.
-  widgetId1 = grecaptcha.render('example1',
-    'sitekey': '<%= Recaptcha.configuration.public_key %>'
-    'theme': 'light')
-  widgetId2 = grecaptcha.render(document.getElementById('example2'), 'sitekey': '<%= Recaptcha.configuration.public_key %>')
-  grecaptcha.render 'example3',
-    'sitekey': '<%= Recaptcha.configuration.public_key %>'
-    'callback': verifyCallback
-    'theme': 'dark'
-  return

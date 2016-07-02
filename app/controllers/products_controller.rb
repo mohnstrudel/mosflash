@@ -110,13 +110,14 @@ class ProductsController < ApplicationController
   def download_maket
     @product = Product.find(params[:product_id])
     @maket = Maket.find(params[:maket])
-    if verify_recaptcha(model: @product)
+
+    if params[:seduce].empty?
       send_file(@maket.attachment.path, filename: @maket.attachment.file.filename)
       flash[:success] = "Скачивание скоро начнется"
     else
       p "failed!!!"
       redirect_to @product
-      flash[:danger] = "Вы не нажали на капчу. Возможно вы бот?"
+      flash[:danger] = "Что-то пошло не так. Возможно вы бот?"
     end
   end
 

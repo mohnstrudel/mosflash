@@ -1,6 +1,8 @@
 %h4 Макеты для скачивания
-%ol#example1
-=recaptcha_tags
--@product.makets.each do |maket|
-	%li
-		=link_to "#{maket.name} - #{maket.maket_type}", product_download_path(product_id: @product.id, maket: maket)
+%ul
+	-@product.makets.each do |maket|
+		%li
+			=form_tag product_download_path(product_id: @product.id), method: :get do
+				=text_field_tag :seduce, nil, class: 'seduce_me'
+				=hidden_field_tag :maket, maket.id
+				=submit_tag "#{maket.name} - #{maket.maket_type}", class: 'btn btn-default'

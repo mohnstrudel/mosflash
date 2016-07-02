@@ -94,11 +94,11 @@
                           =sprintf('%.2f', servization[1])
                           руб.
 
-                    -if @servizations.count > 5
-                      #thediv
-                        %a.btn.btn-primary{:href => "#", id: 'load_more_btn', onclick: "toggle(this)"}
-                          %i.fa.fa-chevron-down
-                          Показать все
+                    / -if @servizations.count > 5
+                    /   #thediv
+                    /     %a.btn.btn-primary{:href => "#", id: 'load_more_btn', onclick: "toggle(this)"}
+                    /       %i.fa.fa-chevron-down
+                    /       Показать все
                         
               .row
                 .col-sm-12
