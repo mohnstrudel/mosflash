@@ -2,9 +2,11 @@
 =f.number_field :price, step: :any
 %br
 =f.label "Размер"
+%br
 -Volume.all.order(value: :asc).each do |volume|
-	=f.label volume.value
+	="#{volume.value} Гб"
 	=f.radio_button :size, volume.id
+	%br
 %br
 =f.label 'Удалить?'
 =f.check_box :_destroy
