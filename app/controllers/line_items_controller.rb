@@ -15,6 +15,11 @@ class LineItemsController < ApplicationController
 
 		@line_item.sellprice = calculatePrice(params)
 
+		puts "//======\\\\"
+		puts "Debugging"
+		puts @line_item.sellprice
+		puts @line_item
+		puts "//=======\\\\"
 		# unless @line_item.sellprice
 		# 	@line_item.sellprice = params[:line_item][:sellprice]
 		# end
@@ -92,13 +97,24 @@ class LineItemsController < ApplicationController
 	    	else
 	    		basePrice = crb_kurs(Product.find(parameters[:product_id]).basicprice)
 	    	end
+
+	    	puts "||------- Debugging -------||"
 	    	amount = parameters[:amount].to_f
+	    	puts "Amount: #{amount}"
 	    	amountCoefficient = getAmountCoefficient(amount)
+	    	puts "amountCoefficient: #{amountCoefficient}"
 
-	    	deliveryCoefficient = parameters[:delivery].to_f
+	    	# deliveryCoefficient = parameters[:delivery].to_f
 
-	    	totalAmountWithoutAddservices = (basePrice * amountCoefficient * deliveryCoefficient)
-	    	
+	    	# puts "deliveryCoefficient: #{deliveryCoefficient}"
+
+	    	# totalAmountWithoutAddservices = (basePrice * amountCoefficient * deliveryCoefficient)
+	    	# Delivery coefficient is depricated, because now it's not a coefficient, but a value,
+	    	# dependent on selected amount
+	    	totalAmountWithoutAddservices = (basePrice * amountCoefficient)
+	    	puts "totalAmountWithoutAddservices: #{totalAmountWithoutAddservices}"
+
+	    	puts "||------ Debugging end ------||"
 	    	# partyServices = 0
 	    	# eachServices = 0
 	    	
