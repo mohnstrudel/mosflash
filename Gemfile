@@ -16,6 +16,9 @@ gem 'coffee-rails', '~> 4.1.0'
 # Dunno why, but let's try to include it
 # gem 'therubyracer', platforms: :ruby
 
+# Lets make this site SEO friendly
+gem 'metamagic' 
+
 # Lets store some environment variables
 gem 'figaro'
 

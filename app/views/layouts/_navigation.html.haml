@@ -5,17 +5,10 @@
   .container
     .navbar-header
       =link_to root_path, class: 'navbar-brand home' do
-        =image_tag 'default/logo_small_v3.png', class: 'hidden-xs hidden-sm', alt: "Логотип Мосфлеш", width: 52
-        =image_tag 'default/logo_small_v3.png', class: 'visible-xs visible-sm', alt: 'Логотип Мосфлеш', width: 52
+        =image_tag 'default/fleshki-optom-logo-v2.png', class: 'hidden-xs hidden-sm', alt: "Логотип Мосфлеш", width: 98
+        =image_tag 'default/fleshki-optom-logo-v2.png', class: 'visible-xs visible-sm', alt: 'Логотип Мосфлеш', width: 98
         %span.sr-only Мосфлеш - обратно на главную
     / Descriptor text
-    .navbar-header
-      %h1
-        .mosflash_logotext
-          =link_to 'МОСФЛЕШ', root_path, style: 'text-decoration: none; color: #d85054;'
-      %h2
-        .mosflash_sublogotext
-          =link_to 'СУВЕНИРНАЯ ПРОДУКЦИЯ', root_path, style: 'text-decoration: none; color: black;'
     .navbar-header.descriptor
       %h6
         .add_descriptor_class 
@@ -28,7 +21,7 @@
     #basket-overview.navbar-collapse.collapse.right
       %h3.phone_number
         =link_to '#' do
-          +7 (499) 755 58 48
+          8 (499) 391 44 53
       %h6.under_phone_number Режим работы: 10:00 - 20:00 (пн-пт)
     / /.navbar-header
   .container
