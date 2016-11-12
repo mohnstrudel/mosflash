@@ -134,6 +134,16 @@
 							%br
 						=link_to_add_fields 'Добавить макет', f, :makets
 
+				.row
+					.box
+						%h3 SEO - параметры
+						=f.label 'Title'
+						=f.text_field :seo_title, class: 'form-control', placeholder: 'SEO-title'
+						=f.label 'Description'
+						=f.text_area :seo_description, class: 'form-control', placeholder: 'Описание для SEO'
+						=f.label 'Ключевые слова'
+						=f.collection_select :keyword_ids, Keyword.all, :id, :value, {}, multiple: true
+
 				=f.submit 'Сохранить', id: 'submit-data', class: 'btn btn-success'
 				=link_to 'Отменить', admin_path, class: 'btn btn-info'
 				

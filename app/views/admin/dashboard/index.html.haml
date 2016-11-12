@@ -86,4 +86,13 @@
 	=link_to 'Создать новый пост', new_admin_blogpost_path
 	=link_to 'Просмотреть все посты', admin_blogposts_path
 
+.box
+	%h4 Ключевые слова для товаров
+	%h5 Последние 5 созданных
+	=render 'shared/listing_keywords'
+
+	%h6 Действия
+	=link_to 'Создать новое ключевое слово', new_admin_keyword_path
+	=link_to 'Просмотреть все ключевые слова', admin_keywords_path
+
 

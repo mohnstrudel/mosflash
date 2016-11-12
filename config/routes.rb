@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     resources :settings
     resources :deliveries
     resources :colors
+    resources :keywords
     get 'accompanships/create'
     delete 'accompanships/destroy'
 

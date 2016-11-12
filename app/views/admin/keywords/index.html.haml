@@ -1,0 +1,12 @@
+%h1 Админская панель
+%p
+	%ul
+		%li
+			=link_to 'На дашборд', admin_path
+		%li
+			=link_to 'Создать новое ключевое слово', new_admin_keyword_path
+
+
+%h2 Все keyword'ы
+
+=render 'shared/listing_keywords'

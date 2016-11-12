@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160801091832) do
+ActiveRecord::Schema.define(version: 20161112121851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,6 +122,12 @@ ActiveRecord::Schema.define(version: 20160801091832) do
 
   add_index "images", ["product_id"], name: "index_images_on_product_id", using: :btree
 
+  create_table "keywords", force: :cascade do |t|
+    t.string   "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "line_items", force: :cascade do |t|
     t.integer  "product_id"
     t.integer  "cart_id"
@@ -198,6 +204,16 @@ ActiveRecord::Schema.define(version: 20160801091832) do
     t.float    "totalsum"
   end
 
+  create_table "product_keywords", force: :cascade do |t|
+    t.integer  "product_id"
+    t.integer  "keyword_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "product_keywords", ["keyword_id"], name: "index_product_keywords_on_keyword_id", using: :btree
+  add_index "product_keywords", ["product_id"], name: "index_product_keywords_on_product_id", using: :btree
+
   create_table "product_sizes", force: :cascade do |t|
     t.integer  "size"
     t.datetime "created_at", null: false
@@ -229,6 +245,8 @@ ActiveRecord::Schema.define(version: 20160801091832) do
     t.float    "basicprice"
     t.string   "previewpic"
     t.integer  "sorting"
+    t.string   "seo_title"
+    t.text     "seo_description"
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
@@ -309,6 +327,8 @@ ActiveRecord::Schema.define(version: 20160801091832) do
   add_foreign_key "line_items", "products"
   add_foreign_key "makets", "products"
   add_foreign_key "option_pics", "options"
+  add_foreign_key "product_keywords", "keywords"
+  add_foreign_key "product_keywords", "products"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "subcategories"
   add_foreign_key "subcategories", "categories"

@@ -31,6 +31,9 @@ class Product < ActiveRecord::Base
 	has_many	:servizations
 	has_many	:addservices, through: :servizations
 
+	has_many	:product_keywords
+	has_many	:keywords, through: :product_keywords
+
 	accepts_nested_attributes_for :options, allow_destroy: true
 
 	accepts_nested_attributes_for :images, allow_destroy: true

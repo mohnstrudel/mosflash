@@ -2,6 +2,8 @@ class Admin::ProductsController < AdminController
 	
 	before_action	:find_product, only: [:edit, :destroy, :update]
 
+	after_filter	:set_default, only: [:update, :create]
+
 	def index
 		# Dunno why order(title: :asc) isn't sorting properly (putting O before A for example)
 		@products = Product.all.sort_by { |p| p.title.downcase }
@@ -53,7 +55,11 @@ class Admin::ProductsController < AdminController
 
 	private
 
-		# def remove_image(product)
+		def set_default
+			if @product.seo_title.empty?
+				@product.update(seo_title: @product.title)
+			end
+		end
 			
 
 
@@ -61,13 +67,15 @@ class Admin::ProductsController < AdminController
 			params.require(:product).permit(:title, :description, :advertising_text,
 				:fancy_quote, :hot, :hotpic, :product_size_ids, :material, :basicprice,
 				:previewpic, :sorting, :remove_hotpic, :remove_previewpic,
-				{ volume_ids: [] }, { color_ids: [] }, { addservice_ids: [] }, :category_id, :subcategory_id, 
+				:seo_title, :seo_description,
+				{ volume_ids: [] }, { color_ids: [] }, { addservice_ids: [] }, { keyword_ids: [] }, :category_id, :subcategory_id, 
 				options_attributes: [:size, :weight, :price, :material, :product_id, :id, :_destroy],
 				images_attributes: [ :id, :image, :product_id, :_destroy ],
 				servizations_attributes: [:id, :product_id, :addservice_id, :coefficient, :_destroy],
 				characteristics_attributes: [:id, :product_id, :weight, :length, :width, :thickness],
 				additionalcharacteristics_attributes: [:id, :product_id, :name, :value, :_destroy],
 				makets_attributes: [ :id, :name, :maket_type, :attachment, :_destroy ]
+
 				)
 		end
 

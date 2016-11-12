@@ -1,0 +1,5 @@
+-@keywords.each do |keyword|
+	%p
+		=keyword.value
+		=link_to 'Редактировать', edit_admin_keyword_path(keyword)
+		=link_to 'Удалить', admin_keyword_path(keyword), method: :delete, data: {confirm: 'Уверен?'}
