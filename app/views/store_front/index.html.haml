@@ -20,6 +20,33 @@
 
 
 #all
+  / *** CONTENT ***
+  / _________________________________________________________
+  / _________________________________________________________
+  #content
+    .container
+      .col-sm-12
+        .box.text-center
+          %h3.text-uppercase Флешки
+          / %h4.text-muted
+          /   %span.accent Доставка в течении дня
+          /   на все
+        .row.products
+          =render partial: 'shared/categories', locals: { abstract_category: @fleshki_category}
+  
+  / Display power bank only
+
+  #content
+    .container
+      .col-sm-12
+        .box.text-center
+          %h3.text-uppercase Power Bank
+          / %h4.text-muted
+          /   %span.accent Доставка в течении дня
+          /   на все
+        .row.products
+          =render partial: 'shared/categories', locals: { abstract_category: @power_bank_category }
+
   /
     *** ADVANTAGES ***
     _________________________________________________________
