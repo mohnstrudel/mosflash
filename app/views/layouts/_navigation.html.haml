@@ -40,30 +40,7 @@
           =link_to addservices_path do
             Услуги
         %li.dropdown.yamm-fw
-          =link_to '#', class: 'dropdown-toggle', data: { toggle: 'dropdown' } do
-            О нас
-            %b.caret
-          %ul.dropdown-menu
-            %li
-              .yamm-content
-                .row
-                  .col-sm-3
-                    =image_tag 'default/about_company.png', class: 'img-responsive hidden-xs', alt: ''
-                  .col-sm-3
-                    %h3
-                      О нас
-                    %ul
-                      %li
-                        =link_to "Новости", blogposts_path
-                      %li
-                        =link_to "Контакты", contacts_path
-                      %li
-                        =link_to "История", history_path
-                  .col-sm-3
-                  .col-sm-3
-                .footer.clearfix.hidden-xs
-                  %h4.pull-right
-                    О нас
+          =link_to 'Контакты', contacts_path
 
     / /.nav-collapse
     #basket-overview.navbar-collapse.collapse.right

@@ -1,23 +1,4 @@
-%script{:src => "https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"}
-:javascript
-	function initialize() {
-			var mapOptions = {
-					zoom: 15,
-					center: new google.maps.LatLng(49.1678136, 16.5671893),
-					mapTypeId: google.maps.MapTypeId.ROAD,
-					scrollwheel: false
-			}
-			var map = new google.maps.Map(document.getElementById('map'),
-					mapOptions);
-
-			var myLatLng = new google.maps.LatLng(49.1681989, 16.5650808);
-			var marker = new google.maps.Marker({
-					position: myLatLng,
-					map: map
-			});
-	}
-
-	google.maps.event.addDomListener(window, 'load', initialize);
+%script{:async => "", :charset => "utf-8", :src => "https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=mXYS7XACk5XX4g7Q1VcDvTNGDpUSHo-4&width=100%25&height=400&lang=ru_RU&sourceType=constructor&scroll=false", :type => "text/javascript"}
 #content
 	.container
 		.col-md-12
@@ -74,10 +55,6 @@
 							%strong
 								БИК: 
 							044583297
-						%h5
-							%i.fa.fa-download
-							=link_to "https://docviewer.yandex.ru/?url=ya-disk-public%3A%2F%2FM5ddBL3tE1iKnjKhsXjMccQ9Nz2PwZbDyhQiK9gIhkT1gx62nnijef7zVXCMRiIYq%2FJ6bpmRyOJonT3VoXnDag%3D%3D&name=%D0%A0%D0%B5%D0%BA%D0%B2%D0%B8%D0%B7%D0%B8%D1%82%D1%8B%20(%D0%9C%D0%BE%D1%81%D1%82%D1%80%D0%B5%D0%BD%D0%B4).pdf&c=55fa73be3be2" do
-								Скачать полную версию реквизитов
 					/ /.col-sm-4
 					.col-sm-4
 						%h3
