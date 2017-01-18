@@ -34,7 +34,10 @@
         
         -Category.all.order(orderid: :asc).each do |category|
           %li.dropdown.yamm-fw
-            =link_to category.title, products_path(category: category.title), class: 'dropdown-toggle'
+            -if category.subcategories.any?
+              =link_to category.title, category_subcategories_path(category_id: category.id), class: 'dropdown-toggle'
+            -else
+              =link_to category.title, products_path(category: category.title), class: 'dropdown-toggle'
         / Custom menu for additional services and "about us"
         %li.dropdown.yamm-fw
           =link_to addservices_path do

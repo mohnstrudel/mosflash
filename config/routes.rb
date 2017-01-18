@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'subcategories/show'
+
   devise_for :users
   get 'downloads/exe'
 
@@ -14,12 +16,20 @@ Rails.application.routes.draw do
   resources :blogposts, only: [:show, :index]
   resources :donwloads
 
-  resources :products do
-    match '/download',  to: 'products#download_maket',   via: 'get'
-    resources :servizations
-    resources :colors
-    resources :options do
-      resources :option_pics
+  resources :products, path: ''
+  resources :categories, path: '' do
+    resources :subcategories
+  end
+  resources :categories, path: "/", only: [] do
+    resources :subcategories, path: "/", only: [:index, :show] do
+      resources :products do
+        match '/download',  to: 'products#download_maket',   via: 'get'
+        resources :servizations
+        resources :colors
+        resources :options do
+          resources :option_pics
+        end
+      end
     end
   end
 

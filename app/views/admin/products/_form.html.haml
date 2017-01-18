@@ -17,6 +17,9 @@
 					=f.collection_select :subcategory_id, Subcategory.all, :id, :title, { prompt: 'Выбрать подкатегорию' }, class: 'form-control'
 					=f.label "Наименование товара"
 					=f.text_field :title, class: 'form-control'
+					%p
+						=f.label 'Slug товара (можно не заполнять), это идет в УРЛ (ЧПУ-настройка)'
+						=f.text_field :slug, class: 'form-control'
 					%br
 					=f.label "Рекламный текст (идет сразу после наименования)"
 					=f.text_area :advertising_text, class: 'form-control'

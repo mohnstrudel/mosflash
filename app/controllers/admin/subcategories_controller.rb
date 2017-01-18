@@ -44,7 +44,7 @@ class Admin::SubcategoriesController < AdminController
 	  end
 
 	  def subcategory_params
-	  	params.require(:subcategory).permit(:id, :title, :description, :category_id, :avatar)
+	  	params.require(:subcategory).permit(:id, :title, :description, :category_id, :avatar, :slug)
 	  end
 
 end

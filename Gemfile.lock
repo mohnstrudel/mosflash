@@ -198,6 +198,8 @@ GEM
     rspec-support (3.3.0)
     ruby_parser (3.7.1)
       sexp_processor (~> 4.1)
+    russian (0.6.0)
+      i18n (>= 0.5.0)
     sass (3.4.18)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
@@ -268,6 +270,7 @@ DEPENDENCIES
   rails (= 4.2.4)
   recaptcha
   rspec-rails (~> 3.3.3)
+  russian
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   turbolinks

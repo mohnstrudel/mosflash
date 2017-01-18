@@ -34,6 +34,9 @@ gem 'haml-rails', '~> 0.9.0'
 # Using fonts
 gem "font-awesome-rails"
 
+# Use for creating slug from russian names
+gem 'russian'
+
 # Pagination gem for pagination
 gem 'will_paginate'
 

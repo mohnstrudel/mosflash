@@ -1,20 +1,24 @@
 .row
 	.col-md-4.col-xs-12
 		=form_for([:admin, @subcategory]) do |f|
-			=f.label 'Наименование подкатегории'
-			=f.text_field :title, class: 'form-control'
-			%br
-			=f.label 'Описание подкатегории'
-			%h6 Появляется в каталоге, если клиент нажал на данную подкатегорию. Не рекомендуется оставлять пустым
-			=f.text_area :description, class: 'form-control'
-			%br
-			=f.label 'Выбрать категорию'
-			%h6 Выбрать категорию, к которой относится данная подкатегория
-			=f.collection_select :category_id, Category.all, :id, :title, { prompt: 'Выбрать категорию' }, class: 'form-control'
-			%br
-			=f.label 'Загрузить фотографию подкатегории (если это флешка, то фотография появится на странице с выбором подкатегорий для флешек'
-			=f.file_field :avatar
-			%br
-			=f.submit 'Сохранить', class: 'btn btn-success'
-			=link_to 'Отменить', admin_path, class: 'btn btn-info'
+			%p
+				=f.label 'Наименование подкатегории'
+				=f.text_field :title, class: 'form-control'
+			%p
+				=f.label 'Slug категории (можно не заполнять), это идет в УРЛ (ЧПУ-настройка)'
+				=f.text_field :slug
+			%p
+				=f.label 'Описание подкатегории'
+				%h6 Появляется в каталоге, если клиент нажал на данную подкатегорию. Не рекомендуется оставлять пустым
+				=f.text_area :description, class: 'form-control'
+			%p
+				=f.label 'Выбрать категорию'
+				%h6 Выбрать категорию, к которой относится данная подкатегория
+				=f.collection_select :category_id, Category.all, :id, :title, { prompt: 'Выбрать категорию' }, class: 'form-control'
+			%p
+				=f.label 'Загрузить фотографию подкатегории (если это флешка, то фотография появится на странице с выбором подкатегорий для флешек'
+				=f.file_field :avatar
+			%p
+				=f.submit 'Сохранить', class: 'btn btn-success'
+				=link_to 'Отменить', admin_path, class: 'btn btn-info'
 	.col-md-8

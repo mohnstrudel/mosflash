@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161112121851) do
+ActiveRecord::Schema.define(version: 20161203164719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20161112121851) do
     t.datetime "updated_at",  null: false
     t.string   "avatar"
     t.integer  "orderid"
+    t.string   "slug"
   end
 
   create_table "characteristics", force: :cascade do |t|
@@ -247,6 +248,7 @@ ActiveRecord::Schema.define(version: 20161112121851) do
     t.integer  "sorting"
     t.string   "seo_title"
     t.text     "seo_description"
+    t.string   "slug"
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
@@ -279,6 +281,7 @@ ActiveRecord::Schema.define(version: 20161112121851) do
     t.datetime "updated_at",  null: false
     t.integer  "category_id"
     t.string   "avatar"
+    t.string   "slug"
   end
 
   add_index "subcategories", ["category_id"], name: "index_subcategories_on_category_id", using: :btree

@@ -67,7 +67,7 @@ class Admin::ProductsController < AdminController
 			params.require(:product).permit(:title, :description, :advertising_text,
 				:fancy_quote, :hot, :hotpic, :product_size_ids, :material, :basicprice,
 				:previewpic, :sorting, :remove_hotpic, :remove_previewpic,
-				:seo_title, :seo_description,
+				:seo_title, :seo_description, :slug,
 				{ volume_ids: [] }, { color_ids: [] }, { addservice_ids: [] }, { keyword_ids: [] }, :category_id, :subcategory_id, 
 				options_attributes: [:size, :weight, :price, :material, :product_id, :id, :_destroy],
 				images_attributes: [ :id, :image, :product_id, :_destroy ],

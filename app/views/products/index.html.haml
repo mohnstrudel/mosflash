@@ -17,8 +17,3 @@
 									="#{@subcategory.title} (#{@category.title})"
 								%p.text-muted
 									=@subcategory.description
-		.row
-			-if @category.title == 'Флешки' && @subcategory.blank?
-				=render 'fleshki_index'
-			-else
-				=render 'regular_index'

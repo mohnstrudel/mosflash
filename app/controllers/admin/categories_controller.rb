@@ -1,5 +1,7 @@
 class Admin::CategoriesController < AdminController
-before_action	:find_category, only: [:edit, :update, :show]
+  
+  before_action	:find_category, only: [:edit, :update, :show]
+  # after_filter :set_slug
 
   def index
   	@categories = Category.all
@@ -37,7 +39,8 @@ before_action	:find_category, only: [:edit, :update, :show]
 	  end
 
 	  def category_params
-	  	params.require(:category).permit(:title, :description, :avatar, :orderid)
+	  	params.require(:category).permit(:title, :description, :avatar, :orderid, :slug)
 	  end
+
 
 end

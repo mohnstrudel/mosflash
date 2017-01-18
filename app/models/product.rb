@@ -44,6 +44,7 @@ class Product < ActiveRecord::Base
 	accepts_nested_attributes_for :makets, allow_destroy: true
 
 	before_destroy	:ensure_not_referenced_by_any_line_item
+	after_initialize :set_slug
 
 	def init
 		self.sorting ||= 500
@@ -62,6 +63,10 @@ class Product < ActiveRecord::Base
 end
 
 	private
+
+		def set_slug
+			self.slug ||= Russian.translit(self.title).downcase.split(" ").join("-").to_s
+		end
 
 		# Ensure there are no line items referencing this product
 		def ensure_not_referenced_by_any_line_item
